@@ -31,6 +31,7 @@
 - npm i -D husky lint-staged
 - npx husky init
 - npm run prepare
+- npx husky-init
 - echo "npx lint-staged" > .husky/pre-commit
 - npm i @nestjs/passport passport passport-local
 - npm i -D @types/passport-local

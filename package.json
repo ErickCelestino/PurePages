@@ -4,9 +4,11 @@
   "license": "MIT",
   "scripts": {
     "start:front-pure-digital": "nx run web-pure-digital:serve",
+    "build:pure-digital": "nx build web-pure-digital --skip-nx-cache",
     "prepare": "husky && husky install",
     "lint": "nx format:check --all",
-    "lint:write": "nx format:write --all"
+    "lint:write": "nx format:write --all",
+    "docker": "docker-compose up"
   },
   "private": true,
   "devDependencies": {
