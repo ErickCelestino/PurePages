@@ -1,5 +1,21 @@
-import { Box } from '@mui/material';
+import { Box, CssBaseline } from '@mui/material';
+import {
+  SimpleCta,
+  SimpleFeatures,
+  SimpleFooter,
+  SimpleHeader,
+  SimpleHeroSection,
+} from '../components';
 
 export const HomeContainer = () => {
-  return <Box>home</Box>;
+  return (
+    <Box>
+      <CssBaseline />
+      <SimpleHeader />
+      <SimpleHeroSection />
+      <SimpleFeatures />
+      <SimpleCta />
+      <SimpleFooter />
+    </Box>
+  );
 };
