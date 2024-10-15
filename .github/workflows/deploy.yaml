@@ -71,12 +71,6 @@ jobs:
       - name: Configure Docker to use Google Artifact Registry
         run: gcloud auth configure-docker ${{ secrets.GCP_REGION }}-docker.pkg.dev
 
-      - name: TEST
-        run: |
-          while IFS= read -r app; do
-            echo "$app"
-          done < affected.txt
-
       - name: Build, tag, and push images for affected projects
         if: success()
         run: |
@@ -84,10 +78,8 @@ jobs:
           GCR_REGISTRY="${{ secrets.GCP_REGION }}-docker.pkg.dev/${{ secrets.GCP_PROJECT_ID }}/${{ secrets.GCP_REPOSITORY }}"
           IMAGE_TAG="${{ github.sha }}"  # Use the commit SHA as a tag to ensure uniqueness
 
-          # For each app, build and push the image
           while IFS= read -r app; do
             echo "Building and pushing Docker image for project: $app"
-            app=$(echo "$app" | xargs)
             safe_app=$(echo "$app" | tr '-' '_')
 
             # Build the image using the app-specific Dockerfile
