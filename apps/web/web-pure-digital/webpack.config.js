@@ -7,7 +7,7 @@ module.exports = {
     path: join(__dirname, '../../../dist/apps/web/web-pure-digital'),
   },
   devServer: {
-    port: 4200,
+    port: process.env['NX_APP_FRONT_PURE_DIGITAL'] || 4200,
     historyApiFallback: {
       index: '/index.html',
       disableDotRule: true,

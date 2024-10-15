@@ -1,0 +1,11 @@
+version: '3.9'
+services:
+  web-pure-digital:
+    build:
+      context: .
+      dockerfile: ./configs/docker/Dockerfile.web-pure-digital
+    ports:
+      - '${NX_APP_FRONT_PURE_DIGITAL}:8080'
+    environment:
+      - NODE_ENV=production
+      - NX_APP_FRONT_PURE_DIGITAL= ${NX_APP_FRONT_PURE_DIGITAL}
