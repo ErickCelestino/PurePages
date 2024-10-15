@@ -107,7 +107,10 @@ jobs:
           while IFS= read -r app; do
             echo "Building and pushing Docker image for project: $app"
             safe_app=$(echo "$app" | tr '-' '_')
-
-            # Build the image using the app-specific Dockerfile
-            echo "$GCR_REGISTRY/$app:$IMAGE_TAG"
+            if [[ -n "$app" ]]; then
+              # Build the image using the app-specific Dockerfile
+              echo "$GCR_REGISTRY/$app:$IMAGE_TAG"
+            else
+              echo "Nenhum projeto encontrado para $app"
+            fi
           done < affected.txt
