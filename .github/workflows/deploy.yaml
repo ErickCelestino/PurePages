@@ -40,7 +40,7 @@ jobs:
           node-version: '18'
 
       - name: Install dependencies
-        run: npm install --legacy-peer-deps
+        run: npm install
 
       - name: Determine affected projects
         id: affected
@@ -75,7 +75,7 @@ jobs:
         if: success()
         run: |
           # Define o repositório no Google Container Registry
-          GCR_REGISTRY="${{ secrets.GCP_REGION }}-docker.pkg.dev/temporal-falcon-438302-t7/${{ secrets.GCP_REPOSITORY }}"
+          GCR_REGISTRY="${{ secrets.GCP_REGION }}-docker.pkg.dev/${{ secrets.GCP_PROJECT_ID }}/${{ secrets.GCP_REPOSITORY }}"
           IMAGE_TAG="${{ github.sha }}"  # Use the commit SHA as a tag to ensure uniqueness
 
           # Para cada app, construir e enviar a imagem
