@@ -86,7 +86,7 @@ jobs:
           # For each app, build and push the image
           while IFS= read -r app; do
             echo "Building and pushing Docker image for project: $app"
-
+            app=$(echo "$app" | xargs)
             safe_app=$(echo "$app" | tr '-' '_')
 
             # Build the image using the app-specific Dockerfile
