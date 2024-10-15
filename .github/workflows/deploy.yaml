@@ -69,13 +69,14 @@ jobs:
           project_id: ${{ secrets.GCP_PROJECT_ID }}
 
       - name: Configure Docker to use Google Artifact Registry
-        run: gcloud auth configure-docker ${{ secrets.GCP_REPOSITORY_REGION }}-docker.pkg.dev
+        run: gcloud auth configure-docker ${{ secrets.GCP_REGION }}-docker.pkg.dev
 
       - name: Build, tag, and push images for affected projects
         if: success()
         run: |
           # Define o repositório no Google Container Registry
-          GCR_REGISTRY="${{ secrets.GCP_REPOSITORY_REGION }}-docker.pkg.dev/${{ secrets.GCP_PROJECT_ID }}/${{ secrets.GCP_REPOSITORY }}"
+          echo "${{ secrets.GCP_REGION }}-docker.pkg.dev/${{ secrets.GCP_PROJECT_ID }}/${{ secrets.GCP_REPOSITORY }}"
+          GCR_REGISTRY="${{ secrets.GCP_REGION }}-docker.pkg.dev/${{ secrets.GCP_PROJECT_ID }}/${{ secrets.GCP_REPOSITORY }}"
           IMAGE_TAG="${{ github.sha }}"  # Use the commit SHA as a tag to ensure uniqueness
 
           # Para cada app, construir e enviar a imagem
