@@ -78,6 +78,11 @@ jobs:
           GCR_REGISTRY="${{ secrets.GCP_REGION }}-docker.pkg.dev/${{ secrets.GCP_PROJECT_ID }}/${{ secrets.GCP_REPOSITORY }}"
           IMAGE_TAG="${{ github.sha }}"  # Use the commit SHA as a tag to ensure uniqueness
 
+          if [ ! -s affected.txt ]; then
+            echo "Nenhum projeto afetado foi encontrado ou ocorreu um erro ao executar o comando Nx."
+            exit 1
+          fi
+
           # For each app, build and push the image
           while IFS= read -r app; do
             echo "Building and pushing Docker image for project: $app"
