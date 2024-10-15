@@ -90,13 +90,13 @@ jobs:
             safe_app=$(echo "$app" | tr '-' '_')
 
             # Build the image using the app-specific Dockerfile
-            docker build -t $GCR_REGISTRY/$app:$IMAGE_TAG -f ./configs/docker/Dockerfile.$app .
+            docker build -t $GCR_REGISTRY/$safe_app:$IMAGE_TAG -f ./configs/docker/Dockerfile.$app .
 
             # Push the image to the Google Container Registry
-            docker push $GCR_REGISTRY/$app:$IMAGE_TAG
+            docker push $GCR_REGISTRY/$safe_app:$IMAGE_TAG
 
             # Set the environment variable with the image name for later use
-            echo "${safe_app}_IMAGE=$GCR_REGISTRY/$app:$IMAGE_TAG" >> $GITHUB_ENV
+            echo "${safe_app}_IMAGE=$GCR_REGISTRY/$safe_app:$IMAGE_TAG" >> $GITHUB_ENV
           done < affected.txt
 
       - name: Deploy to Google Cloud Run
