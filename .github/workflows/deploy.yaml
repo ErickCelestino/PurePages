@@ -37,7 +37,7 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '20'
+          node-version: '18'
 
       - name: Install dependencies
         run: npm install
@@ -47,7 +47,7 @@ jobs:
         run: |
           echo "Running Nx command..."
           npx nx reset
-          npx nx show projects --affected --type=app --base=dev --verbose > affected.txt
+          npx nx show projects --affected --type=app --base=dev > affected.txt
           echo "Nx command completed with exit code $?."
           cat affected.txt
 
