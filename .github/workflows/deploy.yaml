@@ -74,17 +74,37 @@ jobs:
       - name: Build, tag, and push images for affected projects
         if: success()
         run: |
-          # Define the repository in Google Container Registry
+          # Define o repositório no Google Container Registry
           GCR_REGISTRY="${{ secrets.GCP_REGION }}-docker.pkg.dev/${{ secrets.GCP_PROJECT_ID }}/${{ secrets.GCP_REPOSITORY }}"
           IMAGE_TAG="${{ github.sha }}"  # Use the commit SHA as a tag to ensure uniqueness
 
+          # Para cada app, construir e enviar a imagem
           while IFS= read -r app; do
             echo "Building and pushing Docker image for project: $app"
+
             safe_app=$(echo "$app" | tr '-' '_')
-            if [[ -n "$app" ]]; then
-              # Build the image using the app-specific Dockerfile
-              echo "$GCR_REGISTRY/$app:$IMAGE_TAG"
-            else
-              echo "Nenhum projeto encontrado para $app"
-            fi
+
+            # Build the image using the app-specific Dockerfile
+            docker build -t $GCR_REGISTRY/$app:$IMAGE_TAG -f ./configs/docker/Dockerfile.$app .
+
+            # Push the image to the Google Container Registry
+            docker push $GCR_REGISTRY/$app:$IMAGE_TAG
+
+            # Set the environment variable with the image name for later use
+            echo "${safe_app}_IMAGE=$GCR_REGISTRY/$app:$IMAGE_TAG" >> $GITHUB_ENV
+          done < affected.txt
+
+      - name: Deploy to Google Cloud Run
+        if: success()
+        run: |
+          while IFS= read -r app; do
+            echo "Deploying $app to Google Cloud Run"
+            safe_app=$(echo "$app" | tr '-' '_')
+            IMAGE_VAR="${safe_app}_IMAGE"
+            gcloud run deploy $app \
+              --image "${!IMAGE_VAR}"  \
+              --platform managed \
+              --region ${{ secrets.GCP_REGION }} \
+              --allow-unauthenticated \
+              --project ${{ secrets.GCP_PROJECT_ID }}
           done < affected.txt
