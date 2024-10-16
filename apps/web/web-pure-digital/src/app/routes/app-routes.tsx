@@ -1,16 +1,15 @@
-import { HomeContainer, useDrawerContext, scrollTo } from '@pure-pages/feature';
+import {
+  HomeContainer,
+  useDrawerContext,
+  scrollTo,
+  navigateToWaths,
+} from '@pure-pages/feature';
 import { useEffect, useRef } from 'react';
 import { Navigate, Route, Routes } from 'react-router-dom';
 
 export const AppRouters = () => {
   const { setDrawerOptions } = useDrawerContext();
   const hasLoadedUserData = useRef(false);
-  const navigateToWaths = () => {
-    window.open(
-      'https://wa.me/44998494865?text="Olá estou interessado em saber mais sobre os planos da Pure Digital, Poderia me ajudar?"',
-      '_blank'
-    );
-  };
 
   useEffect(() => {
     if (!hasLoadedUserData.current) {
@@ -29,7 +28,12 @@ export const AppRouters = () => {
           <HomeContainer
             title="Pure Digital"
             companyLogo="/assets/images/PurePagesLogo.svg"
-            ctaButton={navigateToWaths}
+            ctaButton={() =>
+              navigateToWaths(
+                '44998494865',
+                'Olá estou interessado em saber mais sobre os planos da Pure Digital, Poderia me ajudar?'
+              )
+            }
             listButtons={[
               {
                 title: 'Inicio',

@@ -1,6 +1,7 @@
 import {
   AppThemeProvider,
   DrawerProvider,
+  navigateToWaths,
   SimpleDrawer,
 } from '@pure-pages/feature';
 import { AppRouters } from './routes';
@@ -23,7 +24,14 @@ export function App() {
 const Content = () => {
   return (
     <DrawerProvider>
-      <SimpleDrawer>
+      <SimpleDrawer
+        ctaButton={() =>
+          navigateToWaths(
+            '44998494865',
+            'Olá estou interessado em saber mais sobre os planos da Pure Digital, Poderia me ajudar?'
+          )
+        }
+      >
         <AppRouters />
       </SimpleDrawer>
     </DrawerProvider>

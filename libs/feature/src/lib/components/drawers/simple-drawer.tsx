@@ -3,7 +3,14 @@ import { DrawerHeader } from './drawer-header';
 import { DrawerListItem } from './drawer-list';
 import { FC, ReactNode } from 'react';
 import { styled, Theme, CSSObject, useTheme } from '@mui/material/styles';
-import { Box, List, CssBaseline, Divider, useMediaQuery } from '@mui/material';
+import {
+  Box,
+  List,
+  CssBaseline,
+  Divider,
+  useMediaQuery,
+  Button,
+} from '@mui/material';
 import MuiDrawer from '@mui/material/Drawer';
 
 const drawerWidth = 200;
@@ -46,11 +53,17 @@ const Drawer = styled(MuiDrawer)(({ theme, open }) => ({
   }),
 }));
 
-interface MiniDrawerProps {
+interface SimpleDrawerProps {
   children: ReactNode;
+  ctaButton: () => void;
+  ctaButtonTitle?: string;
 }
 
-export const SimpleDrawer: FC<MiniDrawerProps> = ({ children }) => {
+export const SimpleDrawer: FC<SimpleDrawerProps> = ({
+  children,
+  ctaButton,
+  ctaButtonTitle = 'Comprar Agora',
+}) => {
   const theme = useTheme();
   const { isDrawerOpen, toggleDrawerOpen, drawerOptions } = useDrawerContext();
   const smDown = useMediaQuery(theme.breakpoints.down('sm'));
@@ -76,6 +89,26 @@ export const SimpleDrawer: FC<MiniDrawerProps> = ({ children }) => {
               onClick={smDown ? toggleDrawerOpen : undefined}
             />
           </List>
+          <Box
+            sx={{
+              display: 'flex',
+              justifyContent: 'center',
+            }}
+          >
+            <Button
+              variant="contained"
+              color="secondary"
+              sx={{
+                borderRadius: '90px',
+                whiteSpace: 'nowrap',
+                width: '80%',
+                fontSize: theme.spacing(1.5),
+              }}
+              onClick={ctaButton}
+            >
+              {ctaButtonTitle}
+            </Button>
+          </Box>
         </Drawer>
       )}
       <Box component="main" sx={{ flexGrow: 1 }}>
