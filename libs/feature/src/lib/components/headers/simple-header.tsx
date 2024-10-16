@@ -11,8 +11,8 @@ import {
 } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import { ButtonNavigation } from '../../shared';
-import { useNavigate } from 'react-router-dom';
 import { useDrawerContext } from '../../context';
+import { scrollTo } from '../../service';
 
 interface SimpleHeaderProps {
   title?: string;
@@ -42,14 +42,11 @@ export const SimpleHeader: FC<SimpleHeaderProps> = ({
     ? listButtons.slice(0, 3)
     : listButtons;
 
-  const navigate = useNavigate();
   return (
     <AppBar id="home" position="static">
       <Toolbar>
         <IconButton
-          onClick={() => {
-            navigate('/');
-          }}
+          onClick={() => scrollTo('home')}
           sx={{
             '&:hover': {
               opacity: 0.8,

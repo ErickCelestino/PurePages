@@ -1,4 +1,4 @@
-import { HomeContainer, useDrawerContext } from '@pure-pages/feature';
+import { HomeContainer, useDrawerContext, scrollTo } from '@pure-pages/feature';
 import { useEffect, useRef } from 'react';
 import { Navigate, Route, Routes } from 'react-router-dom';
 
@@ -33,9 +33,7 @@ export const AppRouters = () => {
             listButtons={[
               {
                 title: 'Inicio',
-                to: () => {
-                  console.log('Voce clicou no inicio');
-                },
+                to: () => scrollTo('home'),
               },
               {
                 title: 'O que fazemos',
