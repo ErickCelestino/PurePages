@@ -26,7 +26,6 @@ export const DrawerListItem = ({
   onClick,
 }: DrawerListItemProps) => {
   const { isDrawerOpen, toggleDrawerOpen } = useDrawerContext();
-  const [buttonsDrawer, setButtonsDrawer] = useState<DrawerOption[]>([]);
   const [openSubItems, setOpenSubItems] = useState<Record<string, boolean>>({});
 
   useEffect(() => {
@@ -41,7 +40,6 @@ export const DrawerListItem = ({
           });
         });
       });
-      setButtonsDrawer(listItem);
     }
   }, [isDrawerOpen, items]);
 
@@ -63,115 +61,84 @@ export const DrawerListItem = ({
 
   return (
     <Box>
-      {isDrawerOpen
-        ? Object.keys(items).map((topic) => (
-            <div key={topic}>
-              {items[topic].length === 1 ? (
-                items[topic].map(({ label, icon, path }) => (
-                  <ListItem
-                    key={label}
-                    disablePadding
-                    sx={{ display: 'block' }}
+      {isDrawerOpen &&
+        Object.keys(items).map((topic) => (
+          <div key={topic}>
+            {items[topic].length === 1 ? (
+              items[topic].map(({ label, icon, path }) => (
+                <ListItem key={label} disablePadding sx={{ display: 'block' }}>
+                  <ListItemButton
+                    onClick={
+                      isDrawerOpen ? handleClick(path) : toggleDrawerOpen
+                    }
+                    sx={{
+                      minHeight: 48,
+                      justifyContent: open ? 'initial' : 'center',
+                    }}
                   >
-                    <ListItemButton
-                      onClick={
-                        isDrawerOpen ? handleClick(path) : toggleDrawerOpen
-                      }
+                    <ListItemIcon
                       sx={{
-                        minHeight: 48,
-                        justifyContent: open ? 'initial' : 'center',
+                        minWidth: 0,
+                        mr: open ? 2 : 'auto',
+                        justifyContent: 'center',
                       }}
                     >
-                      <ListItemIcon
+                      <Icon>{icon}</Icon>
+                    </ListItemIcon>
+                    <ListItemText
+                      primary={label}
+                      sx={{ opacity: open ? 1 : 0 }}
+                    />
+                  </ListItemButton>
+                </ListItem>
+              ))
+            ) : (
+              <>
+                <ListItemButton onClick={() => handleToggleSubItems(topic)}>
+                  <ListItemIcon>
+                    <Icon>{items[topic][0].icon}</Icon>
+                  </ListItemIcon>
+                  <ListItemText primary={topic} sx={{ marginLeft: -2 }} />
+                  {openSubItems[topic] ? <ExpandLess /> : <ExpandMore />}
+                </ListItemButton>
+                <Collapse in={openSubItems[topic]} timeout="auto" unmountOnExit>
+                  {items[topic].map(({ label, icon, path }) => (
+                    <ListItem
+                      key={label}
+                      disablePadding
+                      sx={{ display: 'block' }}
+                    >
+                      <ListItemButton
+                        onClick={
+                          isDrawerOpen ? handleClick(path) : toggleDrawerOpen
+                        }
                         sx={{
-                          minWidth: 0,
-                          mr: open ? 2 : 'auto',
-                          justifyContent: 'center',
+                          minHeight: 48,
+                          justifyContent: open ? 'initial' : 'center',
+                          pl: 4,
                         }}
                       >
-                        <Icon>{icon}</Icon>
-                      </ListItemIcon>
-                      <ListItemText
-                        primary={label}
-                        sx={{ opacity: open ? 1 : 0 }}
-                      />
-                    </ListItemButton>
-                  </ListItem>
-                ))
-              ) : (
-                <>
-                  <ListItemButton onClick={() => handleToggleSubItems(topic)}>
-                    <ListItemIcon>
-                      <Icon>{items[topic][0].icon}</Icon>
-                    </ListItemIcon>
-                    <ListItemText primary={topic} sx={{ marginLeft: -2 }} />
-                    {openSubItems[topic] ? <ExpandLess /> : <ExpandMore />}
-                  </ListItemButton>
-                  <Collapse
-                    in={openSubItems[topic]}
-                    timeout="auto"
-                    unmountOnExit
-                  >
-                    {items[topic].map(({ label, icon, path }) => (
-                      <ListItem
-                        key={label}
-                        disablePadding
-                        sx={{ display: 'block' }}
-                      >
-                        <ListItemButton
-                          onClick={
-                            isDrawerOpen ? handleClick(path) : toggleDrawerOpen
-                          }
+                        <ListItemIcon
                           sx={{
-                            minHeight: 48,
-                            justifyContent: open ? 'initial' : 'center',
-                            pl: 4,
+                            minWidth: 0,
+                            mr: open ? 2 : 'auto',
+                            justifyContent: 'center',
                           }}
                         >
-                          <ListItemIcon
-                            sx={{
-                              minWidth: 0,
-                              mr: open ? 2 : 'auto',
-                              justifyContent: 'center',
-                            }}
-                          >
-                            <Icon>{icon}</Icon>
-                          </ListItemIcon>
-                          <ListItemText
-                            primary={label}
-                            sx={{ opacity: open ? 1 : 0 }}
-                          />
-                        </ListItemButton>
-                      </ListItem>
-                    ))}
-                  </Collapse>
-                </>
-              )}
-            </div>
-          ))
-        : buttonsDrawer.map(({ label, icon, path }) => (
-            <ListItem key={label} disablePadding sx={{ display: 'block' }}>
-              <ListItemButton
-                onClick={isDrawerOpen ? handleClick(path) : toggleDrawerOpen}
-                sx={{
-                  minHeight: 48,
-                  justifyContent: open ? 'initial' : 'center',
-                  px: 2.5,
-                }}
-              >
-                <ListItemIcon
-                  sx={{
-                    minWidth: 0,
-                    mr: open ? 3 : 'auto',
-                    justifyContent: 'center',
-                  }}
-                >
-                  <Icon>{icon}</Icon>
-                </ListItemIcon>
-                <ListItemText primary={label} sx={{ opacity: open ? 1 : 0 }} />
-              </ListItemButton>
-            </ListItem>
-          ))}
+                          <Icon>{icon}</Icon>
+                        </ListItemIcon>
+                        <ListItemText
+                          primary={label}
+                          sx={{ opacity: open ? 1 : 0 }}
+                        />
+                      </ListItemButton>
+                    </ListItem>
+                  ))}
+                </Collapse>
+              </>
+            )}
+          </div>
+        ))}
     </Box>
   );
 };

@@ -8,7 +8,7 @@ export const DrawerHeaderWrapper = styled('div')(
   ({ theme, open }: { theme: Theme } & DrawerHeaderWrapperProps) => ({
     display: 'flex',
     alignItems: 'center',
-    justifyContent: 'flex-end',
+    justifyContent: 'flex-start',
     padding: theme.spacing(0, 1),
     ...theme.mixins.toolbar,
     ...(open ? { marginBottom: theme.spacing(2) } : {}),
