@@ -13,7 +13,7 @@ interface AppThemeProviderProps {
 export const AppThemeProvider: React.FC<AppThemeProviderProps> = ({
   children,
   selectedLightTheme,
-  selectedDarkTheme
+  selectedDarkTheme,
 }) => {
   const [themeName, setThemeName] = useState<ThemeName>(() => {
     return getItemLocalStorage('theme') || 'light';
