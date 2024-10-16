@@ -46,15 +46,23 @@ export const SimpleHeader: FC<SimpleHeaderProps> = ({
   return (
     <AppBar id="home" position="static">
       <Toolbar>
-        <img
-          width={theme.spacing(8)}
-          height={theme.spacing(8)}
-          src={logo}
-          alt={logoAltTitle}
+        <IconButton
           onClick={() => {
             navigate('/');
           }}
-        />
+          sx={{
+            '&:hover': {
+              opacity: 0.8,
+            },
+          }}
+        >
+          <img
+            width={theme.spacing(7)}
+            height={theme.spacing(7)}
+            src={logo}
+            alt={logoAltTitle}
+          />
+        </IconButton>
         {title ? (
           <Typography
             variant="h6"
@@ -109,6 +117,9 @@ export const SimpleHeader: FC<SimpleHeaderProps> = ({
                         ? theme.spacing(1.6)
                         : theme.spacing(2),
                       whiteSpace: 'nowrap',
+                      '&:hover': {
+                        opacity: 0.8,
+                      },
                     }}
                   >
                     {button.title}
