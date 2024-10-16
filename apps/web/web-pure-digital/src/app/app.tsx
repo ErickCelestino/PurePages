@@ -1,4 +1,8 @@
-import { AppThemeProvider } from '@pure-pages/feature';
+import {
+  AppThemeProvider,
+  DrawerProvider,
+  SimpleDrawer,
+} from '@pure-pages/feature';
 import { AppRouters } from './routes';
 import {
   MargentaBlueLightTheme,
@@ -17,7 +21,13 @@ export function App() {
 }
 
 const Content = () => {
-  return <AppRouters />;
+  return (
+    <DrawerProvider>
+      <SimpleDrawer>
+        <AppRouters />
+      </SimpleDrawer>
+    </DrawerProvider>
+  );
 };
 
 export default App;

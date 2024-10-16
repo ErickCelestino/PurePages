@@ -1,13 +1,25 @@
-import { HomeContainer } from '@pure-pages/feature';
+import { HomeContainer, useDrawerContext } from '@pure-pages/feature';
+import { useEffect, useRef } from 'react';
 import { Navigate, Route, Routes } from 'react-router-dom';
 
 export const AppRouters = () => {
+  const { setDrawerOptions } = useDrawerContext();
+  const hasLoadedUserData = useRef(false);
   const navigateToWaths = () => {
     window.open(
       'https://wa.me/44998494865?text="Olá estou interessado em saber mais sobre os planos da Pure Digital, Poderia me ajudar?"',
       '_blank'
     );
   };
+
+  useEffect(() => {
+    if (!hasLoadedUserData.current) {
+      setDrawerOptions({
+        Inicio: [{ label: 'Inicio', icon: 'home', path: '/' }],
+      });
+      hasLoadedUserData.current = true;
+    }
+  }, [setDrawerOptions]);
 
   return (
     <Routes>

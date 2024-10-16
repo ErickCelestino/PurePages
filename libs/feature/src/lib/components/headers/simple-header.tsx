@@ -12,6 +12,7 @@ import {
 import MenuIcon from '@mui/icons-material/Menu';
 import { ButtonNavigation } from '../../shared';
 import { useNavigate } from 'react-router-dom';
+import { useDrawerContext } from '../../context';
 
 interface SimpleHeaderProps {
   title?: string;
@@ -33,6 +34,7 @@ export const SimpleHeader: FC<SimpleHeaderProps> = ({
   const theme = useTheme();
   const smDown = useMediaQuery(theme.breakpoints.down('sm'));
   const mdDown = useMediaQuery(theme.breakpoints.down('md'));
+  const { toggleDrawerOpen } = useDrawerContext();
 
   const visibleButtons = smDown
     ? listButtons.slice(0, 1)
@@ -75,7 +77,7 @@ export const SimpleHeader: FC<SimpleHeaderProps> = ({
           <Box style={{ flexGrow: 1 }}></Box>
         )}
         {smDown ? (
-          <IconButton color="inherit">
+          <IconButton color="inherit" onClick={toggleDrawerOpen}>
             <MenuIcon />
           </IconButton>
         ) : (
