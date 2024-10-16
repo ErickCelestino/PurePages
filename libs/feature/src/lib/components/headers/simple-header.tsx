@@ -13,6 +13,7 @@ import MenuIcon from '@mui/icons-material/Menu';
 import { ButtonNavigation } from '../../shared';
 import { useDrawerContext } from '../../context';
 import { scrollTo } from '../../service';
+import { CtaButton } from '../button';
 
 interface SimpleHeaderProps {
   title?: string;
@@ -26,7 +27,7 @@ interface SimpleHeaderProps {
 export const SimpleHeader: FC<SimpleHeaderProps> = ({
   title,
   logoAltTitle = 'Logo da Empresa',
-  ctaButtonTitle = 'Contrate Agora',
+  ctaButtonTitle,
   logo,
   listButtons,
   ctaButton,
@@ -123,23 +124,7 @@ export const SimpleHeader: FC<SimpleHeaderProps> = ({
                   </Button>
                 ))}
             </Box>
-            <Button
-              variant="contained"
-              color="secondary"
-              sx={{
-                borderRadius: '90px',
-                whiteSpace: 'nowrap',
-                fontSize: smDown
-                  ? theme.spacing(1.5)
-                  : mdDown
-                  ? theme.spacing(1.6)
-                  : theme.spacing(2),
-                marginRight: mdDown ? theme.spacing(-1) : 'auto',
-              }}
-              onClick={ctaButton}
-            >
-              {ctaButtonTitle}
-            </Button>
+            <CtaButton action={ctaButton} title={ctaButtonTitle} />
           </>
         )}
       </Toolbar>

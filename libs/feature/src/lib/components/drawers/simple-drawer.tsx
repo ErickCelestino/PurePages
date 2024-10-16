@@ -3,15 +3,9 @@ import { DrawerHeader } from './drawer-header';
 import { DrawerListItem } from './drawer-list';
 import { FC, ReactNode } from 'react';
 import { styled, Theme, CSSObject, useTheme } from '@mui/material/styles';
-import {
-  Box,
-  List,
-  CssBaseline,
-  Divider,
-  useMediaQuery,
-  Button,
-} from '@mui/material';
+import { Box, List, CssBaseline, Divider, useMediaQuery } from '@mui/material';
 import MuiDrawer from '@mui/material/Drawer';
+import { CtaButton } from '../button';
 
 const drawerWidth = 200;
 
@@ -62,7 +56,7 @@ interface SimpleDrawerProps {
 export const SimpleDrawer: FC<SimpleDrawerProps> = ({
   children,
   ctaButton,
-  ctaButtonTitle = 'Comprar Agora',
+  ctaButtonTitle,
 }) => {
   const theme = useTheme();
   const { isDrawerOpen, toggleDrawerOpen, drawerOptions } = useDrawerContext();
@@ -95,19 +89,7 @@ export const SimpleDrawer: FC<SimpleDrawerProps> = ({
               justifyContent: 'center',
             }}
           >
-            <Button
-              variant="contained"
-              color="secondary"
-              sx={{
-                borderRadius: '90px',
-                whiteSpace: 'nowrap',
-                width: '80%',
-                fontSize: theme.spacing(1.5),
-              }}
-              onClick={ctaButton}
-            >
-              {ctaButtonTitle}
-            </Button>
+            <CtaButton action={ctaButton} title={ctaButtonTitle} />
           </Box>
         </Drawer>
       )}
