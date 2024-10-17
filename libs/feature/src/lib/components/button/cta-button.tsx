@@ -3,15 +3,16 @@ import { FC } from 'react';
 
 interface CtaButtonProps {
   title?: string;
+  fontSize?: string;
   action: () => void;
 }
 
 export const CtaButton: FC<CtaButtonProps> = ({
   action,
+  fontSize = '12',
   title = 'Contrate Agora',
 }) => {
   const theme = useTheme();
-  const smDown = useMediaQuery(theme.breakpoints.down('sm'));
   const mdDown = useMediaQuery(theme.breakpoints.down('md'));
 
   return (
@@ -21,11 +22,8 @@ export const CtaButton: FC<CtaButtonProps> = ({
       sx={{
         borderRadius: '90px',
         whiteSpace: 'nowrap',
-        fontSize: smDown
-          ? theme.spacing(1.5)
-          : mdDown
-          ? theme.spacing(1.6)
-          : theme.spacing(2),
+        textTransform: 'none',
+        fontSize: fontSize,
         marginRight: mdDown ? theme.spacing(-1) : 'auto',
       }}
       onClick={action}

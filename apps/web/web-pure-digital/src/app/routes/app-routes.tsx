@@ -28,8 +28,9 @@ export const AppRouters = () => {
           <HomeContainer
             title="Pure Digital"
             companyLogo="/assets/images/PurePagesLogo.svg"
-            headLineImage="/assets/images/MenHeadLine.svg"
-            headlineTitle="Impulsione suas vendas com \nlanding pages que convertem! \nCriamos páginas otimizadas para \ncapturar leads e aumentar suas ofertas."
+            heroSectionImage="/assets/images/MenHeadLine.svg"
+            heroSectionTitle="Impulsione suas vendas com landing pages que convertem! Criamos páginas otimizadas para capturar leads e aumentar suas ofertas."
+            herosectionSubTitle="Landing pages personalizadas e focadas em resultados para fazer seu negócio crescer."
             ctaButton={() =>
               navigateToWaths(
                 '44998494865',
