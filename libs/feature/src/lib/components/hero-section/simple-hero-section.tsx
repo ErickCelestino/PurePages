@@ -1,4 +1,5 @@
-import { Box, Typography, useTheme } from '@mui/material';
+import { Box, Typography, useMediaQuery, useTheme } from '@mui/material';
+import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import { FC } from 'react';
 import { CtaButton } from '../button';
 
@@ -22,29 +23,38 @@ export const SimpleHeroSection: FC<SimpleHeroSectionProps> = ({
   ctaButtonTitle,
 }) => {
   const theme = useTheme();
+  const smDown = useMediaQuery(theme.breakpoints.down('sm'));
+  const mdDown = useMediaQuery(theme.breakpoints.down('md'));
+
   return (
     <Box
+      id="hero-section"
       component="section"
       sx={{
         display: 'flex',
-        flexDirection: 'row',
+        flexDirection: { xs: 'column', md: 'row' },
         background: backgroundColor,
+        alignItems: 'center',
+        justifyContent: 'space-between',
       }}
     >
       <Box
         sx={{
           display: 'flex',
           justifyContent: 'center',
-          alignContent: 'center',
+          alignItems: 'center',
           flexDirection: 'column',
+          flex: 1,
+          mt: 2,
         }}
       >
         <Box
           sx={{
+            maxWidth: smDown ? '80%' : '100%',
             display: 'flex',
-            justifyContent: 'center',
-            alignContent: 'center',
             flexDirection: 'column',
+            justifyContent: mdDown ? 'center' : 'flex-start',
+            alignItems: mdDown ? 'center' : 'flex-start',
           }}
         >
           <Typography
@@ -53,6 +63,7 @@ export const SimpleHeroSection: FC<SimpleHeroSectionProps> = ({
               whiteSpace: 'pre-line',
               maxWidth: theme.spacing(55),
               color: 'white',
+              fontSize: smDown ? theme.spacing(2) : 'auto',
             }}
           >
             {title}
@@ -61,22 +72,35 @@ export const SimpleHeroSection: FC<SimpleHeroSectionProps> = ({
             <Typography
               variant="body2"
               mt={theme.spacing(1)}
-              fontSize={theme.spacing(1.2)}
+              fontSize={theme.spacing(1.5)}
               color="white"
             >
               {subTitle}
             </Typography>
           )}
-        </Box>
-        <Box mt={theme.spacing(2)}>
-          <CtaButton action={ctaButton} title={ctaButtonTitle} />
+          <Box mt={theme.spacing(2)}>
+            <CtaButton
+              action={ctaButton}
+              title={ctaButtonTitle}
+              fontSize={11}
+              width={smDown ? 17 : 25}
+              icon={<ArrowForwardIcon />}
+            />
+          </Box>
         </Box>
       </Box>
+
       <Box
         component="img"
-        height={theme.spacing(70)}
+        height={mdDown ? theme.spacing(50) : theme.spacing(70)}
         src={image}
         alt={imageAltTitle}
+        sx={{
+          flex: 1,
+          maxWidth: '100%',
+          objectFit: 'contain',
+          mt: smDown ? -9 : mdDown ? -20 : -10,
+        }}
       />
     </Box>
   );

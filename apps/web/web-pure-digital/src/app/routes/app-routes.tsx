@@ -43,7 +43,7 @@ export const AppRouters = () => {
                 to: () => scrollTo('home'),
               },
               {
-                title: 'O que fazemos',
+                title: 'Sobre nós',
                 to: () => {
                   console.log(
                     'Voce clicou no O que fazemos, para de me encher'
