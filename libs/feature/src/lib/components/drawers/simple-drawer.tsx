@@ -51,12 +51,16 @@ interface SimpleDrawerProps {
   children: ReactNode;
   ctaButton: () => void;
   ctaButtonTitle?: string;
+  drawerBackground?: string;
+  drawerColor?: string;
 }
 
 export const SimpleDrawer: FC<SimpleDrawerProps> = ({
   children,
   ctaButton,
   ctaButtonTitle,
+  drawerBackground = '#303134',
+  drawerColor = 'white',
 }) => {
   const theme = useTheme();
   const { isDrawerOpen, toggleDrawerOpen, drawerOptions } = useDrawerContext();
@@ -70,27 +74,36 @@ export const SimpleDrawer: FC<SimpleDrawerProps> = ({
           open={isDrawerOpen}
           onClose={toggleDrawerOpen}
           anchor="right"
+          sx={{
+            '& .MuiDrawer-paper': {
+              backgroundColor: drawerBackground,
+              color: drawerColor,
+            },
+          }}
         >
           <DrawerHeader
+            drawerColor={drawerColor}
             open={isDrawerOpen}
             handleDrawerClose={toggleDrawerOpen}
           />
           <Divider />
+          <Box
+            sx={{
+              display: 'flex',
+              justifyContent: 'center',
+              mt: theme.spacing(1.5),
+            }}
+          >
+            <CtaButton action={ctaButton} title={ctaButtonTitle} />
+          </Box>
           <List component="nav">
             <DrawerListItem
               items={drawerOptions}
               open={isDrawerOpen}
               onClick={smDown ? toggleDrawerOpen : undefined}
+              drawerColor={drawerColor}
             />
           </List>
-          <Box
-            sx={{
-              display: 'flex',
-              justifyContent: 'center',
-            }}
-          >
-            <CtaButton action={ctaButton} title={ctaButtonTitle} />
-          </Box>
         </Drawer>
       )}
       <Box component="main" sx={{ flexGrow: 1 }}>

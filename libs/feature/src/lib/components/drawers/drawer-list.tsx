@@ -17,6 +17,7 @@ import { DrawerOption, DrawerTopic } from '../../shared';
 interface DrawerListItemProps {
   items: DrawerTopic;
   open: boolean;
+  drawerColor?: string;
   onClick?: () => void;
 }
 
@@ -24,6 +25,7 @@ export const DrawerListItem = ({
   items,
   open,
   onClick,
+  drawerColor,
 }: DrawerListItemProps) => {
   const { isDrawerOpen, toggleDrawerOpen } = useDrawerContext();
   const [openSubItems, setOpenSubItems] = useState<Record<string, boolean>>({});
@@ -81,6 +83,7 @@ export const DrawerListItem = ({
                         minWidth: 0,
                         mr: open ? 2 : 'auto',
                         justifyContent: 'center',
+                        color: drawerColor ? drawerColor : 'black',
                       }}
                     >
                       <Icon>{icon}</Icon>
