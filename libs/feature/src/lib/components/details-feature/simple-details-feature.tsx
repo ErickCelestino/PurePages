@@ -1,26 +1,28 @@
 import { Box, Typography, useMediaQuery, useTheme } from '@mui/material';
-import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import { FC } from 'react';
 import { CtaButton } from '../button';
+import { IconTextProps } from '../../shared';
+import { IconText } from '../lists';
 
-interface SimpleHeroSectionProps {
-  title: string;
-  subTitle?: string;
-  ctaButton: () => void;
+interface SimpleDetailsFeatureProps {
+  backgroundColor?: string;
   image: string;
   imageAltTitle?: string;
+  title: string;
+  ctaButton: () => void;
   ctaButtonTitle?: string;
-  backgroundColor?: string;
+  listFeatures: IconTextProps[];
 }
 
-export const SimpleHeroSection: FC<SimpleHeroSectionProps> = ({
-  title,
-  subTitle,
-  ctaButton,
+export const SimpleDetailsFeature: FC<SimpleDetailsFeatureProps> = ({
+  backgroundColor,
   image,
-  imageAltTitle = 'Foto do Título',
-  backgroundColor = 'linear-gradient(35deg, #040405 21%, #040406, #0c0c0f, #101015, #111116, #050506, #060607, #060608)',
+  title,
+  ctaButton,
   ctaButtonTitle,
+  imageAltTitle = 'Foto do Produto',
+  listFeatures,
 }) => {
   const theme = useTheme();
   const smDown = useMediaQuery(theme.breakpoints.down('sm'));
@@ -28,7 +30,7 @@ export const SimpleHeroSection: FC<SimpleHeroSectionProps> = ({
 
   return (
     <Box
-      id="hero-section"
+      id="details-feature"
       component="section"
       sx={{
         display: 'flex',
@@ -39,13 +41,25 @@ export const SimpleHeroSection: FC<SimpleHeroSectionProps> = ({
       }}
     >
       <Box
+        component="img"
+        height={mdDown ? theme.spacing(50) : theme.spacing(75)}
+        src={image}
+        alt={imageAltTitle}
+        sx={{
+          flex: 1,
+          maxWidth: '100%',
+          objectFit: 'contain',
+          mt: smDown ? 0 : mdDown ? -20 : -10,
+        }}
+      />
+      <Box
         sx={{
           display: 'flex',
-          justifyContent: 'center',
+          justifyContent: 'space-between',
           alignItems: 'center',
           flexDirection: 'column',
           flex: 1,
-          mt: 2,
+          mt: -2,
         }}
       >
         <Box
@@ -61,48 +75,31 @@ export const SimpleHeroSection: FC<SimpleHeroSectionProps> = ({
             variant="h6"
             sx={{
               whiteSpace: 'pre-line',
-              maxWidth: theme.spacing(55),
-              color: 'white',
+              textAlign: smDown ? 'center' : 'start',
+              maxWidth: smDown ? '100%' : theme.spacing(55),
               fontSize: smDown ? theme.spacing(2) : 'auto',
               fontWeight: 800,
             }}
           >
             {title}
           </Typography>
-          {subTitle && (
-            <Typography
-              variant="body2"
-              mt={theme.spacing(1)}
-              fontSize={theme.spacing(1.5)}
-              color="white"
-            >
-              {subTitle}
-            </Typography>
-          )}
           <Box mt={theme.spacing(2)}>
+            {listFeatures.length > 0 &&
+              listFeatures.map((feature) => (
+                <IconText icon={feature.icon} title={feature.title} />
+              ))}
+          </Box>
+          <Box mt={theme.spacing(8)} mb={theme.spacing(2)}>
             <CtaButton
               action={ctaButton}
               title={ctaButtonTitle}
               fontSize={11}
               width={smDown ? 17 : 25}
-              iconRight={<ArrowForwardIcon />}
+              iconLeft={<ArrowBackIcon />}
             />
           </Box>
         </Box>
       </Box>
-
-      <Box
-        component="img"
-        height={mdDown ? theme.spacing(50) : theme.spacing(70)}
-        src={image}
-        alt={imageAltTitle}
-        sx={{
-          flex: 1,
-          maxWidth: '100%',
-          objectFit: 'contain',
-          mt: smDown ? -9 : mdDown ? -20 : -10,
-        }}
-      />
     </Box>
   );
 };
