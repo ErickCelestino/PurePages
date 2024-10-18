@@ -1,4 +1,4 @@
-import { Box } from '@mui/material';
+import { Box, Divider } from '@mui/material';
 import {
   SimpleDetailsFeature,
   SimpleHeader,
@@ -60,6 +60,7 @@ export const HomeContainer: FC<HomeContainerProps> = ({
         image={heroSectionImage}
         subTitle={herosectionSubTitle}
       />
+      <Divider />
       <SimpleDetailsFeature
         image={detailsFeatureImage}
         imageAltTitle={detailsFeatureAltTitle}
@@ -68,6 +69,7 @@ export const HomeContainer: FC<HomeContainerProps> = ({
         ctaButtonTitle={ctaButtonTitle}
         listFeatures={listFeatures}
       />
+      <Divider />
     </Box>
   );
 };

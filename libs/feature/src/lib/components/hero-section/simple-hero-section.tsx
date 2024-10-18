@@ -85,7 +85,7 @@ export const SimpleHeroSection: FC<SimpleHeroSectionProps> = ({
               title={ctaButtonTitle}
               fontSize={11}
               width={smDown ? 17 : 25}
-              icon={<ArrowForwardIcon />}
+              iconRight={<ArrowForwardIcon />}
             />
           </Box>
         </Box>

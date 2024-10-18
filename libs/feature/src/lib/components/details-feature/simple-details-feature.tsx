@@ -1,5 +1,5 @@
 import { Box, Typography, useMediaQuery, useTheme } from '@mui/material';
-import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import { FC } from 'react';
 import { CtaButton } from '../button';
 import { IconTextProps } from '../../shared';
@@ -95,7 +95,7 @@ export const SimpleDetailsFeature: FC<SimpleDetailsFeatureProps> = ({
               title={ctaButtonTitle}
               fontSize={11}
               width={smDown ? 17 : 25}
-              icon={<ArrowForwardIcon />}
+              iconLeft={<ArrowBackIcon />}
             />
           </Box>
         </Box>
