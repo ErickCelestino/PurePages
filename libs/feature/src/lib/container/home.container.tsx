@@ -1,5 +1,5 @@
 import { Box } from '@mui/material';
-import { SimpleHeader } from '../components';
+import { SimpleHeader, SimpleHeroSection } from '../components';
 import { FC } from 'react';
 import { ButtonNavigation } from '../shared';
 
@@ -10,6 +10,9 @@ interface HomeContainerProps {
   ctaButton: () => void;
   ctaButtonTitle?: string;
   listButtons: ButtonNavigation[];
+  heroSectionImage: string;
+  heroSectionTitle: string;
+  herosectionSubTitle?: string;
 }
 
 export const HomeContainer: FC<HomeContainerProps> = ({
@@ -19,6 +22,9 @@ export const HomeContainer: FC<HomeContainerProps> = ({
   ctaButton,
   listButtons,
   title,
+  heroSectionImage,
+  heroSectionTitle,
+  herosectionSubTitle,
 }) => {
   return (
     <Box>
@@ -29,6 +35,12 @@ export const HomeContainer: FC<HomeContainerProps> = ({
         listButtons={listButtons}
         ctaButton={ctaButton}
         ctaButtonTitle={ctaButtonTitle}
+      />
+      <SimpleHeroSection
+        ctaButton={ctaButton}
+        title={heroSectionTitle}
+        image={heroSectionImage}
+        subTitle={herosectionSubTitle}
       />
     </Box>
   );

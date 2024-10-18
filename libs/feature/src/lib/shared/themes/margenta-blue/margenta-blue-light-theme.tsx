@@ -9,9 +9,9 @@ export const MargentaBlueLightTheme = createTheme({
       contrastText: '#ffffff',
     },
     secondary: {
-      main: '#F41A43',
-      dark: '#FD496E',
-      light: '#F41A43',
+      main: '#9c1b1f',
+      dark: '#722022',
+      light: '#b33236',
       contrastText: '#ffffff',
     },
     background: {

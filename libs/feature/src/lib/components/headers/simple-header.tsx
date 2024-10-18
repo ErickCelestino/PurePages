@@ -6,8 +6,14 @@ import {
   Button,
   useTheme,
   Box,
+  useMediaQuery,
+  IconButton,
 } from '@mui/material';
+import MenuIcon from '@mui/icons-material/Menu';
 import { ButtonNavigation } from '../../shared';
+import { useDrawerContext } from '../../context';
+import { scrollTo } from '../../service';
+import { CtaButton } from '../button';
 
 interface SimpleHeaderProps {
   title?: string;
@@ -21,50 +27,106 @@ interface SimpleHeaderProps {
 export const SimpleHeader: FC<SimpleHeaderProps> = ({
   title,
   logoAltTitle = 'Logo da Empresa',
-  ctaButtonTitle = 'Contrate Agora',
+  ctaButtonTitle,
   logo,
   listButtons,
   ctaButton,
 }) => {
   const theme = useTheme();
+  const smDown = useMediaQuery(theme.breakpoints.down('sm'));
+  const mdDown = useMediaQuery(theme.breakpoints.down('md'));
+  const { toggleDrawerOpen } = useDrawerContext();
+
+  const visibleButtons = smDown
+    ? listButtons.slice(0, 1)
+    : mdDown
+    ? listButtons.slice(0, 3)
+    : listButtons;
+
   return (
     <AppBar id="home" position="static">
       <Toolbar>
-        <img
-          width={theme.spacing(8)}
-          height={theme.spacing(8)}
-          src={logo}
-          alt={logoAltTitle}
-        />
+        <IconButton
+          onClick={() => scrollTo('home')}
+          sx={{
+            '&:hover': {
+              opacity: 0.8,
+            },
+          }}
+        >
+          <img
+            width={theme.spacing(7)}
+            height={theme.spacing(7)}
+            src={logo}
+            alt={logoAltTitle}
+          />
+        </IconButton>
         {title ? (
-          <Typography variant="h6" style={{ flexGrow: 1 }}>
+          <Typography
+            variant="h6"
+            textOverflow="ellipsis"
+            overflow="hidden"
+            noWrap
+            component="div"
+            fontSize={
+              smDown
+                ? theme.spacing(2)
+                : mdDown
+                ? theme.spacing(1.8)
+                : theme.spacing(3)
+            }
+            sx={{ flexGrow: 1 }}
+          >
             {title}
           </Typography>
         ) : (
           <Box style={{ flexGrow: 1 }}></Box>
         )}
-        <Box marginRight={theme.spacing(3)}>
-          {listButtons &&
-            listButtons.map((button) => (
-              <Button
-                color="inherit"
-                onClick={button.to}
-                sx={{ textTransform: 'none' }}
-              >
-                {button.title}
-              </Button>
-            ))}
-        </Box>
-        <Button
-          variant="contained"
-          color="secondary"
-          sx={{
-            borderRadius: '90px',
-          }}
-          onClick={ctaButton}
-        >
-          {ctaButtonTitle}
-        </Button>
+        {smDown ? (
+          <IconButton color="inherit" onClick={toggleDrawerOpen}>
+            <MenuIcon />
+          </IconButton>
+        ) : (
+          <>
+            <Box
+              marginRight={
+                smDown
+                  ? theme.spacing(-0.5)
+                  : mdDown
+                  ? theme.spacing(0)
+                  : theme.spacing(3)
+              }
+              sx={{
+                display: 'flex',
+                flexWrap: 'nowrap',
+              }}
+            >
+              {visibleButtons &&
+                visibleButtons.map((button) => (
+                  <Button
+                    color="inherit"
+                    onClick={button.to}
+                    key={button.title}
+                    sx={{
+                      textTransform: 'none',
+                      fontSize: smDown
+                        ? theme.spacing(1.5)
+                        : mdDown
+                        ? theme.spacing(1.6)
+                        : theme.spacing(2),
+                      whiteSpace: 'nowrap',
+                      '&:hover': {
+                        opacity: 0.8,
+                      },
+                    }}
+                  >
+                    {button.title}
+                  </Button>
+                ))}
+            </Box>
+            <CtaButton action={ctaButton} title={ctaButtonTitle} />
+          </>
+        )}
       </Toolbar>
     </AppBar>
   );
