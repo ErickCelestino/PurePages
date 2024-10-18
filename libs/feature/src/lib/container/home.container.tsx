@@ -1,30 +1,48 @@
-import { Box } from '@mui/material';
-import { SimpleHeader, SimpleHeroSection } from '../components';
+import { Box, Divider } from '@mui/material';
+import {
+  SimpleDetailsFeature,
+  SimpleHeader,
+  SimpleHeroSection,
+} from '../components';
 import { FC } from 'react';
-import { ButtonNavigation } from '../shared';
+import { ButtonNavigation, IconTextProps } from '../shared';
 
 interface HomeContainerProps {
-  companyLogo: string;
-  companyLogoAltTitle?: string;
   title?: string;
-  ctaButton: () => void;
-  ctaButtonTitle?: string;
   listButtons: ButtonNavigation[];
-  heroSectionImage: string;
-  heroSectionTitle: string;
-  herosectionSubTitle?: string;
+  company: {
+    companyLogo: string;
+    companyLogoAltTitle?: string;
+  };
+  cta: {
+    ctaButton: () => void;
+    ctaButtonTitle?: string;
+  };
+  heroSection: {
+    heroSectionImage: string;
+    heroSectionTitle: string;
+    herosectionSubTitle?: string;
+  };
+  detailsFeature: {
+    detailsFeatureAltTitle?: string;
+    detailsFeatureImage: string;
+    detailsFeatureTitle: string;
+    listFeatures: IconTextProps[];
+  };
 }
 
 export const HomeContainer: FC<HomeContainerProps> = ({
-  companyLogo,
-  companyLogoAltTitle,
-  ctaButtonTitle,
-  ctaButton,
   listButtons,
   title,
-  heroSectionImage,
-  heroSectionTitle,
-  herosectionSubTitle,
+  company: { companyLogo, companyLogoAltTitle },
+  cta: { ctaButtonTitle, ctaButton },
+  heroSection: { heroSectionImage, heroSectionTitle, herosectionSubTitle },
+  detailsFeature: {
+    detailsFeatureImage,
+    detailsFeatureAltTitle,
+    detailsFeatureTitle,
+    listFeatures,
+  },
 }) => {
   return (
     <Box>
@@ -42,6 +60,16 @@ export const HomeContainer: FC<HomeContainerProps> = ({
         image={heroSectionImage}
         subTitle={herosectionSubTitle}
       />
+      <Divider />
+      <SimpleDetailsFeature
+        image={detailsFeatureImage}
+        imageAltTitle={detailsFeatureAltTitle}
+        title={detailsFeatureTitle}
+        ctaButton={ctaButton}
+        ctaButtonTitle={ctaButtonTitle}
+        listFeatures={listFeatures}
+      />
+      <Divider />
     </Box>
   );
 };

@@ -5,13 +5,15 @@ interface CtaButtonProps {
   title?: string;
   fontSize?: number;
   action: () => void;
-  icon?: ReactElement;
+  iconRight?: ReactElement;
+  iconLeft?: ReactElement;
   width?: number;
 }
 
 export const CtaButton: FC<CtaButtonProps> = ({
   action,
-  icon,
+  iconRight,
+  iconLeft,
   fontSize = 12,
   width,
   title = 'Contrate Agora',
@@ -32,7 +34,8 @@ export const CtaButton: FC<CtaButtonProps> = ({
         width: width ? theme.spacing(width) : 'auto',
       }}
       onClick={action}
-      endIcon={icon}
+      endIcon={iconRight}
+      startIcon={iconLeft}
     >
       {title}
     </Button>
