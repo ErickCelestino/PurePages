@@ -7,6 +7,7 @@ import {
   scrollTo,
   navigateToWaths,
 } from '@pure-pages/feature';
+import { Box } from '@mui/material';
 
 export const AppRouters = () => {
   const { setDrawerOptions } = useDrawerContext();
@@ -69,9 +70,13 @@ export const AppRouters = () => {
             about={{
               aboutTitle:
                 'Por que sua empresa precisa de uma landing page eficaz?',
+              aboutDescription:
+                'Ter uma landing page não é apenas uma escolha inteligente, é fundamental para quem busca aumentar os custos e captar leads de forma rápida e eficiente. Uma landing page bem estruturada é o caminho ideal para impactar seu público-alvo, funcionando como um ponto de conversão estratégica para suas campanhas de marketing, 24 horas por dia.',
               aboutList: [
                 {
-                  icon: <TaskAltIcon sx={{ color: 'white' }} />,
+                  icon: (
+                    <Box component="img" src="/assets/images/Internet.svg" />
+                  ),
                   title:
                     'Sua landing page converte visitantes em leads ou clientes 24 horas por dia, 7 dias por semana, maximizando o retorno de suas campanhas de marketing.',
                 },

@@ -32,6 +32,7 @@ interface HomeContainerProps {
   };
   about: {
     aboutTitle: string;
+    aboutDescription: string;
     aboutBackgroundColor?: string;
     aboutList: IconTextProps[];
   };
@@ -49,7 +50,7 @@ export const HomeContainer: FC<HomeContainerProps> = ({
     detailsFeatureTitle,
     listFeatures,
   },
-  about: { aboutTitle, aboutBackgroundColor, aboutList },
+  about: { aboutTitle, aboutBackgroundColor, aboutList, aboutDescription },
 }) => {
   return (
     <Box>
@@ -82,6 +83,7 @@ export const HomeContainer: FC<HomeContainerProps> = ({
         ctaButton={ctaButton}
         ctaButtonTitle={ctaButtonTitle}
         title={aboutTitle}
+        description={aboutDescription}
         backgroundColor={aboutBackgroundColor}
       />
     </Box>
