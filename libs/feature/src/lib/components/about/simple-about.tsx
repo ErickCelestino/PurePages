@@ -1,48 +1,38 @@
-import { Box, Typography, useMediaQuery, useTheme } from '@mui/material';
+import {
+  Box,
+  Divider,
+  Typography,
+  useMediaQuery,
+  useTheme,
+} from '@mui/material';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import { SectionContainer } from '../container';
 import { FC } from 'react';
 import { CtaButton } from '../button';
-import { IconTextProps } from '../../shared';
 import { IconText } from '../lists';
-import { SectionContainer } from '../container';
+import { IconTextProps } from '../../shared';
 
-interface SimpleDetailsFeatureProps {
+interface SimpleAboutProps {
   backgroundColor?: string;
-  image: string;
-  imageAltTitle?: string;
   title: string;
+  aboutList: IconTextProps[];
   ctaButton: () => void;
   ctaButtonTitle?: string;
-  listFeatures: IconTextProps[];
 }
 
-export const SimpleDetailsFeature: FC<SimpleDetailsFeatureProps> = ({
+export const SimpleAbout: FC<SimpleAboutProps> = ({
   backgroundColor,
-  image,
   title,
+  aboutList,
   ctaButton,
   ctaButtonTitle,
-  imageAltTitle = 'Foto do Produto',
-  listFeatures,
 }) => {
   const theme = useTheme();
   const smDown = useMediaQuery(theme.breakpoints.down('sm'));
   const mdDown = useMediaQuery(theme.breakpoints.down('md'));
 
   return (
-    <SectionContainer id="detailsFeature" backgroundColor={backgroundColor}>
-      <Box
-        component="img"
-        height={mdDown ? theme.spacing(50) : theme.spacing(75)}
-        src={image}
-        alt={imageAltTitle}
-        sx={{
-          flex: 1,
-          maxWidth: '100%',
-          objectFit: 'contain',
-          mt: smDown ? 0 : mdDown ? -20 : -10,
-        }}
-      />
+    <SectionContainer id="hero-section" backgroundColor={backgroundColor}>
       <Box
         sx={{
           display: 'flex',
@@ -75,9 +65,12 @@ export const SimpleDetailsFeature: FC<SimpleDetailsFeatureProps> = ({
             {title}
           </Typography>
           <Box mt={theme.spacing(2)}>
-            {listFeatures.length > 0 &&
-              listFeatures.map((feature) => (
-                <IconText icon={feature.icon} title={feature.title} />
+            {aboutList.length > 0 &&
+              aboutList.map((about) => (
+                <Box>
+                  <IconText icon={about.icon} title={about.title} />
+                  <Divider />
+                </Box>
               ))}
           </Box>
           <Box mt={theme.spacing(8)} mb={theme.spacing(2)}>

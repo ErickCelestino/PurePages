@@ -66,6 +66,17 @@ export const AppRouters = () => {
                 },
               ],
             }}
+            about={{
+              aboutTitle:
+                'Por que sua empresa precisa de uma landing page eficaz?',
+              aboutList: [
+                {
+                  icon: <TaskAltIcon sx={{ color: 'white' }} />,
+                  title:
+                    'Sua landing page converte visitantes em leads ou clientes 24 horas por dia, 7 dias por semana, maximizando o retorno de suas campanhas de marketing.',
+                },
+              ],
+            }}
             listButtons={[
               {
                 title: 'Inicio',
