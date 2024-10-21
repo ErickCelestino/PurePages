@@ -42,6 +42,9 @@ interface HomeContainerProps {
     aboutDescription: string;
     aboutBackgroundColor?: string;
     aboutList: IconTextProps[];
+    aboutImage: string;
+    aboutImageAltTitle?: string;
+    aboutRigthBackground?: string;
   };
   ctaSection: {
     ctaSectionButtonTitle: string;
@@ -70,7 +73,15 @@ export const HomeContainer: FC<HomeContainerProps> = ({
     detailsFeatureTitle,
     listFeatures,
   },
-  about: { aboutTitle, aboutBackgroundColor, aboutList, aboutDescription },
+  about: {
+    aboutTitle,
+    aboutBackgroundColor,
+    aboutList,
+    aboutDescription,
+    aboutImageAltTitle,
+    aboutImage,
+    aboutRigthBackground,
+  },
   ctaSection: {
     ctaSectionButtonTitle,
     ctaSectionTitle,
@@ -114,6 +125,9 @@ export const HomeContainer: FC<HomeContainerProps> = ({
         title={aboutTitle}
         description={aboutDescription}
         backgroundColor={aboutBackgroundColor}
+        aboutImage={aboutImage}
+        aboutImageAltTitle={aboutImageAltTitle}
+        backgroundRight={aboutRigthBackground}
       />
       <Divider />
       <SimpleCta

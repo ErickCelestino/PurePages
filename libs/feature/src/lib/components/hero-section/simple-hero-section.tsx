@@ -28,7 +28,11 @@ export const SimpleHeroSection: FC<SimpleHeroSectionProps> = ({
   const mdDown = useMediaQuery(theme.breakpoints.down('md'));
 
   return (
-    <SectionContainer id="hero-section" backgroundColor={backgroundColor}>
+    <SectionContainer
+      fullHeigth
+      id="hero-section"
+      backgroundColor={backgroundColor}
+    >
       <Box
         sx={{
           flex: 1,

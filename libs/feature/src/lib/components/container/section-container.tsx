@@ -5,12 +5,14 @@ interface SimpleSectionContainerPros {
   children: ReactNode;
   id: string;
   backgroundColor?: string;
+  fullHeigth: boolean;
 }
 
 export const SectionContainer: FC<SimpleSectionContainerPros> = ({
   children,
   id,
   backgroundColor,
+  fullHeigth,
 }) => {
   return (
     <Box
@@ -23,7 +25,7 @@ export const SectionContainer: FC<SimpleSectionContainerPros> = ({
         alignItems: 'center',
         justifyContent: 'space-between',
         paddingTop: '1rem',
-        height: '100vh',
+        height: fullHeigth ? '100vh' : 'auto',
       }}
     >
       {children}

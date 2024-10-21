@@ -73,6 +73,7 @@ export const AppRouters = () => {
                 'Por que sua empresa precisa de uma landing page eficaz?',
               aboutDescription:
                 'Ter uma landing page não é apenas uma escolha inteligente, é fundamental para quem busca aumentar os custos e captar leads de forma rápida e eficiente. Uma landing page bem estruturada é o caminho ideal para impactar seu público-alvo, funcionando como um ponto de conversão estratégica para suas campanhas de marketing, 24 horas por dia.',
+              aboutImage: '/assets/images/AboutPhone.svg',
               aboutList: [
                 {
                   icon: (
