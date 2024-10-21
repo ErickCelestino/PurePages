@@ -93,6 +93,16 @@ export const AppRouters = () => {
                 },
               ],
             }}
+            ctaSection={{
+              ctaSectionButtonTitle: 'Chamar no WhatsApp',
+              ctaSectionTitle: 'Pronto para começar?',
+              ctaSectionSubTitle:
+                'Entregamos a solução completa para o seu negócio! Entre em contato agora mesmo!',
+              ctaSectionBackground: '#23d366',
+              ctaSectionIcon: (
+                <Box component="img" src="/assets/images/WathsApp.svg" />
+              ),
+            }}
             listButtons={[
               {
                 title: 'Inicio',

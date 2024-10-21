@@ -1,6 +1,7 @@
 export * from './about';
 export * from './button';
 export * from './container';
+export * from './cta';
 export * from './details-feature';
 export * from './drawers';
 export * from './headers';

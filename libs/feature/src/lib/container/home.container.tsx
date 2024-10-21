@@ -1,11 +1,12 @@
 import { Box, Divider } from '@mui/material';
 import {
   SimpleAbout,
+  SimpleCta,
   SimpleDetailsFeature,
   SimpleHeader,
   SimpleHeroSection,
 } from '../components';
-import { FC } from 'react';
+import { FC, ReactElement } from 'react';
 import { ButtonNavigation, IconTextProps } from '../shared';
 
 interface HomeContainerProps {
@@ -36,6 +37,14 @@ interface HomeContainerProps {
     aboutBackgroundColor?: string;
     aboutList: IconTextProps[];
   };
+  ctaSection: {
+    ctaSectionButtonTitle: string;
+    ctaSectionTitle: string;
+    ctaSectionSubTitle: string;
+    ctaSectionIcon: ReactElement;
+    ctaSectionBackground?: string;
+    ctaSectionTitleButton?: string;
+  };
 }
 
 export const HomeContainer: FC<HomeContainerProps> = ({
@@ -51,6 +60,14 @@ export const HomeContainer: FC<HomeContainerProps> = ({
     listFeatures,
   },
   about: { aboutTitle, aboutBackgroundColor, aboutList, aboutDescription },
+  ctaSection: {
+    ctaSectionButtonTitle,
+    ctaSectionTitle,
+    ctaSectionSubTitle,
+    ctaSectionIcon,
+    ctaSectionBackground,
+    ctaSectionTitleButton,
+  },
 }) => {
   return (
     <Box>
@@ -85,6 +102,16 @@ export const HomeContainer: FC<HomeContainerProps> = ({
         title={aboutTitle}
         description={aboutDescription}
         backgroundColor={aboutBackgroundColor}
+      />
+      <Divider />
+      <SimpleCta
+        ctaButton={ctaButton}
+        ctaButtonTitle={ctaSectionButtonTitle}
+        title={ctaSectionTitle}
+        subTitle={ctaSectionSubTitle}
+        ctaColor={ctaSectionBackground}
+        icon={ctaSectionIcon}
+        titleButtonColor={ctaSectionTitleButton}
       />
     </Box>
   );
