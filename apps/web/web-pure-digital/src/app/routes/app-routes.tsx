@@ -109,19 +109,19 @@ export const AppRouters = () => {
                   icon: (
                     <Box component="img" src="/assets/images/Facebook.svg" />
                   ),
-                  to: '',
+                  to: '1',
                 },
                 {
                   icon: (
                     <Box component="img" src="/assets/images/Instagram.svg" />
                   ),
-                  to: '',
+                  to: '2',
                 },
                 {
                   icon: (
                     <Box component="img" src="/assets/images/LinkedIn.svg" />
                   ),
-                  to: '',
+                  to: '3',
                 },
               ],
               footerLinks: [

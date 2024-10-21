@@ -52,7 +52,7 @@ export const SimpleFooter: FC<SimpleFooterProps> = ({
             }}
           >
             {links.map((link) => (
-              <Link ml={theme.spacing(1)} href={link.to}>
+              <Link key={link.text} ml={theme.spacing(1)} href={link.to}>
                 {link.text}
               </Link>
             ))}
@@ -61,7 +61,7 @@ export const SimpleFooter: FC<SimpleFooterProps> = ({
       </Box>
       <Box sx={{ display: 'flex' }}>
         {icons.map((icon) => (
-          <IconButton href={icon.to} color="inherit">
+          <IconButton key={icon.to} href={icon.to} color="inherit">
             {icon.icon}
           </IconButton>
         ))}

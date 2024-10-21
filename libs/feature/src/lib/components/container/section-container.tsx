@@ -23,6 +23,7 @@ export const SectionContainer: FC<SimpleSectionContainerPros> = ({
         alignItems: 'center',
         justifyContent: 'space-between',
         paddingTop: '1rem',
+        height: '100vh',
       }}
     >
       {children}

@@ -31,31 +31,27 @@ export const SimpleHeroSection: FC<SimpleHeroSectionProps> = ({
     <SectionContainer id="hero-section" backgroundColor={backgroundColor}>
       <Box
         sx={{
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center',
-          flexDirection: 'column',
           flex: 1,
-          mt: 2,
+          mt: mdDown ? -15 : -5,
+          ml: mdDown ? '' : theme.spacing(10),
+          maxWidth: smDown ? '80%' : theme.spacing(72),
+          alignContent: 'center',
         }}
       >
         <Box
           sx={{
-            maxWidth: smDown ? '80%' : '100%',
             display: 'flex',
+            justifyContent: 'center',
             flexDirection: 'column',
-            justifyContent: mdDown ? 'center' : 'start',
-            alignItems: mdDown ? 'center' : 'start',
-            padding: smDown ? '' : theme.spacing(6),
+
+            textAlign: smDown ? 'center' : 'start',
           }}
         >
           <Typography
-            variant="h6"
+            variant={mdDown ? 'h6' : 'h5'}
             sx={{
               whiteSpace: 'pre-line',
-              maxWidth: theme.spacing(55),
               color: 'white',
-              textAlign: mdDown ? 'center' : 'start',
               fontSize: smDown ? theme.spacing(2) : 'auto',
               fontWeight: 800,
             }}
@@ -72,30 +68,23 @@ export const SimpleHeroSection: FC<SimpleHeroSectionProps> = ({
               {subTitle}
             </Typography>
           )}
-          <Box mt={theme.spacing(2)}>
-            <CtaButton
-              action={ctaButton}
-              title={ctaButtonTitle}
-              fontSize={11}
-              width={smDown ? 17 : 25}
-              iconRight={<ArrowForwardIcon />}
-            />
-          </Box>
+        </Box>
+        <Box
+          sx={{
+            display: 'flex',
+            justifyContent: smDown ? 'center' : '',
+          }}
+          mt={theme.spacing(2)}
+        >
+          <CtaButton
+            action={ctaButton}
+            title={ctaButtonTitle}
+            fontSize={11}
+            width={smDown ? 17 : 25}
+            iconRight={<ArrowForwardIcon />}
+          />
         </Box>
       </Box>
-
-      <Box
-        component="img"
-        height={mdDown ? theme.spacing(50) : theme.spacing(70)}
-        src={image}
-        alt={imageAltTitle}
-        sx={{
-          flex: 1,
-          maxWidth: '100%',
-          objectFit: 'contain',
-          mt: smDown ? -9 : mdDown ? -20 : -10,
-        }}
-      />
     </SectionContainer>
   );
 };
