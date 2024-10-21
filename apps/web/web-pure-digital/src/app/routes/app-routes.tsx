@@ -103,6 +103,42 @@ export const AppRouters = () => {
                 <Box component="img" src="/assets/images/WathsApp.svg" />
               ),
             }}
+            footer={{
+              footerIcons: [
+                {
+                  icon: (
+                    <Box component="img" src="/assets/images/Facebook.svg" />
+                  ),
+                  to: '',
+                },
+                {
+                  icon: (
+                    <Box component="img" src="/assets/images/Instagram.svg" />
+                  ),
+                  to: '',
+                },
+                {
+                  icon: (
+                    <Box component="img" src="/assets/images/LinkedIn.svg" />
+                  ),
+                  to: '',
+                },
+              ],
+              footerLinks: [
+                {
+                  text: 'Política e Privacidade',
+                  to: '',
+                },
+                {
+                  text: 'Termos e Condições',
+                  to: '',
+                },
+                {
+                  text: 'Política de Cookies',
+                  to: '',
+                },
+              ],
+            }}
             listButtons={[
               {
                 title: 'Inicio',

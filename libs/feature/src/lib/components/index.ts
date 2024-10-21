@@ -4,6 +4,7 @@ export * from './container';
 export * from './cta';
 export * from './details-feature';
 export * from './drawers';
+export * from './footer';
 export * from './headers';
 export * from './hero-section';
 export * from './lists';

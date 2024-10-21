@@ -3,11 +3,17 @@ import {
   SimpleAbout,
   SimpleCta,
   SimpleDetailsFeature,
+  SimpleFooter,
   SimpleHeader,
   SimpleHeroSection,
 } from '../components';
 import { FC, ReactElement } from 'react';
-import { ButtonNavigation, IconTextProps } from '../shared';
+import {
+  ButtonNavigation,
+  IconNavigation,
+  IconTextProps,
+  LinkText,
+} from '../shared';
 
 interface HomeContainerProps {
   title?: string;
@@ -45,6 +51,11 @@ interface HomeContainerProps {
     ctaSectionBackground?: string;
     ctaSectionTitleButton?: string;
   };
+  footer: {
+    footerLinks: LinkText[];
+    footerCopyrightText?: string;
+    footerIcons: IconNavigation[];
+  };
 }
 
 export const HomeContainer: FC<HomeContainerProps> = ({
@@ -68,6 +79,7 @@ export const HomeContainer: FC<HomeContainerProps> = ({
     ctaSectionBackground,
     ctaSectionTitleButton,
   },
+  footer: { footerIcons, footerLinks, footerCopyrightText },
 }) => {
   return (
     <Box>
@@ -112,6 +124,12 @@ export const HomeContainer: FC<HomeContainerProps> = ({
         ctaColor={ctaSectionBackground}
         icon={ctaSectionIcon}
         titleButtonColor={ctaSectionTitleButton}
+      />
+      <Divider />
+      <SimpleFooter
+        links={footerLinks}
+        icons={footerIcons}
+        copyrightText={footerCopyrightText}
       />
     </Box>
   );
