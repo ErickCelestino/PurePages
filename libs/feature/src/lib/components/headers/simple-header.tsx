@@ -37,12 +37,6 @@ export const SimpleHeader: FC<SimpleHeaderProps> = ({
   const mdDown = useMediaQuery(theme.breakpoints.down('md'));
   const { toggleDrawerOpen } = useDrawerContext();
 
-  const visibleButtons = smDown
-    ? listButtons.slice(0, 1)
-    : mdDown
-    ? listButtons.slice(0, 3)
-    : listButtons;
-
   return (
     <AppBar id="home" position="static">
       <Toolbar>
@@ -101,8 +95,8 @@ export const SimpleHeader: FC<SimpleHeaderProps> = ({
                 flexWrap: 'nowrap',
               }}
             >
-              {visibleButtons &&
-                visibleButtons.map((button) => (
+              {listButtons &&
+                listButtons.map((button) => (
                   <Button
                     color="inherit"
                     onClick={button.to}

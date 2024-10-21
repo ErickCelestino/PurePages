@@ -16,7 +16,8 @@ export const AppRouters = () => {
   useEffect(() => {
     if (!hasLoadedUserData.current) {
       setDrawerOptions({
-        Inicio: [{ label: 'Inicio', icon: 'home', path: '/' }],
+        Inicio: [{ label: 'Inicio', icon: 'home', path: 'home' }],
+        About: [{ label: 'Sobre nós', icon: 'badge', path: 'about-section' }],
       });
       hasLoadedUserData.current = true;
     }
@@ -80,6 +81,16 @@ export const AppRouters = () => {
                   title:
                     'Sua landing page converte visitantes em leads ou clientes 24 horas por dia, 7 dias por semana, maximizando o retorno de suas campanhas de marketing.',
                 },
+                {
+                  icon: <Box component="img" src="/assets/images/Window.svg" />,
+                  title:
+                    'Landing pages otimizadas para campanhas promocionais, gerando leads de forma recorrente e garantindo flexibilidade em cada campanha',
+                },
+                {
+                  icon: <Box component="img" src="/assets/images/User.svg" />,
+                  title:
+                    'Uma landing page bem projetada transmite alternativas e aumenta a confiança do seu público, essencial para opções específicas.',
+                },
               ],
             }}
             listButtons={[
@@ -89,11 +100,7 @@ export const AppRouters = () => {
               },
               {
                 title: 'Sobre nós',
-                to: () => {
-                  console.log(
-                    'Voce clicou no O que fazemos, para de me encher'
-                  );
-                },
+                to: () => scrollTo('about-section'),
               },
               {
                 title: 'Nossos trabalhos',

@@ -19,6 +19,8 @@ interface SimpleAboutProps {
   aboutList: IconTextProps[];
   ctaButton: () => void;
   ctaButtonTitle?: string;
+  backgroundRight?: string;
+  dividerColor?: string;
 }
 
 export const SimpleAbout: FC<SimpleAboutProps> = ({
@@ -28,31 +30,35 @@ export const SimpleAbout: FC<SimpleAboutProps> = ({
   aboutList,
   ctaButton,
   ctaButtonTitle,
+  backgroundRight = 'linear-gradient(35deg, #2d2c2c, #302c2c, #592527 35%, #762124, #9c1b1f 90%)',
+  dividerColor = '#8e8e8e',
 }) => {
   const theme = useTheme();
   const smDown = useMediaQuery(theme.breakpoints.down('sm'));
   const mdDown = useMediaQuery(theme.breakpoints.down('md'));
 
   return (
-    <SectionContainer id="hero-section" backgroundColor={backgroundColor}>
+    <SectionContainer id="about-section" backgroundColor={backgroundColor}>
       <Box
         sx={{
           display: 'flex',
-          justifyContent: 'space-between',
+          justifyContent: smDown ? 'center' : 'space-between',
           alignItems: 'center',
           flexDirection: 'column',
           flex: 1,
           mt: -2,
+          mb: smDown ? theme.spacing(3) : '',
         }}
       >
         <Box
           sx={{
             display: 'flex',
-            justifyContent: 'space-between',
+            justifyContent: smDown ? 'center' : 'space-between',
             alignItems: 'center',
             flexDirection: 'column',
             flex: 1,
             mt: -2,
+            maxWidth: smDown ? '80%' : 'auto',
           }}
         >
           <Box mt={theme.spacing(8)} mb={theme.spacing(2)}>
@@ -61,7 +67,7 @@ export const SimpleAbout: FC<SimpleAboutProps> = ({
               sx={{
                 whiteSpace: 'pre-line',
                 textAlign: smDown ? 'center' : 'start',
-                maxWidth: smDown ? '100%' : theme.spacing(55),
+                maxWidth: smDown ? 'auto' : theme.spacing(55),
                 fontSize: smDown ? theme.spacing(2) : 'auto',
                 fontWeight: 800,
               }}
@@ -75,8 +81,8 @@ export const SimpleAbout: FC<SimpleAboutProps> = ({
                 mt: theme.spacing(2),
                 mb: theme.spacing(2),
                 whiteSpace: 'pre-line',
-                textAlign: smDown ? 'center' : 'start',
-                maxWidth: smDown ? '100%' : theme.spacing(55),
+                textAlign: smDown ? 'justify' : 'start',
+                maxWidth: smDown ? 'auto' : theme.spacing(55),
                 fontSize: smDown ? theme.spacing(2) : 'auto',
                 fontWeight: 300,
               }}
@@ -84,13 +90,22 @@ export const SimpleAbout: FC<SimpleAboutProps> = ({
               {description}
             </Typography>
 
-            <CtaButton
-              action={ctaButton}
-              title={ctaButtonTitle}
-              fontSize={11}
-              width={smDown ? 17 : 25}
-              iconRight={<ArrowForwardIcon />}
-            />
+            <Box
+              sx={{
+                display: 'flex',
+                width: '100%',
+                justifyContent: smDown ? 'center' : 'start',
+                mt: theme.spacing(4),
+              }}
+            >
+              <CtaButton
+                action={ctaButton}
+                title={ctaButtonTitle}
+                fontSize={11}
+                width={smDown ? 17 : 25}
+                iconRight={<ArrowForwardIcon />}
+              />
+            </Box>
           </Box>
         </Box>
       </Box>
@@ -103,9 +118,11 @@ export const SimpleAbout: FC<SimpleAboutProps> = ({
           flexDirection: 'column',
           flex: 1,
           mt: -2,
-          height: 'auto',
-          background:
-            'linear-gradient(35deg, #040405 21%, #040406, #0c0c0f, #101015, #111116, #050506, #060607, #060608)',
+          background: backgroundRight,
+          paddingBottom: theme.spacing(7),
+          paddingTop: theme.spacing(7),
+          width: smDown ? '100%' : 'auto',
+          borderTopLeftRadius: smDown ? 0 : theme.spacing(30),
         }}
       >
         <Box
@@ -121,22 +138,25 @@ export const SimpleAbout: FC<SimpleAboutProps> = ({
             {aboutList.length > 0 &&
               aboutList.map((about) => (
                 <Box
+                  key={about.title}
                   sx={{
                     display: 'flex',
                     justifyContent: 'center',
                     flexDirection: 'column',
                   }}
                 >
-                  <Divider
-                    sx={{ width: theme.spacing(50), mt: theme.spacing(3) }}
-                  />
                   <IconText
                     icon={about.icon}
                     title={about.title}
                     width={theme.spacing(40)}
+                    color="white"
                   />
                   <Divider
-                    sx={{ width: theme.spacing(50), mt: theme.spacing(3) }}
+                    sx={{
+                      width: theme.spacing(42),
+                      mt: theme.spacing(3),
+                      borderColor: dividerColor,
+                    }}
                   />
                 </Box>
               ))}

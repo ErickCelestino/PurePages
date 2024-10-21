@@ -2,7 +2,7 @@ import { Box, Typography, useTheme } from '@mui/material';
 import { FC } from 'react';
 import { IconTextProps } from '../../shared';
 
-export const IconText: FC<IconTextProps> = ({ icon, title, width }) => {
+export const IconText: FC<IconTextProps> = ({ icon, title, width, color }) => {
   const theme = useTheme();
 
   return (
@@ -18,7 +18,10 @@ export const IconText: FC<IconTextProps> = ({ icon, title, width }) => {
       key={title}
     >
       {icon}
-      <Typography variant="body2" sx={{ marginLeft: 1, textAlign: 'start' }}>
+      <Typography
+        variant="body2"
+        sx={{ marginLeft: 1, textAlign: 'start', color: color }}
+      >
         {title}
       </Typography>
     </Box>

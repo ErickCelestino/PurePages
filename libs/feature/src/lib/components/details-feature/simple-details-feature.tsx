@@ -77,7 +77,11 @@ export const SimpleDetailsFeature: FC<SimpleDetailsFeatureProps> = ({
           <Box mt={theme.spacing(2)}>
             {listFeatures.length > 0 &&
               listFeatures.map((feature) => (
-                <IconText icon={feature.icon} title={feature.title} />
+                <IconText
+                  key={feature.title}
+                  icon={feature.icon}
+                  title={feature.title}
+                />
               ))}
           </Box>
           <Box mt={theme.spacing(8)} mb={theme.spacing(2)}>
