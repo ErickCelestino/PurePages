@@ -1,6 +1,7 @@
 import { Box, Divider } from '@mui/material';
 import {
   SimpleAbout,
+  SimpleClients,
   SimpleCta,
   SimpleDetailsFeature,
   SimpleFooter,
@@ -59,6 +60,9 @@ interface HomeContainerProps {
     footerCopyrightText?: string;
     footerIcons: IconNavigation[];
   };
+  clients?: {
+    clientsTitle: string;
+  };
 }
 
 export const HomeContainer: FC<HomeContainerProps> = ({
@@ -91,6 +95,7 @@ export const HomeContainer: FC<HomeContainerProps> = ({
     ctaSectionTitleButton,
   },
   footer: { footerIcons, footerLinks, footerCopyrightText },
+  clients,
 }) => {
   return (
     <Box>
@@ -129,6 +134,8 @@ export const HomeContainer: FC<HomeContainerProps> = ({
         aboutImageAltTitle={aboutImageAltTitle}
         backgroundRight={aboutRigthBackground}
       />
+      <Divider />
+      {clients && <SimpleClients title={clients.clientsTitle} />}
       <Divider />
       <SimpleCta
         ctaButton={ctaButton}
