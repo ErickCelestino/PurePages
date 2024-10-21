@@ -118,7 +118,13 @@ export const SimpleHeader: FC<SimpleHeaderProps> = ({
                   </Button>
                 ))}
             </Box>
-            <CtaButton action={ctaButton} title={ctaButtonTitle} />
+            <Box
+              sx={{
+                marginRight: mdDown ? theme.spacing(2) : '',
+              }}
+            >
+              <CtaButton action={ctaButton} title={ctaButtonTitle} />
+            </Box>
           </>
         )}
       </Toolbar>

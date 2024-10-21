@@ -81,9 +81,9 @@ export const SimpleAbout: FC<SimpleAboutProps> = ({
                 mt: theme.spacing(2),
                 mb: theme.spacing(2),
                 whiteSpace: 'pre-line',
-                textAlign: smDown ? 'justify' : 'start',
+                textAlign: mdDown ? 'justify' : 'start',
                 maxWidth: smDown ? 'auto' : theme.spacing(55),
-                fontSize: smDown ? theme.spacing(2) : 'auto',
+                fontSize: mdDown ? theme.spacing(2) : 'auto',
                 fontWeight: 300,
               }}
             >
@@ -94,8 +94,9 @@ export const SimpleAbout: FC<SimpleAboutProps> = ({
               sx={{
                 display: 'flex',
                 width: '100%',
-                justifyContent: smDown ? 'center' : 'start',
+                justifyContent: mdDown ? 'center' : 'start',
                 mt: theme.spacing(4),
+                mb: smDown ? '' : mdDown ? theme.spacing(2) : '',
               }}
             >
               <CtaButton
@@ -121,8 +122,8 @@ export const SimpleAbout: FC<SimpleAboutProps> = ({
           background: backgroundRight,
           paddingBottom: theme.spacing(7),
           paddingTop: theme.spacing(7),
-          width: smDown ? '100%' : 'auto',
-          borderTopLeftRadius: smDown ? 0 : theme.spacing(30),
+          width: mdDown ? '100%' : 'auto',
+          borderTopLeftRadius: mdDown ? 0 : theme.spacing(30),
         }}
       >
         <Box

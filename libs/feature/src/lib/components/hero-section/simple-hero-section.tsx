@@ -44,8 +44,9 @@ export const SimpleHeroSection: FC<SimpleHeroSectionProps> = ({
             maxWidth: smDown ? '80%' : '100%',
             display: 'flex',
             flexDirection: 'column',
-            justifyContent: mdDown ? 'center' : 'flex-start',
-            alignItems: mdDown ? 'center' : 'flex-start',
+            justifyContent: mdDown ? 'center' : 'start',
+            alignItems: mdDown ? 'center' : 'start',
+            padding: smDown ? '' : theme.spacing(6),
           }}
         >
           <Typography
@@ -54,6 +55,7 @@ export const SimpleHeroSection: FC<SimpleHeroSectionProps> = ({
               whiteSpace: 'pre-line',
               maxWidth: theme.spacing(55),
               color: 'white',
+              textAlign: mdDown ? 'center' : 'start',
               fontSize: smDown ? theme.spacing(2) : 'auto',
               fontWeight: 800,
             }}

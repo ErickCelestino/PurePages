@@ -40,7 +40,8 @@ export const SimpleDetailsFeature: FC<SimpleDetailsFeatureProps> = ({
           flex: 1,
           maxWidth: '100%',
           objectFit: 'contain',
-          mt: smDown ? 0 : mdDown ? -20 : -10,
+          mt: smDown ? 0 : -10,
+          mb: smDown ? '' : mdDown ? -10 : '',
         }}
       />
       <Box
