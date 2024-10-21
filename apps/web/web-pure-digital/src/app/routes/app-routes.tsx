@@ -7,6 +7,7 @@ import {
   scrollTo,
   navigateToWaths,
 } from '@pure-pages/feature';
+import { Box } from '@mui/material';
 
 export const AppRouters = () => {
   const { setDrawerOptions } = useDrawerContext();
@@ -15,7 +16,8 @@ export const AppRouters = () => {
   useEffect(() => {
     if (!hasLoadedUserData.current) {
       setDrawerOptions({
-        Inicio: [{ label: 'Inicio', icon: 'home', path: '/' }],
+        Inicio: [{ label: 'Inicio', icon: 'home', path: 'home' }],
+        About: [{ label: 'Sobre nós', icon: 'badge', path: 'about-section' }],
       });
       hasLoadedUserData.current = true;
     }
@@ -66,6 +68,31 @@ export const AppRouters = () => {
                 },
               ],
             }}
+            about={{
+              aboutTitle:
+                'Por que sua empresa precisa de uma landing page eficaz?',
+              aboutDescription:
+                'Ter uma landing page não é apenas uma escolha inteligente, é fundamental para quem busca aumentar os custos e captar leads de forma rápida e eficiente. Uma landing page bem estruturada é o caminho ideal para impactar seu público-alvo, funcionando como um ponto de conversão estratégica para suas campanhas de marketing, 24 horas por dia.',
+              aboutList: [
+                {
+                  icon: (
+                    <Box component="img" src="/assets/images/Internet.svg" />
+                  ),
+                  title:
+                    'Sua landing page converte visitantes em leads ou clientes 24 horas por dia, 7 dias por semana, maximizando o retorno de suas campanhas de marketing.',
+                },
+                {
+                  icon: <Box component="img" src="/assets/images/Window.svg" />,
+                  title:
+                    'Landing pages otimizadas para campanhas promocionais, gerando leads de forma recorrente e garantindo flexibilidade em cada campanha',
+                },
+                {
+                  icon: <Box component="img" src="/assets/images/User.svg" />,
+                  title:
+                    'Uma landing page bem projetada transmite alternativas e aumenta a confiança do seu público, essencial para opções específicas.',
+                },
+              ],
+            }}
             listButtons={[
               {
                 title: 'Inicio',
@@ -73,11 +100,7 @@ export const AppRouters = () => {
               },
               {
                 title: 'Sobre nós',
-                to: () => {
-                  console.log(
-                    'Voce clicou no O que fazemos, para de me encher'
-                  );
-                },
+                to: () => scrollTo('about-section'),
               },
               {
                 title: 'Nossos trabalhos',

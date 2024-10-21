@@ -1,5 +1,6 @@
 import { Box, Divider } from '@mui/material';
 import {
+  SimpleAbout,
   SimpleDetailsFeature,
   SimpleHeader,
   SimpleHeroSection,
@@ -29,6 +30,12 @@ interface HomeContainerProps {
     detailsFeatureTitle: string;
     listFeatures: IconTextProps[];
   };
+  about: {
+    aboutTitle: string;
+    aboutDescription: string;
+    aboutBackgroundColor?: string;
+    aboutList: IconTextProps[];
+  };
 }
 
 export const HomeContainer: FC<HomeContainerProps> = ({
@@ -43,6 +50,7 @@ export const HomeContainer: FC<HomeContainerProps> = ({
     detailsFeatureTitle,
     listFeatures,
   },
+  about: { aboutTitle, aboutBackgroundColor, aboutList, aboutDescription },
 }) => {
   return (
     <Box>
@@ -70,6 +78,14 @@ export const HomeContainer: FC<HomeContainerProps> = ({
         listFeatures={listFeatures}
       />
       <Divider />
+      <SimpleAbout
+        aboutList={aboutList}
+        ctaButton={ctaButton}
+        ctaButtonTitle={ctaButtonTitle}
+        title={aboutTitle}
+        description={aboutDescription}
+        backgroundColor={aboutBackgroundColor}
+      />
     </Box>
   );
 };

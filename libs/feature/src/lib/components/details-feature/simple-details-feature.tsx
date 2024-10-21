@@ -4,6 +4,7 @@ import { FC } from 'react';
 import { CtaButton } from '../button';
 import { IconTextProps } from '../../shared';
 import { IconText } from '../lists';
+import { SectionContainer } from '../container';
 
 interface SimpleDetailsFeatureProps {
   backgroundColor?: string;
@@ -29,17 +30,7 @@ export const SimpleDetailsFeature: FC<SimpleDetailsFeatureProps> = ({
   const mdDown = useMediaQuery(theme.breakpoints.down('md'));
 
   return (
-    <Box
-      id="details-feature"
-      component="section"
-      sx={{
-        display: 'flex',
-        flexDirection: { xs: 'column', md: 'row' },
-        background: backgroundColor,
-        alignItems: 'center',
-        justifyContent: 'space-between',
-      }}
-    >
+    <SectionContainer id="detailsFeature" backgroundColor={backgroundColor}>
       <Box
         component="img"
         height={mdDown ? theme.spacing(50) : theme.spacing(75)}
@@ -49,7 +40,8 @@ export const SimpleDetailsFeature: FC<SimpleDetailsFeatureProps> = ({
           flex: 1,
           maxWidth: '100%',
           objectFit: 'contain',
-          mt: smDown ? 0 : mdDown ? -20 : -10,
+          mt: smDown ? 0 : -10,
+          mb: smDown ? '' : mdDown ? -10 : '',
         }}
       />
       <Box
@@ -86,7 +78,11 @@ export const SimpleDetailsFeature: FC<SimpleDetailsFeatureProps> = ({
           <Box mt={theme.spacing(2)}>
             {listFeatures.length > 0 &&
               listFeatures.map((feature) => (
-                <IconText icon={feature.icon} title={feature.title} />
+                <IconText
+                  key={feature.title}
+                  icon={feature.icon}
+                  title={feature.title}
+                />
               ))}
           </Box>
           <Box mt={theme.spacing(8)} mb={theme.spacing(2)}>
@@ -100,6 +96,6 @@ export const SimpleDetailsFeature: FC<SimpleDetailsFeatureProps> = ({
           </Box>
         </Box>
       </Box>
-    </Box>
+    </SectionContainer>
   );
 };

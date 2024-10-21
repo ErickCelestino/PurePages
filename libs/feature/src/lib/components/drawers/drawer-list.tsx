@@ -9,10 +9,10 @@ import {
 } from '@mui/material';
 import ExpandLess from '@mui/icons-material/ExpandLess';
 import ExpandMore from '@mui/icons-material/ExpandMore';
-import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { useDrawerContext } from '../../context';
 import { DrawerOption, DrawerTopic } from '../../shared';
+import { scrollTo } from '../../service';
 
 interface DrawerListItemProps {
   items: DrawerTopic;
@@ -45,11 +45,9 @@ export const DrawerListItem = ({
     }
   }, [isDrawerOpen, items]);
 
-  const navigate = useNavigate();
-
   const handleClick = (to: string) => {
     return () => {
-      navigate(to);
+      scrollTo(to);
       onClick?.();
     };
   };

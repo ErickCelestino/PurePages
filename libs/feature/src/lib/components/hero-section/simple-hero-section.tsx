@@ -2,6 +2,7 @@ import { Box, Typography, useMediaQuery, useTheme } from '@mui/material';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import { FC } from 'react';
 import { CtaButton } from '../button';
+import { SectionContainer } from '../container';
 
 interface SimpleHeroSectionProps {
   title: string;
@@ -27,17 +28,7 @@ export const SimpleHeroSection: FC<SimpleHeroSectionProps> = ({
   const mdDown = useMediaQuery(theme.breakpoints.down('md'));
 
   return (
-    <Box
-      id="hero-section"
-      component="section"
-      sx={{
-        display: 'flex',
-        flexDirection: { xs: 'column', md: 'row' },
-        background: backgroundColor,
-        alignItems: 'center',
-        justifyContent: 'space-between',
-      }}
-    >
+    <SectionContainer id="hero-section" backgroundColor={backgroundColor}>
       <Box
         sx={{
           display: 'flex',
@@ -53,8 +44,9 @@ export const SimpleHeroSection: FC<SimpleHeroSectionProps> = ({
             maxWidth: smDown ? '80%' : '100%',
             display: 'flex',
             flexDirection: 'column',
-            justifyContent: mdDown ? 'center' : 'flex-start',
-            alignItems: mdDown ? 'center' : 'flex-start',
+            justifyContent: mdDown ? 'center' : 'start',
+            alignItems: mdDown ? 'center' : 'start',
+            padding: smDown ? '' : theme.spacing(6),
           }}
         >
           <Typography
@@ -63,6 +55,7 @@ export const SimpleHeroSection: FC<SimpleHeroSectionProps> = ({
               whiteSpace: 'pre-line',
               maxWidth: theme.spacing(55),
               color: 'white',
+              textAlign: mdDown ? 'center' : 'start',
               fontSize: smDown ? theme.spacing(2) : 'auto',
               fontWeight: 800,
             }}
@@ -103,6 +96,6 @@ export const SimpleHeroSection: FC<SimpleHeroSectionProps> = ({
           mt: smDown ? -9 : mdDown ? -20 : -10,
         }}
       />
-    </Box>
+    </SectionContainer>
   );
 };
