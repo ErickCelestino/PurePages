@@ -8,6 +8,8 @@ interface CtaButtonProps {
   iconRight?: ReactElement;
   iconLeft?: ReactElement;
   width?: number;
+  color?: string;
+  titleColor?: string;
 }
 
 export const CtaButton: FC<CtaButtonProps> = ({
@@ -17,6 +19,8 @@ export const CtaButton: FC<CtaButtonProps> = ({
   fontSize = 12,
   width,
   title = 'Contrate Agora',
+  color = 'secondary',
+  titleColor,
 }) => {
   const theme = useTheme();
   const mdDown = useMediaQuery(theme.breakpoints.down('md'));
@@ -24,7 +28,6 @@ export const CtaButton: FC<CtaButtonProps> = ({
   return (
     <Button
       variant="contained"
-      color="secondary"
       sx={{
         borderRadius: '90px',
         whiteSpace: 'nowrap',
@@ -32,6 +35,9 @@ export const CtaButton: FC<CtaButtonProps> = ({
         fontSize: fontSize,
         marginRight: mdDown ? theme.spacing(-1) : 'auto',
         width: width ? theme.spacing(width) : 'auto',
+        background:
+          color === 'secondary' ? theme.palette.secondary.main : color,
+        color: titleColor,
       }}
       onClick={action}
       endIcon={iconRight}
