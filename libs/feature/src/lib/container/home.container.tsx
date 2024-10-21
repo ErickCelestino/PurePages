@@ -62,6 +62,7 @@ interface HomeContainerProps {
   };
   clients?: {
     clientsTitle: string;
+    clientsPhotos: string[];
   };
 }
 
@@ -135,7 +136,12 @@ export const HomeContainer: FC<HomeContainerProps> = ({
         backgroundRight={aboutRigthBackground}
       />
       <Divider />
-      {clients && <SimpleClients title={clients.clientsTitle} />}
+      {clients && (
+        <SimpleClients
+          title={clients.clientsTitle}
+          photos={clients.clientsPhotos}
+        />
+      )}
       <Divider />
       <SimpleCta
         ctaButton={ctaButton}
