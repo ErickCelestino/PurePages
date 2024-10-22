@@ -10,10 +10,26 @@ type PhotoCarouselProps = {
 export const PhotoCarousel: React.FC<PhotoCarouselProps> = ({ images }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const totalImages = images.length;
+  const visibleImagesCount = Math.min(4, totalImages);
 
   const handleNext = useCallback(() => {
     setCurrentIndex((prevIndex) => (prevIndex + 1) % totalImages);
   }, [totalImages]);
+
+  const handlePrevious = () => {
+    setCurrentIndex((prevIndex) => (prevIndex - 1 + totalImages) % totalImages);
+  };
+
+  const visibleImages = images.slice(
+    currentIndex,
+    currentIndex + visibleImagesCount
+  );
+
+  if (visibleImages.length < visibleImagesCount) {
+    visibleImages.push(
+      ...images.slice(0, visibleImagesCount - visibleImages.length)
+    );
+  }
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -21,32 +37,42 @@ export const PhotoCarousel: React.FC<PhotoCarouselProps> = ({ images }) => {
     }, 3000);
 
     return () => clearInterval(interval);
-  }, [currentIndex, handleNext]);
-
-  const handlePrevious = () => {
-    setCurrentIndex((prevIndex) => (prevIndex - 1 + totalImages) % totalImages);
-  };
+  }, [handleNext]);
 
   return (
     <Box
       sx={{
         position: 'relative',
-        width: '100%',
-        maxWidth: 600,
+        width: '80%',
+        maxWidth: 1200,
         margin: 'auto',
         overflow: 'hidden',
+        height: 'auto',
       }}
     >
       <Box
-        component="img"
-        src={images[currentIndex]}
-        alt={`Image ${currentIndex + 1}`}
         sx={{
-          width: '100%',
-          height: 'auto',
-          display: 'block',
+          display: 'flex',
+          transition: 'transform 0.3s ease-in-out',
+          transform: `translateX(-${
+            currentIndex * (100 / visibleImagesCount)
+          }%)`,
         }}
-      />
+      >
+        {visibleImages.map((image, index) => (
+          <Box
+            component="img"
+            src={image}
+            key={index}
+            alt={`Image ${currentIndex + 1 + index}`}
+            sx={{
+              width: `${100 / visibleImagesCount}%`,
+              height: 'auto',
+              display: 'block',
+            }}
+          />
+        ))}
+      </Box>
 
       <IconButton
         onClick={handlePrevious}

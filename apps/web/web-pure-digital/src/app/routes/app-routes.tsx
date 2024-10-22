@@ -94,11 +94,11 @@ export const AppRouters = () => {
                 },
               ],
             }}
-            // clients={{
-            //   clientsTitle:
-            //     '+ de 85 clientes confiaram em nós ao longo de toda nossa história.',
-            //   clientsPhotos: ['/assets/images/companies/OralSim.svg'],
-            // }}
+            clients={{
+              clientsTitle:
+                '+ de 85 clientes confiaram em nós ao longo de toda nossa história.',
+              clientsPhotos: ['/assets/images/companies/OralSim.svg'],
+            }}
             ctaSection={{
               ctaSectionButtonTitle: 'Chamar no WhatsApp',
               ctaSectionTitle: 'Pronto para começar?',
