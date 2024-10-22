@@ -1,4 +1,4 @@
-import { Box } from '@mui/material';
+import { Box, useMediaQuery, useTheme } from '@mui/material';
 import { FC, ReactNode } from 'react';
 
 interface SimpleSectionContainerPros {
@@ -14,6 +14,8 @@ export const SectionContainer: FC<SimpleSectionContainerPros> = ({
   backgroundColor,
   fullHeigth,
 }) => {
+  const theme = useTheme();
+  const smDown = useMediaQuery(theme.breakpoints.down('sm'));
   return (
     <Box
       id={id}
@@ -25,7 +27,7 @@ export const SectionContainer: FC<SimpleSectionContainerPros> = ({
         alignItems: 'center',
         justifyContent: 'space-between',
         paddingTop: '1rem',
-        height: fullHeigth ? '95vh' : 'auto',
+        height: fullHeigth ? (smDown ? '100vh' : '95vh') : 'auto',
       }}
     >
       {children}

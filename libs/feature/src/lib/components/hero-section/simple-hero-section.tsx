@@ -27,6 +27,7 @@ export const SimpleHeroSection: FC<SimpleHeroSectionProps> = ({
   const smDown = useMediaQuery(theme.breakpoints.down('sm'));
   const mdDown = useMediaQuery(theme.breakpoints.down('md'));
   const lgDown = useMediaQuery(theme.breakpoints.down('lg'));
+  const xlDown = useMediaQuery(theme.breakpoints.down('xl'));
 
   return (
     <SectionContainer
@@ -40,7 +41,7 @@ export const SimpleHeroSection: FC<SimpleHeroSectionProps> = ({
           mt: mdDown ? 0 : -5,
           ml: mdDown ? '' : lgDown ? theme.spacing(10) : theme.spacing(15),
           width: 'auto',
-          maxWidth: mdDown ? '80%' : lgDown ? '70%' : '50%',
+          maxWidth: mdDown ? '80%' : lgDown ? '60%' : '50%',
           alignContent: 'center',
           position: 'relative',
         }}
@@ -54,7 +55,7 @@ export const SimpleHeroSection: FC<SimpleHeroSectionProps> = ({
           }}
         >
           <Typography
-            variant={mdDown ? 'h6' : lgDown ? 'h5' : 'h4'}
+            variant={xlDown ? 'h6' : 'h4'}
             sx={{
               whiteSpace: 'pre-line',
               color: 'white',
@@ -100,13 +101,12 @@ export const SimpleHeroSection: FC<SimpleHeroSectionProps> = ({
           right: 0,
           zIndex: 0,
           marginBottom: smDown
-            ? ''
+            ? -0.5
             : mdDown
-            ? theme.spacing(-2.5)
+            ? theme.spacing(-2.6)
             : lgDown
-            ? theme.spacing(-1)
+            ? theme.spacing(-1.5)
             : theme.spacing(-4),
-          mr: smDown ? '' : lgDown ? -10 : '',
         }}
       >
         <Box
@@ -115,9 +115,11 @@ export const SimpleHeroSection: FC<SimpleHeroSectionProps> = ({
             smDown
               ? '100%'
               : mdDown
-              ? theme.spacing(65)
+              ? theme.spacing(55)
               : lgDown
-              ? theme.spacing(85)
+              ? theme.spacing(60)
+              : xlDown
+              ? theme.spacing(75)
               : theme.spacing(95)
           }
           src={image}
