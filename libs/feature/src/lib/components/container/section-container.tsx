@@ -25,7 +25,7 @@ export const SectionContainer: FC<SimpleSectionContainerPros> = ({
         alignItems: 'center',
         justifyContent: 'space-between',
         paddingTop: '1rem',
-        height: fullHeigth ? '100vh' : 'auto',
+        height: fullHeigth ? '95vh' : 'auto',
       }}
     >
       {children}

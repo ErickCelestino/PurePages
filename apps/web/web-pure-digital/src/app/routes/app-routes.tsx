@@ -34,7 +34,7 @@ export const AppRouters = () => {
               companyLogo: '/assets/images/PurePagesLogo.svg',
             }}
             heroSection={{
-              heroSectionImage: '/assets/images/MenHeadLine.svg',
+              heroSectionImage: '/assets/images/MenHeroSection.svg',
               heroSectionTitle:
                 'Impulsione suas vendas com landing pages que convertem! Criamos páginas otimizadas para capturar leads e aumentar suas ofertas.',
               herosectionSubTitle:
@@ -94,11 +94,11 @@ export const AppRouters = () => {
                 },
               ],
             }}
-            clients={{
-              clientsTitle:
-                '+ de 85 clientes confiaram em nós ao longo de toda nossa história.',
-              clientsPhotos: ['/assets/images/companies/OralSim.svg'],
-            }}
+            // clients={{
+            //   clientsTitle:
+            //     '+ de 85 clientes confiaram em nós ao longo de toda nossa história.',
+            //   clientsPhotos: ['/assets/images/companies/OralSim.svg'],
+            // }}
             ctaSection={{
               ctaSectionButtonTitle: 'Chamar no WhatsApp',
               ctaSectionTitle: 'Pronto para começar?',

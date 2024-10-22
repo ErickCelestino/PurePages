@@ -26,6 +26,7 @@ export const SimpleHeroSection: FC<SimpleHeroSectionProps> = ({
   const theme = useTheme();
   const smDown = useMediaQuery(theme.breakpoints.down('sm'));
   const mdDown = useMediaQuery(theme.breakpoints.down('md'));
+  const lgDown = useMediaQuery(theme.breakpoints.down('lg'));
 
   return (
     <SectionContainer
@@ -36,10 +37,12 @@ export const SimpleHeroSection: FC<SimpleHeroSectionProps> = ({
       <Box
         sx={{
           flex: 1,
-          mt: mdDown ? -15 : -5,
-          ml: mdDown ? '' : theme.spacing(10),
-          maxWidth: smDown ? '80%' : theme.spacing(72),
+          mt: mdDown ? 0 : -5,
+          ml: mdDown ? '' : lgDown ? theme.spacing(10) : theme.spacing(15),
+          width: 'auto',
+          maxWidth: mdDown ? '80%' : lgDown ? '70%' : '50%',
           alignContent: 'center',
+          position: 'relative',
         }}
       >
         <Box
@@ -47,12 +50,11 @@ export const SimpleHeroSection: FC<SimpleHeroSectionProps> = ({
             display: 'flex',
             justifyContent: 'center',
             flexDirection: 'column',
-
             textAlign: smDown ? 'center' : 'start',
           }}
         >
           <Typography
-            variant={mdDown ? 'h6' : 'h5'}
+            variant={mdDown ? 'h6' : lgDown ? 'h5' : 'h4'}
             sx={{
               whiteSpace: 'pre-line',
               color: 'white',
@@ -78,16 +80,53 @@ export const SimpleHeroSection: FC<SimpleHeroSectionProps> = ({
             display: 'flex',
             justifyContent: smDown ? 'center' : '',
           }}
-          mt={theme.spacing(2)}
+          mt={mdDown ? theme.spacing(3) : theme.spacing(5)}
         >
           <CtaButton
             action={ctaButton}
             title={ctaButtonTitle}
             fontSize={11}
-            width={smDown ? 17 : 25}
+            width={smDown ? 17 : 30}
+            padding={mdDown ? '' : theme.spacing(2)}
             iconRight={<ArrowForwardIcon />}
           />
         </Box>
+      </Box>
+
+      <Box
+        sx={{
+          position: smDown ? 'static' : 'absolute',
+          bottom: 0,
+          right: 0,
+          zIndex: 0,
+          marginBottom: smDown
+            ? ''
+            : mdDown
+            ? theme.spacing(-2.5)
+            : lgDown
+            ? theme.spacing(-1)
+            : theme.spacing(-4),
+          mr: smDown ? '' : lgDown ? -10 : '',
+        }}
+      >
+        <Box
+          component="img"
+          height={
+            smDown
+              ? '100%'
+              : mdDown
+              ? theme.spacing(65)
+              : lgDown
+              ? theme.spacing(85)
+              : theme.spacing(95)
+          }
+          src={image}
+          alt={imageAltTitle}
+          sx={{
+            maxWidth: '100%',
+            objectFit: 'contain',
+          }}
+        />
       </Box>
     </SectionContainer>
   );
