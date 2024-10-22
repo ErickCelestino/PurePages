@@ -1,6 +1,6 @@
 import { FC } from 'react';
 import { SectionContainer } from '../container';
-import { Box, Typography, useTheme } from '@mui/material';
+import { Box } from '@mui/material';
 import { PhotoCarousel } from '../carousel';
 
 interface SimpleClientsProps {
@@ -9,25 +9,16 @@ interface SimpleClientsProps {
 }
 
 export const SimpleClients: FC<SimpleClientsProps> = ({ title, photos }) => {
-  const theme = useTheme();
   return (
     <SectionContainer fullHeigth={false} id="clients-section">
       <Box
         sx={{
           display: 'flex',
-          flexDirection: 'column',
+          justifyContent: 'center',
+          width: '100%',
         }}
       >
-        <Typography
-          variant="h6"
-          sx={{
-            fontWeight: 800,
-            maxWidth: theme.spacing(40),
-          }}
-        >
-          {title}
-        </Typography>
-        <PhotoCarousel images={photos} />
+        <PhotoCarousel title={title} images={photos} />
       </Box>
     </SectionContainer>
   );
