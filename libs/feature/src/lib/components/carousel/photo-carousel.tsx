@@ -6,6 +6,7 @@ import {
   Theme,
   Typography,
   useTheme,
+  useMediaQuery,
 } from '@mui/material';
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
@@ -16,7 +17,6 @@ type PhotoCarouselProps = {
   title: string;
 };
 
-// Define common styles to be reused
 const commonIconButtonStyles = (color: string, theme: Theme) => ({
   border: 'solid',
   borderWidth: '2px',
@@ -35,15 +35,22 @@ export const PhotoCarousel: React.FC<PhotoCarouselProps> = ({
   color = '#9034a2',
 }) => {
   const totalImages = images.length;
-  const visibleImagesCount = Math.min(6, totalImages);
   const theme = useTheme();
+
+  const smDown = useMediaQuery(theme.breakpoints.down('sm'));
+  const isTablet = useMediaQuery(theme.breakpoints.between('sm', 'md'));
+
+  const visibleImagesCount = smDown
+    ? 2
+    : isTablet
+    ? 3
+    : Math.min(6, totalImages);
+
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
 
-  // State hooks
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isAnimating, setIsAnimating] = useState(false);
 
-  // Duplicate images for smooth looping
   const visibleImages = [...images, ...images, ...images];
 
   // Handler for moving to the next image
@@ -95,7 +102,7 @@ export const PhotoCarousel: React.FC<PhotoCarouselProps> = ({
     <Box
       sx={{
         position: 'relative',
-        width: '80%',
+        width: smDown ? '100%' : '80%',
         maxWidth: 1200,
         margin: 'auto',
         overflow: 'hidden',
@@ -110,50 +117,53 @@ export const PhotoCarousel: React.FC<PhotoCarouselProps> = ({
           justifyContent: 'space-between',
           alignItems: 'center',
           paddingBottom: theme.spacing(2),
-          marginBottom: theme.spacing(6),
+          marginBottom: smDown ? 'auto' : theme.spacing(6),
         }}
       >
         {/* Title */}
         <Typography
-          variant="h5"
+          variant={smDown ? 'h6' : 'h5'}
           sx={{
-            fontWeight: 900,
+            fontWeight: smDown ? 700 : 900,
             maxWidth: theme.spacing(50),
+            fontSize: smDown ? theme.spacing(2.2) : 'auto',
           }}
         >
           {title}
         </Typography>
 
         {/* Navigation controls */}
-        <Box component="nav" aria-label="carousel navigation">
-          <IconButton
-            onClick={() => {
-              handlePrevious();
-              stopAutoMove();
-            }}
-            sx={{
-              ...commonIconButtonStyles(color, theme),
-            }}
-          >
-            <ArrowBackIosNewIcon
-              sx={{ height: theme.spacing(1.4), width: theme.spacing(1.4) }}
-            />
-          </IconButton>
+        {!smDown && (
+          <Box component="nav" aria-label="carousel navigation">
+            <IconButton
+              onClick={() => {
+                handlePrevious();
+                stopAutoMove();
+              }}
+              sx={{
+                ...commonIconButtonStyles(color, theme),
+              }}
+            >
+              <ArrowBackIosNewIcon
+                sx={{ height: theme.spacing(1.4), width: theme.spacing(1.4) }}
+              />
+            </IconButton>
 
-          <IconButton
-            onClick={() => {
-              handleNext();
-              stopAutoMove();
-            }}
-            sx={{
-              ...commonIconButtonStyles(color, theme),
-            }}
-          >
-            <ArrowForwardIosIcon
-              sx={{ height: theme.spacing(1.4), width: theme.spacing(1.4) }}
-            />
-          </IconButton>
-        </Box>
+            <IconButton
+              onClick={() => {
+                handleNext();
+                stopAutoMove();
+              }}
+              sx={{
+                ...commonIconButtonStyles(color, theme),
+              }}
+            >
+              <ArrowForwardIosIcon
+                sx={{ height: theme.spacing(1.4), width: theme.spacing(1.4) }}
+              />
+            </IconButton>
+          </Box>
+        )}
       </Box>
 
       {/* Carousel images */}
