@@ -16,6 +16,7 @@ export const SimpleClients: FC<SimpleClientsProps> = ({ title, photos }) => {
           display: 'flex',
           justifyContent: 'center',
           width: '100%',
+          padding: '3rem',
         }}
       >
         <PhotoCarousel title={title} images={photos} />

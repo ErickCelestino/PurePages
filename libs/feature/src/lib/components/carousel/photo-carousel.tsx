@@ -1,5 +1,12 @@
-import React, { useState, useEffect, useCallback } from 'react';
-import { Box, IconButton, Typography, useTheme } from '@mui/material';
+import React, { useState, useEffect, useCallback, useRef } from 'react';
+import {
+  Box,
+  IconButton,
+  lighten,
+  Theme,
+  Typography,
+  useTheme,
+} from '@mui/material';
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 
@@ -9,42 +16,80 @@ type PhotoCarouselProps = {
   title: string;
 };
 
+// Define common styles to be reused
+const commonIconButtonStyles = (color: string, theme: Theme) => ({
+  border: 'solid',
+  borderWidth: '2px',
+  color: color,
+  height: theme.spacing(3),
+  width: theme.spacing(3),
+  '&:hover': {
+    backgroundColor: lighten(color, 0.8),
+  },
+  marginRight: theme.spacing(2),
+});
+
 export const PhotoCarousel: React.FC<PhotoCarouselProps> = ({
   images,
   title,
   color = '#9034a2',
 }) => {
-  const [currentIndex, setCurrentIndex] = useState(0);
   const totalImages = images.length;
-  const visibleImagesCount = Math.min(4, totalImages);
+  const visibleImagesCount = Math.min(6, totalImages);
   const theme = useTheme();
+  const intervalRef = useRef<NodeJS.Timeout | null>(null);
 
+  // State hooks
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [isAnimating, setIsAnimating] = useState(false);
+
+  // Duplicate images for smooth looping
+  const visibleImages = [...images, ...images, ...images];
+
+  // Handler for moving to the next image
   const handleNext = useCallback(() => {
-    setCurrentIndex((prevIndex) => (prevIndex + 1) % totalImages);
-  }, [totalImages]);
+    if (!isAnimating) {
+      setIsAnimating(true);
+      setCurrentIndex((prevIndex) => prevIndex + 1);
+    }
+  }, [isAnimating]);
 
-  const handlePrevious = () => {
-    setCurrentIndex((prevIndex) => (prevIndex - 1 + totalImages) % totalImages);
-  };
+  // Handler for moving to the previous image
+  const handlePrevious = useCallback(() => {
+    if (!isAnimating) {
+      setIsAnimating(true);
+      setCurrentIndex((prevIndex) => prevIndex - 1);
+    }
+  }, [isAnimating]);
 
-  const visibleImages = images.slice(
-    currentIndex,
-    currentIndex + visibleImagesCount
-  );
+  // Stop automatic movement of the carousel
+  const stopAutoMove = useCallback(() => {
+    if (intervalRef.current) {
+      clearInterval(intervalRef.current);
+    }
+  }, []);
 
-  if (visibleImages.length < visibleImagesCount) {
-    visibleImages.push(
-      ...images.slice(0, visibleImagesCount - visibleImages.length)
-    );
-  }
-
+  // Start automatic movement of the carousel
   useEffect(() => {
-    const interval = setInterval(() => {
+    intervalRef.current = setInterval(() => {
       handleNext();
     }, 3000);
 
-    return () => clearInterval(interval);
+    return () => {
+      if (intervalRef.current) {
+        clearInterval(intervalRef.current);
+      }
+    };
   }, [handleNext]);
+
+  // Control animation state
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      setIsAnimating(false);
+    }, 300);
+
+    return () => clearTimeout(timeout);
+  }, [currentIndex]);
 
   return (
     <Box
@@ -57,69 +102,67 @@ export const PhotoCarousel: React.FC<PhotoCarouselProps> = ({
         height: 'auto',
       }}
     >
-      <Box>
+      {/* Header for title and controls */}
+      <Box
+        component="header"
+        sx={{
+          display: 'flex',
+          justifyContent: 'space-between',
+          alignItems: 'center',
+          paddingBottom: theme.spacing(2),
+          marginBottom: theme.spacing(6),
+        }}
+      >
+        {/* Title */}
         <Typography
-          variant="h6"
+          variant="h5"
           sx={{
-            fontWeight: 800,
-            maxWidth: theme.spacing(60),
+            fontWeight: 900,
+            maxWidth: theme.spacing(50),
           }}
         >
           {title}
         </Typography>
-      </Box>
-      <Box
-        sx={{
-          display: 'flex',
-          justifyContent: 'end',
-        }}
-      >
-        <Box
-          sx={{
-            display: 'flex',
-            justifyContent: 'center',
-          }}
-        >
+
+        {/* Navigation controls */}
+        <Box component="nav" aria-label="carousel navigation">
           <IconButton
-            onClick={handlePrevious}
+            onClick={() => {
+              handlePrevious();
+              stopAutoMove();
+            }}
             sx={{
-              border: 'solid',
-              borderWidth: '2px',
-              color: color,
-              marginRight: theme.spacing(2),
-              '&:hover': {
-                backgroundColor: 'rgba(0, 0, 0, 0.7)',
-              },
+              ...commonIconButtonStyles(color, theme),
             }}
           >
             <ArrowBackIosNewIcon
-              sx={{ height: theme.spacing(1.5), width: theme.spacing(1.5) }}
+              sx={{ height: theme.spacing(1.4), width: theme.spacing(1.4) }}
             />
           </IconButton>
 
           <IconButton
-            onClick={handleNext}
+            onClick={() => {
+              handleNext();
+              stopAutoMove();
+            }}
             sx={{
-              border: 'solid',
-              borderWidth: '2px',
-              color: color,
-              '&:hover': {
-                backgroundColor: 'rgba(0, 0, 0, 0.7)',
-              },
+              ...commonIconButtonStyles(color, theme),
             }}
           >
             <ArrowForwardIosIcon
-              sx={{ height: theme.spacing(1.5), width: theme.spacing(1.5) }}
+              sx={{ height: theme.spacing(1.4), width: theme.spacing(1.4) }}
             />
           </IconButton>
         </Box>
       </Box>
+
+      {/* Carousel images */}
       <Box
         sx={{
           display: 'flex',
-          transition: 'transform 0.3s ease-in-out',
+          transition: isAnimating ? 'transform 0.3s ease-in-out' : 'none',
           transform: `translateX(-${
-            currentIndex * (100 / visibleImagesCount)
+            (currentIndex % totalImages) * (100 / visibleImagesCount)
           }%)`,
         }}
       >
@@ -131,8 +174,15 @@ export const PhotoCarousel: React.FC<PhotoCarouselProps> = ({
             alt={`Image ${currentIndex + 1 + index}`}
             sx={{
               width: `${100 / visibleImagesCount}%`,
-              maxHeight: theme.spacing(25),
+              maxHeight: theme.spacing(18),
               display: 'block',
+              transition: 'transform 0.3s ease, box-shadow 0.3s ease',
+              transform: 'translateZ(0)',
+              '&:hover': {
+                transform: 'scale(1.1)',
+                boxShadow: '0 10px 20px rgba(0, 0, 0, 0.2)',
+              },
+              marginBottom: theme.spacing(2),
             }}
           />
         ))}
