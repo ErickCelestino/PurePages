@@ -26,36 +26,39 @@ export const SimpleHeroSection: FC<SimpleHeroSectionProps> = ({
   const theme = useTheme();
   const smDown = useMediaQuery(theme.breakpoints.down('sm'));
   const mdDown = useMediaQuery(theme.breakpoints.down('md'));
+  const lgDown = useMediaQuery(theme.breakpoints.down('lg'));
+  const xlDown = useMediaQuery(theme.breakpoints.down('xl'));
 
   return (
-    <SectionContainer id="hero-section" backgroundColor={backgroundColor}>
+    <SectionContainer
+      fullHeigth
+      id="hero-section"
+      backgroundColor={backgroundColor}
+    >
       <Box
         sx={{
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center',
-          flexDirection: 'column',
           flex: 1,
-          mt: 2,
+          mt: mdDown ? 0 : -5,
+          ml: mdDown ? '' : lgDown ? theme.spacing(10) : theme.spacing(15),
+          width: 'auto',
+          maxWidth: mdDown ? '80%' : lgDown ? '60%' : '50%',
+          alignContent: 'center',
+          position: 'relative',
         }}
       >
         <Box
           sx={{
-            maxWidth: smDown ? '80%' : '100%',
             display: 'flex',
+            justifyContent: 'center',
             flexDirection: 'column',
-            justifyContent: mdDown ? 'center' : 'start',
-            alignItems: mdDown ? 'center' : 'start',
-            padding: smDown ? '' : theme.spacing(6),
+            textAlign: smDown ? 'center' : 'start',
           }}
         >
           <Typography
-            variant="h6"
+            variant={xlDown ? 'h6' : 'h4'}
             sx={{
               whiteSpace: 'pre-line',
-              maxWidth: theme.spacing(55),
               color: 'white',
-              textAlign: mdDown ? 'center' : 'start',
               fontSize: smDown ? theme.spacing(2) : 'auto',
               fontWeight: 800,
             }}
@@ -72,30 +75,61 @@ export const SimpleHeroSection: FC<SimpleHeroSectionProps> = ({
               {subTitle}
             </Typography>
           )}
-          <Box mt={theme.spacing(2)}>
-            <CtaButton
-              action={ctaButton}
-              title={ctaButtonTitle}
-              fontSize={11}
-              width={smDown ? 17 : 25}
-              iconRight={<ArrowForwardIcon />}
-            />
-          </Box>
+        </Box>
+        <Box
+          sx={{
+            display: 'flex',
+            justifyContent: smDown ? 'center' : '',
+          }}
+          mt={mdDown ? theme.spacing(3) : theme.spacing(5)}
+        >
+          <CtaButton
+            action={ctaButton}
+            title={ctaButtonTitle}
+            fontSize={11}
+            width={smDown ? 17 : 30}
+            padding={mdDown ? '' : theme.spacing(2)}
+            iconRight={<ArrowForwardIcon />}
+          />
         </Box>
       </Box>
 
       <Box
-        component="img"
-        height={mdDown ? theme.spacing(50) : theme.spacing(70)}
-        src={image}
-        alt={imageAltTitle}
         sx={{
-          flex: 1,
-          maxWidth: '100%',
-          objectFit: 'contain',
-          mt: smDown ? -9 : mdDown ? -20 : -10,
+          position: smDown ? 'static' : 'absolute',
+          bottom: 0,
+          right: 0,
+          zIndex: 0,
+          marginBottom: smDown
+            ? -0.5
+            : mdDown
+            ? theme.spacing(-2.6)
+            : lgDown
+            ? theme.spacing(-1.5)
+            : theme.spacing(-4),
         }}
-      />
+      >
+        <Box
+          component="img"
+          height={
+            smDown
+              ? '100%'
+              : mdDown
+              ? theme.spacing(55)
+              : lgDown
+              ? theme.spacing(60)
+              : xlDown
+              ? theme.spacing(75)
+              : theme.spacing(95)
+          }
+          src={image}
+          alt={imageAltTitle}
+          sx={{
+            maxWidth: '100%',
+            objectFit: 'contain',
+          }}
+        />
+      </Box>
     </SectionContainer>
   );
 };

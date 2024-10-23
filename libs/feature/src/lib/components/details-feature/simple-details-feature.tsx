@@ -30,7 +30,11 @@ export const SimpleDetailsFeature: FC<SimpleDetailsFeatureProps> = ({
   const mdDown = useMediaQuery(theme.breakpoints.down('md'));
 
   return (
-    <SectionContainer id="detailsFeature" backgroundColor={backgroundColor}>
+    <SectionContainer
+      fullHeigth
+      id="detailsFeature"
+      backgroundColor={backgroundColor}
+    >
       <Box
         component="img"
         height={mdDown ? theme.spacing(50) : theme.spacing(75)}
@@ -85,7 +89,7 @@ export const SimpleDetailsFeature: FC<SimpleDetailsFeatureProps> = ({
                 />
               ))}
           </Box>
-          <Box mt={theme.spacing(8)} mb={theme.spacing(2)}>
+          <Box mt={theme.spacing(8)}>
             <CtaButton
               action={ctaButton}
               title={ctaButtonTitle}

@@ -10,6 +10,7 @@ interface CtaButtonProps {
   width?: number;
   color?: string;
   titleColor?: string;
+  padding?: string;
 }
 
 export const CtaButton: FC<CtaButtonProps> = ({
@@ -21,6 +22,7 @@ export const CtaButton: FC<CtaButtonProps> = ({
   title = 'Contrate Agora',
   color = 'secondary',
   titleColor,
+  padding,
 }) => {
   const theme = useTheme();
   const mdDown = useMediaQuery(theme.breakpoints.down('md'));
@@ -38,6 +40,7 @@ export const CtaButton: FC<CtaButtonProps> = ({
         background:
           color === 'secondary' ? theme.palette.secondary.main : color,
         color: titleColor,
+        padding: padding,
       }}
       onClick={action}
       endIcon={iconRight}
