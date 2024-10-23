@@ -59,6 +59,8 @@ interface HomeContainerProps {
     footerLinks: LinkText[];
     footerCopyrightText?: string;
     footerIcons: IconNavigation[];
+    footerMobileColor?: string;
+    footerTabletColor?: string;
   };
   clients?: {
     clientsTitle: string;
@@ -95,7 +97,13 @@ export const HomeContainer: FC<HomeContainerProps> = ({
     ctaSectionBackground,
     ctaSectionTitleButton,
   },
-  footer: { footerIcons, footerLinks, footerCopyrightText },
+  footer: {
+    footerIcons,
+    footerLinks,
+    footerCopyrightText,
+    footerMobileColor,
+    footerTabletColor,
+  },
   clients,
 }) => {
   return (
@@ -157,6 +165,8 @@ export const HomeContainer: FC<HomeContainerProps> = ({
         links={footerLinks}
         icons={footerIcons}
         copyrightText={footerCopyrightText}
+        colorMobile={footerMobileColor}
+        colorTablet={footerTabletColor}
       />
     </Box>
   );

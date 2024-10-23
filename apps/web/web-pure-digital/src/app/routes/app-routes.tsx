@@ -7,11 +7,16 @@ import {
   scrollTo,
   navigateToWaths,
 } from '@pure-pages/feature';
-import { Box } from '@mui/material';
+import { Box, useMediaQuery, useTheme } from '@mui/material';
+import { ReactComponent as IntagramIcon } from '../../assets/images/Instagram.svg';
+import { ReactComponent as FacebookIcon } from '../../assets/images/Facebook.svg';
 
 export const AppRouters = () => {
   const { setDrawerOptions } = useDrawerContext();
   const hasLoadedUserData = useRef(false);
+
+  const theme = useTheme();
+  const smDown = useMediaQuery(theme.breakpoints.down('sm'));
 
   useEffect(() => {
     if (!hasLoadedUserData.current) {
@@ -117,24 +122,24 @@ export const AppRouters = () => {
               ),
             }}
             footer={{
+              footerMobileColor: '#111116',
+              footerTabletColor: '#D9D9D9',
               footerIcons: [
                 {
                   icon: (
-                    <Box component="img" src="/assets/images/Facebook.svg" />
+                    <FacebookIcon
+                      style={{ color: smDown ? 'white' : 'black' }}
+                    />
                   ),
                   to: '1',
                 },
                 {
                   icon: (
-                    <Box component="img" src="/assets/images/Instagram.svg" />
+                    <IntagramIcon
+                      style={{ color: smDown ? 'white' : 'black' }}
+                    />
                   ),
                   to: '2',
-                },
-                {
-                  icon: (
-                    <Box component="img" src="/assets/images/LinkedIn.svg" />
-                  ),
-                  to: '3',
                 },
               ],
               footerLinks: [
