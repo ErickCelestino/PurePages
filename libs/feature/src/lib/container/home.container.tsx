@@ -1,6 +1,7 @@
 import { Box, Divider } from '@mui/material';
 import {
   SimpleAbout,
+  SimpleClients,
   SimpleCta,
   SimpleDetailsFeature,
   SimpleFooter,
@@ -42,6 +43,9 @@ interface HomeContainerProps {
     aboutDescription: string;
     aboutBackgroundColor?: string;
     aboutList: IconTextProps[];
+    aboutImage: string;
+    aboutImageAltTitle?: string;
+    aboutRigthBackground?: string;
   };
   ctaSection: {
     ctaSectionButtonTitle: string;
@@ -55,6 +59,10 @@ interface HomeContainerProps {
     footerLinks: LinkText[];
     footerCopyrightText?: string;
     footerIcons: IconNavigation[];
+  };
+  clients?: {
+    clientsTitle: string;
+    clientsPhotos: string[];
   };
 }
 
@@ -70,7 +78,15 @@ export const HomeContainer: FC<HomeContainerProps> = ({
     detailsFeatureTitle,
     listFeatures,
   },
-  about: { aboutTitle, aboutBackgroundColor, aboutList, aboutDescription },
+  about: {
+    aboutTitle,
+    aboutBackgroundColor,
+    aboutList,
+    aboutDescription,
+    aboutImageAltTitle,
+    aboutImage,
+    aboutRigthBackground,
+  },
   ctaSection: {
     ctaSectionButtonTitle,
     ctaSectionTitle,
@@ -80,6 +96,7 @@ export const HomeContainer: FC<HomeContainerProps> = ({
     ctaSectionTitleButton,
   },
   footer: { footerIcons, footerLinks, footerCopyrightText },
+  clients,
 }) => {
   return (
     <Box>
@@ -114,7 +131,17 @@ export const HomeContainer: FC<HomeContainerProps> = ({
         title={aboutTitle}
         description={aboutDescription}
         backgroundColor={aboutBackgroundColor}
+        aboutImage={aboutImage}
+        aboutImageAltTitle={aboutImageAltTitle}
+        backgroundRight={aboutRigthBackground}
       />
+      <Divider />
+      {clients && (
+        <SimpleClients
+          title={clients.clientsTitle}
+          photos={clients.clientsPhotos}
+        />
+      )}
       <Divider />
       <SimpleCta
         ctaButton={ctaButton}

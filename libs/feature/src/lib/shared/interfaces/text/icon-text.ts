@@ -5,4 +5,5 @@ export interface IconTextProps {
   width?: string;
   icon: ReactElement;
   color?: string;
+  fontSize?: string;
 }

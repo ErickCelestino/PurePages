@@ -34,7 +34,7 @@ export const AppRouters = () => {
               companyLogo: '/assets/images/PurePagesLogo.svg',
             }}
             heroSection={{
-              heroSectionImage: '/assets/images/MenHeadLine.svg',
+              heroSectionImage: '/assets/images/MenHeroSection.svg',
               heroSectionTitle:
                 'Impulsione suas vendas com landing pages que convertem! Criamos páginas otimizadas para capturar leads e aumentar suas ofertas.',
               herosectionSubTitle:
@@ -73,6 +73,7 @@ export const AppRouters = () => {
                 'Por que sua empresa precisa de uma landing page eficaz?',
               aboutDescription:
                 'Ter uma landing page não é apenas uma escolha inteligente, é fundamental para quem busca aumentar os custos e captar leads de forma rápida e eficiente. Uma landing page bem estruturada é o caminho ideal para impactar seu público-alvo, funcionando como um ponto de conversão estratégica para suas campanhas de marketing, 24 horas por dia.',
+              aboutImage: '/assets/images/AboutPhone.svg',
               aboutList: [
                 {
                   icon: (
@@ -93,6 +94,18 @@ export const AppRouters = () => {
                 },
               ],
             }}
+            clients={{
+              clientsTitle:
+                '+ de 85 clientes confiaram em nós ao longo de toda nossa história.',
+              clientsPhotos: [
+                '/assets/images/companies/OralSim.svg',
+                '/assets/images/companies/TurboPartners.svg',
+                '/assets/images/companies/Wecase.svg',
+                '/assets/images/companies/Koin.svg',
+                '/assets/images/companies/M8.svg',
+                '/assets/images/companies/ClubeEnvios.svg',
+              ],
+            }}
             ctaSection={{
               ctaSectionButtonTitle: 'Chamar no WhatsApp',
               ctaSectionTitle: 'Pronto para começar?',
@@ -109,19 +122,19 @@ export const AppRouters = () => {
                   icon: (
                     <Box component="img" src="/assets/images/Facebook.svg" />
                   ),
-                  to: '',
+                  to: '1',
                 },
                 {
                   icon: (
                     <Box component="img" src="/assets/images/Instagram.svg" />
                   ),
-                  to: '',
+                  to: '2',
                 },
                 {
                   icon: (
                     <Box component="img" src="/assets/images/LinkedIn.svg" />
                   ),
-                  to: '',
+                  to: '3',
                 },
               ],
               footerLinks: [
