@@ -63,7 +63,7 @@ export const SimpleDetailsFeature: FC<SimpleDetailsFeatureProps> = ({
       >
         <Box
           sx={{
-            maxWidth: smDown ? '80%' : '100%',
+            maxWidth: smDown ? '90%' : mdDown ? '70%' : '100%',
             display: 'flex',
             flexDirection: 'column',
             justifyContent: mdDown ? 'center' : 'flex-start',
@@ -71,34 +71,36 @@ export const SimpleDetailsFeature: FC<SimpleDetailsFeatureProps> = ({
             marginTop: mdDown ? theme.spacing(5) : 'auto',
           }}
         >
-          <Typography
-            variant="h6"
-            sx={{
-              whiteSpace: 'pre-line',
-              textAlign: 'start',
-              maxWidth: smDown ? '100%' : mdDown ? '70%' : theme.spacing(55),
-              fontSize: smDown ? theme.spacing(2) : 'auto',
-              alignItems: 'start',
-              fontWeight: 800,
-              marginLeft: smDown ? 'auto' : mdDown ? theme.spacing(10) : 'auto',
-            }}
-          >
-            {title}
-          </Typography>
           <Box
-            mt={theme.spacing(2)}
             sx={{
-              marginLeft: smDown ? 'auto' : mdDown ? theme.spacing(10) : 'auto',
+              width: '95%',
+              marginLeft: smDown ? '' : mdDown ? theme.spacing(10) : '',
             }}
           >
-            {listFeatures.length > 0 &&
-              listFeatures.map((feature) => (
-                <IconText
-                  key={feature.title}
-                  icon={feature.icon}
-                  title={feature.title}
-                />
-              ))}
+            <Typography
+              variant={smDown ? 'h6' : 'h5'}
+              sx={{
+                whiteSpace: 'pre-line',
+                textAlign: 'start',
+                maxWidth: smDown ? '100%' : mdDown ? '80%' : theme.spacing(55),
+                fontSize: smDown ? theme.spacing(2) : 'auto',
+                alignItems: 'start',
+                fontWeight: 800,
+              }}
+            >
+              {title}
+            </Typography>
+            <Box mt={theme.spacing(2)}>
+              {listFeatures.length > 0 &&
+                listFeatures.map((feature) => (
+                  <IconText
+                    key={feature.title}
+                    icon={feature.icon}
+                    title={feature.title}
+                    fontSize={mdDown ? theme.spacing(2) : theme.spacing(1.5)}
+                  />
+                ))}
+            </Box>
           </Box>
           {mdDown && (
             <Box
@@ -116,13 +118,13 @@ export const SimpleDetailsFeature: FC<SimpleDetailsFeatureProps> = ({
               }}
             />
           )}
-          <Box sx={{ marginTop: mdDown ? 'auto' : theme.spacing(20) }}>
+          <Box sx={{ marginTop: mdDown ? 'auto' : theme.spacing(12) }}>
             <CtaButton
               action={ctaButton}
               title={ctaButtonTitle}
               fontSize={13}
-              width={smDown ? 30 : 40}
-              padding={2}
+              width={smDown ? 30 : 32}
+              padding={1.5}
               iconLeft={<ArrowBackIcon />}
             />
           </Box>
