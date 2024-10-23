@@ -10,7 +10,7 @@ interface CtaButtonProps {
   width?: number;
   color?: string;
   titleColor?: string;
-  padding?: string;
+  padding?: number;
 }
 
 export const CtaButton: FC<CtaButtonProps> = ({
@@ -40,7 +40,7 @@ export const CtaButton: FC<CtaButtonProps> = ({
         background:
           color === 'secondary' ? theme.palette.secondary.main : color,
         color: titleColor,
-        padding: padding,
+        padding: padding ? theme.spacing(padding) : 'auto',
       }}
       onClick={action}
       endIcon={iconRight}
