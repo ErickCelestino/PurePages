@@ -29,10 +29,37 @@ export const SimpleDetailsFeature: FC<SimpleDetailsFeatureProps> = ({
   const smDown = useMediaQuery(theme.breakpoints.down('sm'));
   const mdDown = useMediaQuery(theme.breakpoints.down('md'));
 
+  const containerStyles = {
+    display: 'flex',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    flexDirection: 'column',
+    flex: 1,
+    mt: -2,
+  };
+
+  const textBoxStyles = {
+    maxWidth: smDown ? '90%' : mdDown ? '70%' : '100%',
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: mdDown ? 'center' : 'flex-start',
+    alignItems: mdDown ? 'center' : 'flex-start',
+    marginTop: mdDown ? theme.spacing(5) : 'auto',
+  };
+
+  const imageBoxStyles = {
+    flex: 1,
+    maxWidth: '100%',
+    objectFit: 'contain',
+    mt: smDown ? 0 : -10,
+    mb: smDown ? '' : mdDown ? 10 : '',
+    padding: smDown ? theme.spacing(1) : 'auto',
+  };
+
   return (
     <SectionContainer
+      id="details-feature"
       fullHeigth
-      id="detailsFeature"
       backgroundColor={backgroundColor}
     >
       {!mdDown && (
@@ -41,42 +68,13 @@ export const SimpleDetailsFeature: FC<SimpleDetailsFeatureProps> = ({
           height={mdDown ? theme.spacing(50) : theme.spacing(75)}
           src={image}
           alt={imageAltTitle}
-          sx={{
-            flex: 1,
-            maxWidth: '100%',
-            objectFit: 'contain',
-            mt: smDown ? 0 : -10,
-            mb: smDown ? '' : mdDown ? -10 : '',
-            padding: smDown ? theme.spacing(1) : 'auto',
-          }}
+          sx={imageBoxStyles}
         />
       )}
-      <Box
-        sx={{
-          display: 'flex',
-          justifyContent: 'space-between',
-          alignItems: 'center',
-          flexDirection: 'column',
-          flex: 1,
-          mt: -2,
-        }}
-      >
-        <Box
-          sx={{
-            maxWidth: smDown ? '90%' : mdDown ? '70%' : '100%',
-            display: 'flex',
-            flexDirection: 'column',
-            justifyContent: mdDown ? 'center' : 'flex-start',
-            alignItems: mdDown ? 'center' : 'flex-start',
-            marginTop: mdDown ? theme.spacing(5) : 'auto',
-          }}
-        >
-          <Box
-            sx={{
-              width: '95%',
-              marginLeft: smDown ? '' : mdDown ? theme.spacing(10) : '',
-            }}
-          >
+
+      <Box sx={containerStyles}>
+        <Box sx={textBoxStyles}>
+          <Box sx={{ width: '95%' }}>
             <Typography
               variant={smDown ? 'h6' : 'h5'}
               sx={{
@@ -84,40 +82,34 @@ export const SimpleDetailsFeature: FC<SimpleDetailsFeatureProps> = ({
                 textAlign: 'start',
                 maxWidth: smDown ? '100%' : mdDown ? '80%' : theme.spacing(55),
                 fontSize: smDown ? theme.spacing(2) : 'auto',
-                alignItems: 'start',
                 fontWeight: 800,
               }}
             >
               {title}
             </Typography>
+
             <Box mt={theme.spacing(2)}>
-              {listFeatures.length > 0 &&
-                listFeatures.map((feature) => (
-                  <IconText
-                    key={feature.title}
-                    icon={feature.icon}
-                    title={feature.title}
-                    fontSize={mdDown ? theme.spacing(2) : theme.spacing(1.5)}
-                  />
-                ))}
+              {listFeatures.map((feature) => (
+                <IconText
+                  key={feature.title}
+                  icon={feature.icon}
+                  title={feature.title}
+                  fontSize={mdDown ? theme.spacing(2) : theme.spacing(1.5)}
+                />
+              ))}
             </Box>
           </Box>
+
           {mdDown && (
             <Box
               component="img"
               height={mdDown ? theme.spacing(50) : theme.spacing(75)}
               src={image}
               alt={imageAltTitle}
-              sx={{
-                flex: 1,
-                maxWidth: '100%',
-                objectFit: 'contain',
-                mt: smDown ? 0 : -10,
-                mb: smDown ? '' : mdDown ? 10 : '',
-                padding: smDown ? theme.spacing(1) : 'auto',
-              }}
+              sx={imageBoxStyles}
             />
           )}
+
           <Box sx={{ marginTop: mdDown ? 'auto' : theme.spacing(12) }}>
             <CtaButton
               action={ctaButton}
