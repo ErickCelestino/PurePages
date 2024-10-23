@@ -52,7 +52,7 @@ export const SimpleDetailsFeature: FC<SimpleDetailsFeatureProps> = ({
     maxWidth: '100%',
     objectFit: 'contain',
     mt: smDown ? 0 : -10,
-    mb: smDown ? '' : mdDown ? 10 : '',
+    mb: smDown ? -5 : mdDown ? 10 : '',
     padding: smDown ? theme.spacing(1) : 'auto',
   };
 
