@@ -60,6 +60,7 @@ export const SimpleDetailsFeature: FC<SimpleDetailsFeatureProps> = ({
     <SectionContainer
       id="details-feature"
       fullHeigth
+      aligmentContent
       backgroundColor={backgroundColor}
     >
       {!mdDown && (

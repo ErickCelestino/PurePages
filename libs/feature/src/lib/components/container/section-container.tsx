@@ -6,6 +6,7 @@ interface SimpleSectionContainerPros {
   id: string;
   backgroundColor?: string;
   fullHeigth: boolean;
+  aligmentContent?: boolean;
 }
 
 export const SectionContainer: FC<SimpleSectionContainerPros> = ({
@@ -13,6 +14,7 @@ export const SectionContainer: FC<SimpleSectionContainerPros> = ({
   id,
   backgroundColor,
   fullHeigth,
+  aligmentContent = false,
 }) => {
   const theme = useTheme();
   const smDown = useMediaQuery(theme.breakpoints.down('sm'));
@@ -22,9 +24,9 @@ export const SectionContainer: FC<SimpleSectionContainerPros> = ({
       component="section"
       sx={{
         display: 'flex',
-        flexDirection: { xs: 'column', md: 'row' },
+        flexDirection: { xs: 'column', lg: 'row' },
         background: backgroundColor,
-        alignItems: 'center',
+        alignItems: aligmentContent ? 'center' : '',
         justifyContent: 'space-between',
         paddingTop: '1rem',
         height: fullHeigth ? (smDown ? '100vh' : '95vh') : 'auto',
