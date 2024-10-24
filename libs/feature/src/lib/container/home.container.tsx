@@ -15,6 +15,7 @@ import {
   IconTextProps,
   LinkText,
 } from '../shared';
+import { SimpleCases } from '../components/cases/simple-cases';
 
 interface HomeContainerProps {
   title?: string;
@@ -46,6 +47,10 @@ interface HomeContainerProps {
     aboutImage: string;
     aboutImageAltTitle?: string;
     aboutRigthBackground?: string;
+  };
+  cases?: {
+    casesTitle: string;
+    casesImages: string[];
   };
   ctaSection: {
     ctaSectionButtonTitle: string;
@@ -89,6 +94,7 @@ export const HomeContainer: FC<HomeContainerProps> = ({
     aboutImage,
     aboutRigthBackground,
   },
+  cases,
   ctaSection: {
     ctaSectionButtonTitle,
     ctaSectionTitle,
@@ -151,6 +157,10 @@ export const HomeContainer: FC<HomeContainerProps> = ({
           title={clients.clientsTitle}
           photos={clients.clientsPhotos}
         />
+      )}
+      {!smDown && <Divider />}
+      {cases && (
+        <SimpleCases casesImages={cases.casesImages} title={cases.casesTitle} />
       )}
       {!smDown && <Divider />}
       <SimpleCta
