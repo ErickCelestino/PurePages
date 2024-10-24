@@ -46,6 +46,7 @@ export const SimpleAbout: FC<SimpleAboutProps> = ({
       fullHeigth={false}
       id="about-section"
       backgroundColor={backgroundColor}
+      heigth={mdDown ? undefined : 70}
     >
       <Box
         sx={{
@@ -55,7 +56,6 @@ export const SimpleAbout: FC<SimpleAboutProps> = ({
           flexDirection: 'column',
           flex: 1,
           mt: mdDown ? theme.spacing(2) : -2,
-          height: '100%',
         }}
       >
         <Box
@@ -74,7 +74,7 @@ export const SimpleAbout: FC<SimpleAboutProps> = ({
               variant="h6"
               sx={{
                 whiteSpace: 'pre-line',
-                textAlign: smDown ? 'center' : 'start',
+                textAlign: 'start',
                 maxWidth: smDown ? 'auto' : theme.spacing(40),
                 fontSize: smDown ? theme.spacing(2) : 'auto',
                 fontWeight: 800,
@@ -87,7 +87,7 @@ export const SimpleAbout: FC<SimpleAboutProps> = ({
               variant="body2"
               sx={{
                 whiteSpace: 'pre-line',
-                textAlign: mdDown ? 'justify' : 'start',
+                textAlign: 'start',
                 maxWidth: smDown ? 'auto' : theme.spacing(40),
                 fontSize: mdDown ? theme.spacing(2) : theme.spacing(1.5),
                 fontWeight: 300,
@@ -97,44 +97,55 @@ export const SimpleAbout: FC<SimpleAboutProps> = ({
               {description}
             </Typography>
 
-            <Box
-              sx={{
-                display: 'flex',
-                width: '100%',
-                justifyContent: mdDown ? 'center' : 'start',
-                mt: theme.spacing(4),
-                mb: smDown ? theme.spacing(4) : mdDown ? theme.spacing(4) : '',
-              }}
-            >
-              <CtaButton
-                action={ctaButton}
-                title={ctaButtonTitle}
-                fontSize={11}
-                width={smDown ? 17 : 25}
-                iconRight={<ArrowForwardIcon />}
-              />
-            </Box>
+            {!smDown && (
+              <Box
+                sx={{
+                  display: 'flex',
+                  width: '100%',
+                  justifyContent: mdDown ? 'center' : 'start',
+                  mt: theme.spacing(4),
+                  mb: smDown
+                    ? theme.spacing(4)
+                    : mdDown
+                    ? theme.spacing(4)
+                    : '',
+                }}
+              >
+                <CtaButton
+                  action={ctaButton}
+                  title={ctaButtonTitle}
+                  fontSize={11}
+                  width={smDown ? 17 : 25}
+                  iconRight={<ArrowForwardIcon />}
+                />
+              </Box>
+            )}
           </Box>
         </Box>
       </Box>
 
-      {!mdDown && (
+      <Box
+        sx={{
+          display: 'flex',
+          justifyContent: 'center',
+          marginBottom: smDown ? -16 : 0,
+          marginTop: 0,
+          zIndex: 0,
+        }}
+      >
         <Box
           component="img"
           src={aboutImage}
           alt={aboutImageAltTitle}
-          height={theme.spacing(50)}
+          height={theme.spacing(60)}
           sx={{
             flex: 1,
-            maxWidth: '80%',
+            maxWidth: smDown ? '80%' : '100%',
             objectFit: 'contain',
-            marginRight: -25,
-            marginLeft: -15,
-            zIndex: 0,
             marginBottom: -1.8,
           }}
         />
-      )}
+      </Box>
 
       <Box
         sx={{
@@ -147,11 +158,11 @@ export const SimpleAbout: FC<SimpleAboutProps> = ({
           background: backgroundRight,
           height: '100%',
           paddingBottom: mdDown ? theme.spacing(5) : theme.spacing(7),
-          paddingTop: mdDown ? theme.spacing(5) : theme.spacing(7),
+          paddingTop: mdDown ? theme.spacing(15) : theme.spacing(7),
           paddingRight: mdDown ? '' : theme.spacing(3),
           paddingLeft: mdDown ? '' : theme.spacing(10),
           width: mdDown ? '100%' : 'auto',
-          borderTopLeftRadius: mdDown ? 0 : theme.spacing(20),
+          borderTopLeftRadius: mdDown ? theme.spacing(23) : theme.spacing(25),
         }}
       >
         <Box
@@ -177,9 +188,9 @@ export const SimpleAbout: FC<SimpleAboutProps> = ({
                   <IconText
                     icon={about.icon}
                     title={about.title}
-                    width={theme.spacing(35)}
+                    width={theme.spacing(40)}
                     color="white"
-                    fontSize={theme.spacing(1.4)}
+                    fontSize={theme.spacing(2)}
                   />
                   <Divider
                     sx={{
@@ -193,6 +204,26 @@ export const SimpleAbout: FC<SimpleAboutProps> = ({
           </Box>
         </Box>
       </Box>
+      {smDown && (
+        <Box
+          sx={{
+            display: 'flex',
+            width: '100%',
+            justifyContent: mdDown ? 'center' : 'start',
+            mt: theme.spacing(4),
+            mb: smDown ? theme.spacing(4) : mdDown ? theme.spacing(4) : '',
+          }}
+        >
+          <CtaButton
+            action={ctaButton}
+            title={ctaButtonTitle}
+            fontSize={14}
+            width={30}
+            padding={2}
+            iconRight={<ArrowForwardIcon />}
+          />
+        </Box>
+      )}
     </SectionContainer>
   );
 };

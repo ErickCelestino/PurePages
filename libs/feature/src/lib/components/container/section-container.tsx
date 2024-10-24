@@ -7,6 +7,7 @@ interface SimpleSectionContainerPros {
   backgroundColor?: string;
   fullHeigth: boolean;
   aligmentContent?: boolean;
+  heigth?: number;
 }
 
 export const SectionContainer: FC<SimpleSectionContainerPros> = ({
@@ -15,6 +16,7 @@ export const SectionContainer: FC<SimpleSectionContainerPros> = ({
   backgroundColor,
   fullHeigth,
   aligmentContent = false,
+  heigth,
 }) => {
   const theme = useTheme();
   const smDown = useMediaQuery(theme.breakpoints.down('sm'));
@@ -29,7 +31,13 @@ export const SectionContainer: FC<SimpleSectionContainerPros> = ({
         alignItems: aligmentContent ? 'center' : '',
         justifyContent: 'space-between',
         paddingTop: '1rem',
-        height: fullHeigth ? (smDown ? '100vh' : '95vh') : 'auto',
+        height: fullHeigth
+          ? smDown
+            ? '100vh'
+            : '95vh'
+          : heigth
+          ? theme.spacing(heigth)
+          : 'auto',
       }}
     >
       {children}
