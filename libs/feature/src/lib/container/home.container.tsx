@@ -1,4 +1,4 @@
-import { Box, Divider } from '@mui/material';
+import { Box, Divider, useMediaQuery, useTheme } from '@mui/material';
 import {
   SimpleAbout,
   SimpleClients,
@@ -106,6 +106,8 @@ export const HomeContainer: FC<HomeContainerProps> = ({
   },
   clients,
 }) => {
+  const theme = useTheme();
+  const smDown = useMediaQuery(theme.breakpoints.down('sm'));
   return (
     <Box>
       <SimpleHeader
@@ -122,7 +124,7 @@ export const HomeContainer: FC<HomeContainerProps> = ({
         image={heroSectionImage}
         subTitle={herosectionSubTitle}
       />
-      <Divider />
+      {!smDown && <Divider />}
       <SimpleDetailsFeature
         image={detailsFeatureImage}
         imageAltTitle={detailsFeatureAltTitle}
@@ -131,7 +133,7 @@ export const HomeContainer: FC<HomeContainerProps> = ({
         ctaButtonTitle={ctaButtonTitle}
         listFeatures={listFeatures}
       />
-      <Divider />
+      {!smDown && <Divider />}
       <SimpleAbout
         aboutList={aboutList}
         ctaButton={ctaButton}
@@ -143,14 +145,14 @@ export const HomeContainer: FC<HomeContainerProps> = ({
         aboutImageAltTitle={aboutImageAltTitle}
         backgroundRight={aboutRigthBackground}
       />
-      <Divider />
+      {!smDown && <Divider />}
       {clients && (
         <SimpleClients
           title={clients.clientsTitle}
           photos={clients.clientsPhotos}
         />
       )}
-      <Divider />
+      {!smDown && <Divider />}
       <SimpleCta
         ctaButton={ctaButton}
         ctaButtonTitle={ctaSectionButtonTitle}
@@ -160,7 +162,7 @@ export const HomeContainer: FC<HomeContainerProps> = ({
         icon={ctaSectionIcon}
         titleButtonColor={ctaSectionTitleButton}
       />
-      <Divider />
+      {!smDown && <Divider />}
       <SimpleFooter
         links={footerLinks}
         icons={footerIcons}
