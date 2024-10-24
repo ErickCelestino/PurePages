@@ -1,4 +1,3 @@
-import { Box, Divider, useMediaQuery, useTheme } from '@mui/material';
 import {
   SimpleAbout,
   SimpleClients,
@@ -16,10 +15,13 @@ import {
   LinkText,
 } from '../shared';
 import { SimpleCases } from '../components/cases/simple-cases';
+import { SimpleLayout } from '../layout';
 
 interface HomeContainerProps {
-  title?: string;
-  listButtons: ButtonNavigation[];
+  header: {
+    headerTitle?: string;
+    headerListButtons: ButtonNavigation[];
+  };
   company: {
     companyLogo: string;
     companyLogoAltTitle?: string;
@@ -74,8 +76,7 @@ interface HomeContainerProps {
 }
 
 export const HomeContainer: FC<HomeContainerProps> = ({
-  listButtons,
-  title,
+  header: { headerTitle, headerListButtons },
   company: { companyLogo, companyLogoAltTitle },
   cta: { ctaButtonTitle, ctaButton },
   heroSection: { heroSectionImage, heroSectionTitle, herosectionSubTitle },
@@ -112,74 +113,85 @@ export const HomeContainer: FC<HomeContainerProps> = ({
   },
   clients,
 }) => {
-  const theme = useTheme();
-  const smDown = useMediaQuery(theme.breakpoints.down('sm'));
   return (
-    <Box>
-      <SimpleHeader
-        title={title}
-        logo={companyLogo}
-        logoAltTitle={companyLogoAltTitle}
-        listButtons={listButtons}
-        ctaButton={ctaButton}
-        ctaButtonTitle={ctaButtonTitle}
-      />
-      <SimpleHeroSection
-        ctaButton={ctaButton}
-        title={heroSectionTitle}
-        image={heroSectionImage}
-        subTitle={herosectionSubTitle}
-      />
-      {!smDown && <Divider />}
-      <SimpleDetailsFeature
-        image={detailsFeatureImage}
-        imageAltTitle={detailsFeatureAltTitle}
-        title={detailsFeatureTitle}
-        ctaButton={ctaButton}
-        ctaButtonTitle={ctaButtonTitle}
-        listFeatures={listFeatures}
-      />
-      {!smDown && <Divider />}
-      <SimpleAbout
-        aboutList={aboutList}
-        ctaButton={ctaButton}
-        ctaButtonTitle={ctaButtonTitle}
-        title={aboutTitle}
-        description={aboutDescription}
-        backgroundColor={aboutBackgroundColor}
-        aboutImage={aboutImage}
-        aboutImageAltTitle={aboutImageAltTitle}
-        backgroundRight={aboutRigthBackground}
-      />
-      {!smDown && <Divider />}
-      {clients && (
-        <SimpleClients
-          title={clients.clientsTitle}
-          photos={clients.clientsPhotos}
+    <SimpleLayout
+      header={
+        <SimpleHeader
+          title={headerTitle}
+          logo={companyLogo}
+          logoAltTitle={companyLogoAltTitle}
+          listButtons={headerListButtons}
+          ctaButton={ctaButton}
+          ctaButtonTitle={ctaButtonTitle}
         />
-      )}
-      {!smDown && <Divider />}
-      {cases && (
-        <SimpleCases casesImages={cases.casesImages} title={cases.casesTitle} />
-      )}
-      {!smDown && <Divider />}
-      <SimpleCta
-        ctaButton={ctaButton}
-        ctaButtonTitle={ctaSectionButtonTitle}
-        title={ctaSectionTitle}
-        subTitle={ctaSectionSubTitle}
-        ctaColor={ctaSectionBackground}
-        icon={ctaSectionIcon}
-        titleButtonColor={ctaSectionTitleButton}
-      />
-      {!smDown && <Divider />}
-      <SimpleFooter
-        links={footerLinks}
-        icons={footerIcons}
-        copyrightText={footerCopyrightText}
-        colorMobile={footerMobileColor}
-        colorTablet={footerTabletColor}
-      />
-    </Box>
+      }
+      heroSection={
+        <SimpleHeroSection
+          ctaButton={ctaButton}
+          title={heroSectionTitle}
+          image={heroSectionImage}
+          subTitle={herosectionSubTitle}
+        />
+      }
+      detailsFeature={
+        <SimpleDetailsFeature
+          image={detailsFeatureImage}
+          imageAltTitle={detailsFeatureAltTitle}
+          title={detailsFeatureTitle}
+          ctaButton={ctaButton}
+          ctaButtonTitle={ctaButtonTitle}
+          listFeatures={listFeatures}
+        />
+      }
+      about={
+        <SimpleAbout
+          aboutList={aboutList}
+          ctaButton={ctaButton}
+          ctaButtonTitle={ctaButtonTitle}
+          title={aboutTitle}
+          description={aboutDescription}
+          backgroundColor={aboutBackgroundColor}
+          aboutImage={aboutImage}
+          aboutImageAltTitle={aboutImageAltTitle}
+          backgroundRight={aboutRigthBackground}
+        />
+      }
+      clients={
+        clients ? (
+          <SimpleClients
+            title={clients.clientsTitle}
+            photos={clients.clientsPhotos}
+          />
+        ) : undefined
+      }
+      cases={
+        cases ? (
+          <SimpleCases
+            casesImages={cases.casesImages}
+            title={cases.casesTitle}
+          />
+        ) : undefined
+      }
+      ctaSection={
+        <SimpleCta
+          ctaButton={ctaButton}
+          ctaButtonTitle={ctaSectionButtonTitle}
+          title={ctaSectionTitle}
+          subTitle={ctaSectionSubTitle}
+          ctaColor={ctaSectionBackground}
+          icon={ctaSectionIcon}
+          titleButtonColor={ctaSectionTitleButton}
+        />
+      }
+      footer={
+        <SimpleFooter
+          links={footerLinks}
+          icons={footerIcons}
+          copyrightText={footerCopyrightText}
+          colorMobile={footerMobileColor}
+          colorTablet={footerTabletColor}
+        />
+      }
+    />
   );
 };

@@ -34,7 +34,27 @@ export const AppRouters = () => {
         path="/home"
         element={
           <HomeContainer
-            title="Pure Digital"
+            header={{
+              headerTitle: 'Pure Digital',
+              headerListButtons: [
+                {
+                  title: 'Inicio',
+                  to: () => scrollTo('home'),
+                },
+                {
+                  title: 'Sobre nós',
+                  to: () => scrollTo('about-section'),
+                },
+                {
+                  title: 'Nossos trabalhos',
+                  to: () => {
+                    console.log(
+                      'Voce clicou no Nossos trabalho, estou cansado chefe'
+                    );
+                  },
+                },
+              ],
+            }}
             company={{
               companyLogo: '/assets/images/PurePagesLogo.svg',
             }}
@@ -157,24 +177,6 @@ export const AppRouters = () => {
                 },
               ],
             }}
-            listButtons={[
-              {
-                title: 'Inicio',
-                to: () => scrollTo('home'),
-              },
-              {
-                title: 'Sobre nós',
-                to: () => scrollTo('about-section'),
-              },
-              {
-                title: 'Nossos trabalhos',
-                to: () => {
-                  console.log(
-                    'Voce clicou no Nossos trabalho, estou cansado chefe'
-                  );
-                },
-              },
-            ]}
           />
         }
       />
