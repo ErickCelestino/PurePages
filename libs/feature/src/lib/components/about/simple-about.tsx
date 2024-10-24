@@ -51,150 +51,137 @@ export const SimpleAbout: FC<SimpleAboutProps> = ({
       <Box
         sx={{
           display: 'flex',
-          justifyContent: smDown ? 'center' : 'space-between',
+          justifyContent: smDown ? 'center' : 'flex-end',
           alignItems: 'center',
           flexDirection: 'column',
           flex: 1,
-          mt: mdDown ? theme.spacing(2) : -2,
+          mt: theme.spacing(2),
         }}
       >
         <Box
           sx={{
             display: 'flex',
-            justifyContent: smDown ? 'center' : 'space-between',
+            justifyContent: smDown ? 'center' : 'start',
             alignItems: 'center',
             flexDirection: 'column',
             flex: 1,
-            mt: -2,
-            maxWidth: smDown ? '80%' : 'auto',
+            maxWidth: smDown ? '80%' : '100%',
           }}
         >
-          <Box>
-            <Typography
-              variant="h6"
+          <Typography
+            variant="h5"
+            sx={{
+              whiteSpace: 'pre-line',
+              textAlign: 'start',
+              maxWidth: smDown ? 'auto' : theme.spacing(40),
+              fontSize: smDown ? theme.spacing(2) : theme.spacing(3),
+              fontWeight: 800,
+            }}
+          >
+            {title}
+          </Typography>
+
+          <Typography
+            variant="body2"
+            sx={{
+              whiteSpace: 'pre-line',
+              textAlign: 'start',
+              maxWidth: smDown ? 'auto' : theme.spacing(40),
+              fontSize: mdDown ? theme.spacing(2) : theme.spacing(1.8),
+              fontWeight: 300,
+              mt: theme.spacing(3),
+            }}
+          >
+            {description}
+          </Typography>
+
+          {!smDown && (
+            <Box
               sx={{
-                whiteSpace: 'pre-line',
-                textAlign: 'start',
-                maxWidth: smDown ? 'auto' : theme.spacing(40),
-                fontSize: smDown ? theme.spacing(2) : 'auto',
-                fontWeight: 800,
+                display: 'flex',
+                width: '100%',
+                justifyContent: mdDown ? 'center' : 'start',
+                mt: theme.spacing(4),
+                mb: smDown ? theme.spacing(4) : mdDown ? theme.spacing(4) : '',
               }}
             >
-              {title}
-            </Typography>
-
-            <Typography
-              variant="body2"
-              sx={{
-                whiteSpace: 'pre-line',
-                textAlign: 'start',
-                maxWidth: smDown ? 'auto' : theme.spacing(40),
-                fontSize: mdDown ? theme.spacing(2) : theme.spacing(1.5),
-                fontWeight: 300,
-                mt: theme.spacing(2),
-              }}
-            >
-              {description}
-            </Typography>
-
-            {!smDown && (
-              <Box
-                sx={{
-                  display: 'flex',
-                  width: '100%',
-                  justifyContent: mdDown ? 'center' : 'start',
-                  mt: theme.spacing(4),
-                  mb: smDown
-                    ? theme.spacing(4)
-                    : mdDown
-                    ? theme.spacing(4)
-                    : '',
-                }}
-              >
-                <CtaButton
-                  action={ctaButton}
-                  title={ctaButtonTitle}
-                  fontSize={11}
-                  width={smDown ? 17 : 25}
-                  iconRight={<ArrowForwardIcon />}
-                />
-              </Box>
-            )}
-          </Box>
+              <CtaButton
+                action={ctaButton}
+                title={ctaButtonTitle}
+                fontSize={14}
+                width={40}
+                padding={2}
+                iconRight={<ArrowForwardIcon />}
+              />
+            </Box>
+          )}
         </Box>
       </Box>
-
-      <Box
-        sx={{
-          display: 'flex',
-          justifyContent: 'center',
-          marginBottom: smDown ? -16 : 0,
-          marginTop: 0,
-          zIndex: 0,
-        }}
-      >
+      {(!mdDown || smDown) && (
         <Box
-          component="img"
-          src={aboutImage}
-          alt={aboutImageAltTitle}
-          height={theme.spacing(60)}
           sx={{
-            flex: 1,
-            maxWidth: smDown ? '80%' : '100%',
-            objectFit: 'contain',
-            marginBottom: -1.8,
+            display: 'flex',
+            justifyContent: smDown ? 'center' : 'start',
+            height: '100%',
+            marginBottom: smDown ? -17.8 : 0,
+            marginTop: smDown ? '' : -20,
+            marginRight: smDown ? '' : -13,
+            marginLeft: smDown ? '' : -33,
+            zIndex: 0,
           }}
-        />
-      </Box>
-
+        >
+          <Box
+            component="img"
+            src={aboutImage}
+            alt={aboutImageAltTitle}
+            height={smDown ? theme.spacing(60) : theme.spacing(70)}
+            sx={{
+              flex: 1,
+              maxWidth: smDown ? '80%' : '100%',
+              objectFit: 'contain',
+            }}
+          />
+        </Box>
+      )}
       <Box
         sx={{
-          display: 'flex',
-          justifyContent: mdDown ? 'center' : 'space-between',
-          alignItems: 'center',
-          flexDirection: 'column',
+          justifyContent: mdDown ? 'center' : 'auto',
           flex: 1,
           mt: -2,
+          mr: mdDown ? '' : -30,
           background: backgroundRight,
-          height: '100%',
-          paddingBottom: mdDown ? theme.spacing(5) : theme.spacing(7),
-          paddingTop: mdDown ? theme.spacing(15) : theme.spacing(7),
-          paddingRight: mdDown ? '' : theme.spacing(3),
-          paddingLeft: mdDown ? '' : theme.spacing(10),
-          width: mdDown ? '100%' : 'auto',
+          paddingTop: smDown ? theme.spacing(15) : theme.spacing(7),
+          paddingLeft: mdDown ? '' : theme.spacing(13),
+          paddingBottom: mdDown ? theme.spacing(6) : '',
           borderTopLeftRadius: mdDown ? theme.spacing(23) : theme.spacing(25),
         }}
       >
         <Box
           sx={{
-            maxWidth: smDown ? '80%' : 'auto',
             display: 'flex',
             flexDirection: 'column',
-            justifyContent: mdDown ? 'center' : 'flex-start',
             alignItems: mdDown ? 'center' : 'flex-start',
           }}
         >
-          <Box mt={theme.spacing(2)}>
+          <Box>
             {aboutList.length > 0 &&
               aboutList.map((about) => (
                 <Box
                   key={about.title}
                   sx={{
-                    display: 'flex',
-                    justifyContent: 'center',
                     flexDirection: 'column',
                   }}
                 >
                   <IconText
                     icon={about.icon}
                     title={about.title}
-                    width={theme.spacing(40)}
+                    width={smDown ? theme.spacing(40) : theme.spacing(50)}
                     color="white"
                     fontSize={theme.spacing(2)}
                   />
                   <Divider
                     sx={{
-                      width: theme.spacing(42),
+                      width: smDown ? theme.spacing(42) : theme.spacing(52),
                       mt: theme.spacing(3),
                       borderColor: dividerColor,
                     }}
