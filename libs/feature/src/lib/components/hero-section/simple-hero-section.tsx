@@ -31,15 +31,19 @@ export const SimpleHeroSection: FC<SimpleHeroSectionProps> = ({
 
   return (
     <SectionContainer
-      fullHeigth
+      fullHeigth={lgDown ? false : true}
       id="hero-section"
       backgroundColor={backgroundColor}
     >
       <Box
         sx={{
           flex: 1,
-          mt: mdDown ? 0 : -5,
-          ml: smDown ? '' : lgDown ? theme.spacing(10) : theme.spacing(15),
+          mt: smDown ? theme.spacing(2) : mdDown ? 0 : -5,
+          ml: smDown
+            ? theme.spacing(2.5)
+            : lgDown
+            ? theme.spacing(10)
+            : theme.spacing(15),
           width: 'auto',
           maxWidth: smDown ? '100%' : lgDown ? '80%' : '50%',
           alignContent: 'center',
@@ -52,7 +56,7 @@ export const SimpleHeroSection: FC<SimpleHeroSectionProps> = ({
             justifyContent: 'center',
             flexDirection: 'column',
             textAlign: 'start',
-            maxWidth: smDown ? '90%' : 'auto',
+            maxWidth: smDown ? '86%' : 'auto',
             marginLeft: smDown ? theme.spacing(2) : '',
           }}
         >
@@ -87,6 +91,7 @@ export const SimpleHeroSection: FC<SimpleHeroSectionProps> = ({
           sx={{
             display: 'flex',
             justifyContent: smDown ? 'center' : '',
+            marginLeft: smDown ? theme.spacing(-2) : '',
           }}
           mt={mdDown ? theme.spacing(3) : theme.spacing(5)}
         >
@@ -94,7 +99,7 @@ export const SimpleHeroSection: FC<SimpleHeroSectionProps> = ({
             action={ctaButton}
             title={ctaButtonTitle}
             fontSize={11}
-            width={smDown ? 25 : 30}
+            width={30}
             padding={mdDown ? 1.5 : 2}
             iconRight={<ArrowForwardIcon />}
           />

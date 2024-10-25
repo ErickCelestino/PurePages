@@ -243,7 +243,7 @@ export const SimpleAbout: FC<SimpleAboutProps> = ({
               mt: -2,
               mr: mdDown ? '' : -30,
               background: backgroundRight,
-              paddingTop: smDown ? theme.spacing(15) : theme.spacing(7),
+              paddingTop: smDown ? theme.spacing(17) : theme.spacing(7),
               paddingLeft: mdDown ? '' : theme.spacing(13),
               paddingBottom: mdDown ? theme.spacing(6) : '',
               borderTopLeftRadius: mdDown
