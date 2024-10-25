@@ -20,7 +20,6 @@ export const MargentaBlueLightTheme = createTheme({
     },
   },
   typography: {
-    fontFamily:
-      '"Futura Medium BT", "Roboto", "Helvetica", "Arial", sans-serif',
+    fontFamily: '"DM Sans", "Roboto", "Helvetica", "Arial", sans-serif',
   },
 });
