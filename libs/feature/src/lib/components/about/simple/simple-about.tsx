@@ -142,7 +142,7 @@ export const SimpleAbout: FC<SimpleAboutProps> = ({
               display: 'flex',
               justifyContent: 'start',
               marginTop: -12,
-              marginRight: mdDown ? -2 : theme.spacing(2),
+              marginRight: lgDown ? -2 : theme.spacing(2),
               marginLeft: mdDown ? theme.spacing(2.5) : theme.spacing(6),
               zIndex: 0,
             }}
@@ -241,7 +241,7 @@ export const SimpleAbout: FC<SimpleAboutProps> = ({
               justifyContent: mdDown ? 'center' : 'auto',
               flex: 1,
               mt: -2,
-              mr: mdDown ? '' : -30,
+              mr: mdDown ? '' : -23,
               background: backgroundRight,
               paddingTop: smDown ? theme.spacing(17) : theme.spacing(7),
               paddingLeft: mdDown ? '' : theme.spacing(13),

@@ -38,10 +38,10 @@ export const PhotoCarousel: React.FC<PhotoCarouselProps> = ({
   const theme = useTheme();
 
   const smDown = useMediaQuery(theme.breakpoints.down('sm'));
-  const isTablet = useMediaQuery(theme.breakpoints.between('sm', 'md'));
+  const isTablet = useMediaQuery(theme.breakpoints.down('md'));
 
   const visibleImagesCount = smDown
-    ? 2
+    ? 1
     : isTablet
     ? 3
     : Math.min(6, totalImages);
@@ -53,7 +53,7 @@ export const PhotoCarousel: React.FC<PhotoCarouselProps> = ({
 
   const visibleImages = [...images, ...images, ...images];
 
-  // Handler for moving to the next image
+  // Funções de controle de navegação
   const handleNext = useCallback(() => {
     if (!isAnimating) {
       setIsAnimating(true);
@@ -61,7 +61,6 @@ export const PhotoCarousel: React.FC<PhotoCarouselProps> = ({
     }
   }, [isAnimating]);
 
-  // Handler for moving to the previous image
   const handlePrevious = useCallback(() => {
     if (!isAnimating) {
       setIsAnimating(true);
@@ -69,14 +68,12 @@ export const PhotoCarousel: React.FC<PhotoCarouselProps> = ({
     }
   }, [isAnimating]);
 
-  // Stop automatic movement of the carousel
   const stopAutoMove = useCallback(() => {
     if (intervalRef.current) {
       clearInterval(intervalRef.current);
     }
   }, []);
 
-  // Start automatic movement of the carousel
   useEffect(() => {
     intervalRef.current = setInterval(() => {
       handleNext();
@@ -89,7 +86,6 @@ export const PhotoCarousel: React.FC<PhotoCarouselProps> = ({
     };
   }, [handleNext]);
 
-  // Control animation state
   useEffect(() => {
     const timeout = setTimeout(() => {
       setIsAnimating(false);
@@ -103,13 +99,13 @@ export const PhotoCarousel: React.FC<PhotoCarouselProps> = ({
       sx={{
         position: 'relative',
         width: smDown ? '100%' : '80%',
-        maxWidth: 1200,
+        maxWidth: smDown ? '100%' : 1200,
         margin: 'auto',
         overflow: 'hidden',
+        padding: smDown ? theme.spacing(1) : 0,
         height: 'auto',
       }}
     >
-      {/* Header for title and controls */}
       <Box
         component="header"
         sx={{
@@ -120,7 +116,6 @@ export const PhotoCarousel: React.FC<PhotoCarouselProps> = ({
           marginBottom: smDown ? 'auto' : theme.spacing(6),
         }}
       >
-        {/* Title */}
         <Typography
           variant={smDown ? 'h6' : 'h5'}
           sx={{
@@ -132,7 +127,7 @@ export const PhotoCarousel: React.FC<PhotoCarouselProps> = ({
           {title}
         </Typography>
 
-        {/* Navigation controls */}
+        {/* Controles de navegação */}
         {!smDown && (
           <Box component="nav" aria-label="carousel navigation">
             <IconButton
@@ -166,7 +161,6 @@ export const PhotoCarousel: React.FC<PhotoCarouselProps> = ({
         )}
       </Box>
 
-      {/* Carousel images */}
       <Box
         sx={{
           display: 'flex',
@@ -184,14 +178,14 @@ export const PhotoCarousel: React.FC<PhotoCarouselProps> = ({
             alt={`Image ${currentIndex + 1 + index}`}
             sx={{
               width: `${100 / visibleImagesCount}%`,
-              maxHeight: theme.spacing(18),
-              margin: theme.spacing(2),
+              maxHeight: smDown ? theme.spacing(20) : theme.spacing(18),
+              margin: smDown ? theme.spacing(1) : theme.spacing(2),
               display: 'block',
               transition: 'transform 0.3s ease, box-shadow 0.3s ease',
               transform: 'translateZ(0)',
               '&:hover': {
-                transform: 'scale(1.1)',
-                boxShadow: '0 10px 20px rgba(0, 0, 0, 0.2)',
+                transform: smDown ? 'scale(1)' : 'scale(1.1)',
+                boxShadow: smDown ? 'none' : '0 10px 20px rgba(0, 0, 0, 0.2)',
               },
             }}
           />
