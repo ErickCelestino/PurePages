@@ -31,7 +31,7 @@ export const SimpleHeroSection: FC<SimpleHeroSectionProps> = ({
 
   return (
     <SectionContainer
-      fullHeigth={lgDown ? false : true}
+      fullHeigth={lgDown && !smDown ? false : true}
       id="hero-section"
       backgroundColor={backgroundColor}
     >

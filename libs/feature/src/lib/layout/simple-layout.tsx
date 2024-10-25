@@ -25,7 +25,7 @@ export const SimpleLayout: FC<SimpleLayoutProps> = ({
   const theme = useTheme();
   const lgDown = useMediaQuery(theme.breakpoints.down('lg'));
   return (
-    <Box width="100%">
+    <Box>
       {header}
       {heroSection}
       {!lgDown && <Divider />}
