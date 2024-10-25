@@ -185,6 +185,7 @@ export const PhotoCarousel: React.FC<PhotoCarouselProps> = ({
             sx={{
               width: `${100 / visibleImagesCount}%`,
               maxHeight: theme.spacing(18),
+              margin: theme.spacing(2),
               display: 'block',
               transition: 'transform 0.3s ease, box-shadow 0.3s ease',
               transform: 'translateZ(0)',
@@ -192,7 +193,6 @@ export const PhotoCarousel: React.FC<PhotoCarouselProps> = ({
                 transform: 'scale(1.1)',
                 boxShadow: '0 10px 20px rgba(0, 0, 0, 0.2)',
               },
-              marginBottom: theme.spacing(2),
             }}
           />
         ))}

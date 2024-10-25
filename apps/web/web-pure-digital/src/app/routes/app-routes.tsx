@@ -123,12 +123,11 @@ export const AppRouters = () => {
               clientsTitle:
                 '+ de 85 clientes confiaram em nós ao longo de toda nossa história.',
               clientsPhotos: [
-                '/assets/images/companies/OralSim.svg',
-                '/assets/images/companies/TurboPartners.svg',
-                '/assets/images/companies/Wecase.svg',
-                '/assets/images/companies/Koin.svg',
-                '/assets/images/companies/M8.svg',
-                '/assets/images/companies/ClubeEnvios.svg',
+                '/assets/images/companies/EmanuelFaria.svg',
+                '/assets/images/companies/Tattoo.svg',
+                '/assets/images/companies/Bless.svg',
+                '/assets/images/companies/Alfa.svg',
+                '/assets/images/companies/Gimenes.svg',
               ],
             }}
             ctaSection={{
