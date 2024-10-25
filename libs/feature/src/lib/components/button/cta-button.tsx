@@ -25,7 +25,7 @@ export const CtaButton: FC<CtaButtonProps> = ({
   padding,
 }) => {
   const theme = useTheme();
-  const mdDown = useMediaQuery(theme.breakpoints.down('md'));
+  const lgDown = useMediaQuery(theme.breakpoints.down('lg'));
 
   return (
     <Button
@@ -35,7 +35,7 @@ export const CtaButton: FC<CtaButtonProps> = ({
         whiteSpace: 'nowrap',
         textTransform: 'none',
         fontSize: fontSize,
-        marginRight: mdDown ? theme.spacing(-1) : 'auto',
+        marginRight: lgDown ? theme.spacing(-1) : 'auto',
         width: width ? theme.spacing(width) : 'auto',
         background:
           color === 'secondary' ? theme.palette.secondary.main : color,

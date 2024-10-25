@@ -23,30 +23,30 @@ export const SimpleLayout: FC<SimpleLayoutProps> = ({
   clients,
 }) => {
   const theme = useTheme();
-  const smDown = useMediaQuery(theme.breakpoints.down('sm'));
+  const mdDown = useMediaQuery(theme.breakpoints.down('md'));
   return (
     <Box>
       {header}
       {heroSection}
-      {!smDown && <Divider />}
+      {!mdDown && <Divider />}
       {detailsFeature}
-      {!smDown && <Divider />}
+      {!mdDown && <Divider />}
       {about}
-      {!smDown && <Divider />}
+      {!mdDown && <Divider />}
       {clients && (
         <Box>
           {clients}
-          {!smDown && <Divider />}
+          {!mdDown && <Divider />}
         </Box>
       )}
       {cases && (
         <Box>
           {cases}
-          {!smDown && <Divider />}
+          {!mdDown && <Divider />}
         </Box>
       )}
       {ctaSection}
-      {!smDown && <Divider />}
+      {!mdDown && <Divider />}
       {footer}
     </Box>
   );
