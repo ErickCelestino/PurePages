@@ -27,74 +27,98 @@ export const SimpleDetailsFeature: FC<SimpleDetailsFeatureProps> = ({
 }) => {
   const theme = useTheme();
   const smDown = useMediaQuery(theme.breakpoints.down('sm'));
-  const mdDown = useMediaQuery(theme.breakpoints.down('md'));
+  const lgDown = useMediaQuery(theme.breakpoints.down('lg'));
+
+  const containerStyles = {
+    display: 'flex',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    flexDirection: 'column',
+    flex: 1,
+    mt: -2,
+    mb: smDown ? theme.spacing(3) : '',
+  };
+
+  const textBoxStyles = {
+    maxWidth: smDown ? '90%' : lgDown ? '70%' : '100%',
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: lgDown ? 'center' : 'flex-start',
+    alignItems: lgDown ? 'center' : 'flex-start',
+    marginTop: lgDown ? theme.spacing(5) : 'auto',
+  };
+
+  const imageBoxStyles = {
+    flex: 1,
+    maxWidth: '100%',
+    objectFit: 'contain',
+    mt: lgDown ? 0 : -10,
+    mb: lgDown ? -5 : '',
+    padding: smDown ? theme.spacing(1) : 'auto',
+  };
 
   return (
     <SectionContainer
-      fullHeigth
-      id="detailsFeature"
+      id="details-feature"
+      fullHeigth={lgDown ? false : true}
+      aligmentContent
       backgroundColor={backgroundColor}
     >
-      <Box
-        component="img"
-        height={mdDown ? theme.spacing(50) : theme.spacing(75)}
-        src={image}
-        alt={imageAltTitle}
-        sx={{
-          flex: 1,
-          maxWidth: '100%',
-          objectFit: 'contain',
-          mt: smDown ? 0 : -10,
-          mb: smDown ? '' : mdDown ? -10 : '',
-        }}
-      />
-      <Box
-        sx={{
-          display: 'flex',
-          justifyContent: 'space-between',
-          alignItems: 'center',
-          flexDirection: 'column',
-          flex: 1,
-          mt: -2,
-        }}
-      >
+      {!lgDown && (
         <Box
-          sx={{
-            maxWidth: smDown ? '80%' : '100%',
-            display: 'flex',
-            flexDirection: 'column',
-            justifyContent: mdDown ? 'center' : 'flex-start',
-            alignItems: mdDown ? 'center' : 'flex-start',
-          }}
-        >
-          <Typography
-            variant="h6"
-            sx={{
-              whiteSpace: 'pre-line',
-              textAlign: smDown ? 'center' : 'start',
-              maxWidth: smDown ? '100%' : theme.spacing(55),
-              fontSize: smDown ? theme.spacing(2) : 'auto',
-              fontWeight: 800,
-            }}
-          >
-            {title}
-          </Typography>
-          <Box mt={theme.spacing(2)}>
-            {listFeatures.length > 0 &&
-              listFeatures.map((feature) => (
+          component="img"
+          height={theme.spacing(75)}
+          src={image}
+          alt={imageAltTitle}
+          sx={imageBoxStyles}
+        />
+      )}
+
+      <Box sx={containerStyles}>
+        <Box sx={textBoxStyles}>
+          <Box sx={{ width: '95%' }}>
+            <Typography
+              variant={smDown ? 'h6' : 'h5'}
+              sx={{
+                whiteSpace: 'pre-line',
+                textAlign: 'start',
+                maxWidth: smDown ? '100%' : lgDown ? '80%' : theme.spacing(55),
+                fontSize: smDown ? theme.spacing(2) : 'auto',
+                fontWeight: 800,
+              }}
+            >
+              {title}
+            </Typography>
+
+            <Box mt={theme.spacing(2)}>
+              {listFeatures.map((feature) => (
                 <IconText
                   key={feature.title}
                   icon={feature.icon}
                   title={feature.title}
+                  fontSize={lgDown ? theme.spacing(2) : theme.spacing(1.5)}
                 />
               ))}
+            </Box>
           </Box>
-          <Box mt={theme.spacing(8)}>
+
+          {lgDown && (
+            <Box
+              component="img"
+              height={lgDown ? theme.spacing(75) : theme.spacing(75)}
+              src={image}
+              alt={imageAltTitle}
+              sx={imageBoxStyles}
+            />
+          )}
+
+          <Box sx={{ marginTop: lgDown ? 'auto' : theme.spacing(12) }}>
             <CtaButton
               action={ctaButton}
               title={ctaButtonTitle}
-              fontSize={11}
-              width={smDown ? 17 : 25}
+              fontSize={13}
+              width={smDown ? 30 : 32}
+              padding={1.5}
               iconLeft={<ArrowBackIcon />}
             />
           </Box>

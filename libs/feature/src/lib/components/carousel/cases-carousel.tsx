@@ -1,38 +1,16 @@
-import React, { useState, useEffect, useCallback, useRef } from 'react';
-import {
-  Box,
-  IconButton,
-  lighten,
-  Theme,
-  Typography,
-  useTheme,
-  useMediaQuery,
-} from '@mui/material';
-import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
-import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
+import { Box, Typography, useMediaQuery, useTheme } from '@mui/material';
+import { FC, useCallback, useEffect, useRef, useState } from 'react';
 
-type PhotoCarouselProps = {
+type CasesCarouselProps = {
   images: string[];
   color?: string;
   title: string;
 };
 
-const commonIconButtonStyles = (color: string, theme: Theme) => ({
-  border: 'solid',
-  borderWidth: '2px',
-  color: color,
-  height: theme.spacing(3),
-  width: theme.spacing(3),
-  '&:hover': {
-    backgroundColor: lighten(color, 0.8),
-  },
-  marginRight: theme.spacing(2),
-});
-
-export const PhotoCarousel: React.FC<PhotoCarouselProps> = ({
+export const CasesCarousel: FC<CasesCarouselProps> = ({
   images,
   title,
-  color = '#9034a2',
+  color,
 }) => {
   const totalImages = images.length;
   const theme = useTheme();
@@ -61,21 +39,6 @@ export const PhotoCarousel: React.FC<PhotoCarouselProps> = ({
     }
   }, [isAnimating]);
 
-  // Handler for moving to the previous image
-  const handlePrevious = useCallback(() => {
-    if (!isAnimating) {
-      setIsAnimating(true);
-      setCurrentIndex((prevIndex) => prevIndex - 1);
-    }
-  }, [isAnimating]);
-
-  // Stop automatic movement of the carousel
-  const stopAutoMove = useCallback(() => {
-    if (intervalRef.current) {
-      clearInterval(intervalRef.current);
-    }
-  }, []);
-
   // Start automatic movement of the carousel
   useEffect(() => {
     intervalRef.current = setInterval(() => {
@@ -97,7 +60,6 @@ export const PhotoCarousel: React.FC<PhotoCarouselProps> = ({
 
     return () => clearTimeout(timeout);
   }, [currentIndex]);
-
   return (
     <Box
       sx={{
@@ -131,39 +93,6 @@ export const PhotoCarousel: React.FC<PhotoCarouselProps> = ({
         >
           {title}
         </Typography>
-
-        {/* Navigation controls */}
-        {!smDown && (
-          <Box component="nav" aria-label="carousel navigation">
-            <IconButton
-              onClick={() => {
-                handlePrevious();
-                stopAutoMove();
-              }}
-              sx={{
-                ...commonIconButtonStyles(color, theme),
-              }}
-            >
-              <ArrowBackIosNewIcon
-                sx={{ height: theme.spacing(1.4), width: theme.spacing(1.4) }}
-              />
-            </IconButton>
-
-            <IconButton
-              onClick={() => {
-                handleNext();
-                stopAutoMove();
-              }}
-              sx={{
-                ...commonIconButtonStyles(color, theme),
-              }}
-            >
-              <ArrowForwardIosIcon
-                sx={{ height: theme.spacing(1.4), width: theme.spacing(1.4) }}
-              />
-            </IconButton>
-          </Box>
-        )}
       </Box>
 
       {/* Carousel images */}
@@ -185,7 +114,6 @@ export const PhotoCarousel: React.FC<PhotoCarouselProps> = ({
             sx={{
               width: `${100 / visibleImagesCount}%`,
               maxHeight: theme.spacing(18),
-              margin: theme.spacing(2),
               display: 'block',
               transition: 'transform 0.3s ease, box-shadow 0.3s ease',
               transform: 'translateZ(0)',
@@ -193,6 +121,7 @@ export const PhotoCarousel: React.FC<PhotoCarouselProps> = ({
                 transform: 'scale(1.1)',
                 boxShadow: '0 10px 20px rgba(0, 0, 0, 0.2)',
               },
+              marginBottom: theme.spacing(2),
             }}
           />
         ))}

@@ -10,7 +10,7 @@ interface CtaButtonProps {
   width?: number;
   color?: string;
   titleColor?: string;
-  padding?: string;
+  padding?: number;
 }
 
 export const CtaButton: FC<CtaButtonProps> = ({
@@ -25,7 +25,8 @@ export const CtaButton: FC<CtaButtonProps> = ({
   padding,
 }) => {
   const theme = useTheme();
-  const mdDown = useMediaQuery(theme.breakpoints.down('md'));
+  const smDown = useMediaQuery(theme.breakpoints.down('sm'));
+  const lgDown = useMediaQuery(theme.breakpoints.down('lg'));
 
   return (
     <Button
@@ -35,12 +36,12 @@ export const CtaButton: FC<CtaButtonProps> = ({
         whiteSpace: 'nowrap',
         textTransform: 'none',
         fontSize: fontSize,
-        marginRight: mdDown ? theme.spacing(-1) : 'auto',
+        marginRight: smDown ? '' : lgDown ? theme.spacing(-1) : 'auto',
         width: width ? theme.spacing(width) : 'auto',
         background:
           color === 'secondary' ? theme.palette.secondary.main : color,
         color: titleColor,
-        padding: padding,
+        padding: padding ? theme.spacing(padding) : 'auto',
       }}
       onClick={action}
       endIcon={iconRight}

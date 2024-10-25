@@ -7,11 +7,16 @@ import {
   scrollTo,
   navigateToWaths,
 } from '@pure-pages/feature';
-import { Box } from '@mui/material';
+import { Box, useMediaQuery, useTheme } from '@mui/material';
+import { ReactComponent as IntagramIcon } from '../../assets/images/Instagram.svg';
+import { ReactComponent as FacebookIcon } from '../../assets/images/Facebook.svg';
 
 export const AppRouters = () => {
   const { setDrawerOptions } = useDrawerContext();
   const hasLoadedUserData = useRef(false);
+
+  const theme = useTheme();
+  const smDown = useMediaQuery(theme.breakpoints.down('sm'));
 
   useEffect(() => {
     if (!hasLoadedUserData.current) {
@@ -29,7 +34,27 @@ export const AppRouters = () => {
         path="/home"
         element={
           <HomeContainer
-            title="Pure Digital"
+            header={{
+              headerTitle: 'Pure Digital',
+              headerListButtons: [
+                {
+                  title: 'Inicio',
+                  to: () => scrollTo('home'),
+                },
+                {
+                  title: 'Sobre nós',
+                  to: () => scrollTo('about-section'),
+                },
+                {
+                  title: 'Nossos trabalhos',
+                  to: () => {
+                    console.log(
+                      'Voce clicou no Nossos trabalho, estou cansado chefe'
+                    );
+                  },
+                },
+              ],
+            }}
             company={{
               companyLogo: '/assets/images/PurePagesLogo.svg',
             }}
@@ -98,12 +123,11 @@ export const AppRouters = () => {
               clientsTitle:
                 '+ de 85 clientes confiaram em nós ao longo de toda nossa história.',
               clientsPhotos: [
-                '/assets/images/companies/OralSim.svg',
-                '/assets/images/companies/TurboPartners.svg',
-                '/assets/images/companies/Wecase.svg',
-                '/assets/images/companies/Koin.svg',
-                '/assets/images/companies/M8.svg',
-                '/assets/images/companies/ClubeEnvios.svg',
+                '/assets/images/companies/EmanuelFaria.svg',
+                '/assets/images/companies/Tattoo.svg',
+                '/assets/images/companies/Bless.svg',
+                '/assets/images/companies/Alfa.svg',
+                '/assets/images/companies/Gimenes.svg',
               ],
             }}
             ctaSection={{
@@ -117,24 +141,24 @@ export const AppRouters = () => {
               ),
             }}
             footer={{
+              footerMobileColor: '#111116',
+              footerTabletColor: '#D9D9D9',
               footerIcons: [
                 {
                   icon: (
-                    <Box component="img" src="/assets/images/Facebook.svg" />
+                    <FacebookIcon
+                      style={{ color: smDown ? 'white' : 'black' }}
+                    />
                   ),
                   to: '1',
                 },
                 {
                   icon: (
-                    <Box component="img" src="/assets/images/Instagram.svg" />
+                    <IntagramIcon
+                      style={{ color: smDown ? 'white' : 'black' }}
+                    />
                   ),
                   to: '2',
-                },
-                {
-                  icon: (
-                    <Box component="img" src="/assets/images/LinkedIn.svg" />
-                  ),
-                  to: '3',
                 },
               ],
               footerLinks: [
@@ -152,24 +176,6 @@ export const AppRouters = () => {
                 },
               ],
             }}
-            listButtons={[
-              {
-                title: 'Inicio',
-                to: () => scrollTo('home'),
-              },
-              {
-                title: 'Sobre nós',
-                to: () => scrollTo('about-section'),
-              },
-              {
-                title: 'Nossos trabalhos',
-                to: () => {
-                  console.log(
-                    'Voce clicou no Nossos trabalho, estou cansado chefe'
-                  );
-                },
-              },
-            ]}
           />
         }
       />

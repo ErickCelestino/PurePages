@@ -1,1 +1,1 @@
-export * from './simple-about';
+export * from './simple';
