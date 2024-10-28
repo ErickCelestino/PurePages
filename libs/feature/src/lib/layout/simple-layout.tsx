@@ -10,6 +10,7 @@ interface SimpleLayoutProps {
   ctaSection: ReactElement;
   footer: ReactElement;
   clients?: ReactElement;
+  faq?: ReactElement;
 }
 
 export const SimpleLayout: FC<SimpleLayoutProps> = ({
@@ -21,6 +22,7 @@ export const SimpleLayout: FC<SimpleLayoutProps> = ({
   heroSection,
   cases,
   clients,
+  faq,
 }) => {
   const theme = useTheme();
   const lgDown = useMediaQuery(theme.breakpoints.down('lg'));
@@ -47,6 +49,7 @@ export const SimpleLayout: FC<SimpleLayoutProps> = ({
       )}
       {ctaSection}
       {!lgDown && <Divider />}
+      {faq}
       {footer}
     </Box>
   );

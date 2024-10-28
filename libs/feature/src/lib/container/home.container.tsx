@@ -10,12 +10,14 @@ import {
 import { FC, ReactElement } from 'react';
 import {
   ButtonNavigation,
+  FaqText,
   IconNavigation,
   IconTextProps,
   LinkText,
 } from '../shared';
 import { SimpleCases } from '../components/cases/simple-cases';
 import { SimpleLayout } from '../layout';
+import { SimpleFaq } from '../components/faq';
 
 interface HomeContainerProps {
   header: {
@@ -69,6 +71,11 @@ interface HomeContainerProps {
     footerMobileColor?: string;
     footerTabletColor?: string;
   };
+  faq?: {
+    faqTitle: string;
+    faqSubTitle?: string;
+    faqList: FaqText[];
+  };
   clients?: {
     clientsTitle: string;
     clientsPhotos: string[];
@@ -112,6 +119,7 @@ export const HomeContainer: FC<HomeContainerProps> = ({
     footerTabletColor,
   },
   clients,
+  faq,
 }) => {
   return (
     <SimpleLayout
@@ -182,6 +190,15 @@ export const HomeContainer: FC<HomeContainerProps> = ({
           icon={ctaSectionIcon}
           titleButtonColor={ctaSectionTitleButton}
         />
+      }
+      faq={
+        faq ? (
+          <SimpleFaq
+            list={faq.faqList}
+            title={faq.faqTitle}
+            subTitle={faq.faqSubTitle}
+          />
+        ) : undefined
       }
       footer={
         <SimpleFooter

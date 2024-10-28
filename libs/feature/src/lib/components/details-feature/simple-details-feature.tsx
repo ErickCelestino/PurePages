@@ -51,10 +51,12 @@ export const SimpleDetailsFeature: FC<SimpleDetailsFeatureProps> = ({
   const imageBoxStyles = {
     flex: 1,
     maxWidth: '100%',
-    objectFit: 'contain',
+    width: lgDown ? '80%' : 'auto',
+    objectFit: 'contain' as const,
+    objectPosition: 'center',
     mt: lgDown ? 0 : -10,
     mb: lgDown ? -5 : '',
-    padding: smDown ? theme.spacing(1) : 'auto',
+    padding: smDown ? theme.spacing(1) : theme.spacing(2),
   };
 
   return (
