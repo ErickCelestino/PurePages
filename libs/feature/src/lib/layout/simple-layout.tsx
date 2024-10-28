@@ -33,8 +33,8 @@ export const SimpleLayout: FC<SimpleLayoutProps> = ({
       {!lgDown && <Divider />}
       {detailsFeature}
       {!lgDown && <Divider />}
-      {/* {about}
-      {!lgDown && <Divider />} */}
+      {about}
+      {!lgDown && <Divider />}
       {clients && (
         <Box>
           {clients}
