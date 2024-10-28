@@ -31,20 +31,22 @@ export const SimpleDetailsFeature: FC<SimpleDetailsFeatureProps> = ({
 
   const containerStyles = {
     display: 'flex',
-    justifyContent: 'space-between',
+    justifyContent: lgDown ? 'center' : 'space-between',
     alignItems: 'center',
-    flexDirection: 'column',
+    flexDirection: lgDown ? 'column' : 'row',
     flex: 1,
     mt: -2,
     mb: smDown ? theme.spacing(3) : '',
   };
 
   const textBoxStyles = {
-    maxWidth: smDown ? '90%' : lgDown ? '70%' : '100%',
+    maxWidth: smDown ? '90%' : lgDown ? '70%' : '50%',
     display: 'flex',
     flexDirection: 'column',
-    justifyContent: lgDown ? 'center' : 'flex-start',
-    alignItems: lgDown ? 'center' : 'flex-start',
+    justifyContent: 'center',
+    alignItems: 'center',
+    textAlign: lgDown ? 'center' : 'left',
+    margin: '0 auto',
     marginTop: lgDown ? theme.spacing(5) : 'auto',
   };
 
