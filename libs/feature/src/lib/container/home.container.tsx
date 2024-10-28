@@ -73,6 +73,7 @@ interface HomeContainerProps {
   };
   faq?: {
     faqTitle: string;
+    faqSubTitle?: string;
     faqList: FaqText[];
   };
   clients?: {
@@ -191,7 +192,13 @@ export const HomeContainer: FC<HomeContainerProps> = ({
         />
       }
       faq={
-        faq ? <SimpleFaq list={faq.faqList} title={faq.faqTitle} /> : undefined
+        faq ? (
+          <SimpleFaq
+            list={faq.faqList}
+            title={faq.faqTitle}
+            subTitle={faq.faqSubTitle}
+          />
+        ) : undefined
       }
       footer={
         <SimpleFooter

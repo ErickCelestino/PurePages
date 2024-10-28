@@ -140,6 +140,40 @@ export const AppRouters = () => {
                 <Box component="img" src="/assets/images/WathsApp.svg" />
               ),
             }}
+            faq={{
+              faqTitle: 'Perguntas Frequentes (FAQs)',
+              faqSubTitle:
+                'FAQ’s (Frequently Asked Questions) bem escritas podem entregar valor. Se você conhece seu público, sabe as perguntas frequentes - utilize aquelas que mais geram mais contato com o suporte. Não invente perguntas.',
+              faqList: [
+                {
+                  id: '1',
+                  title:
+                    'O que é uma landing page e por que eu preciso de uma?',
+                  description: '',
+                },
+                {
+                  id: '2',
+                  title: 'Qual é o prazo de entrega de uma landing page?',
+                  description: '',
+                },
+                {
+                  id: '3',
+                  title: 'Como funciona o processo de criação da landing page?',
+                  description: '',
+                },
+                {
+                  id: '4',
+                  title:
+                    'Uma landing page será otimizada para dispositivos móveis?',
+                  description: '',
+                },
+                {
+                  id: '5',
+                  title: 'Você oferece suporte após a entrega da landing page?',
+                  description: '',
+                },
+              ],
+            }}
             footer={{
               footerMobileColor: '#111116',
               footerTabletColor: '#D9D9D9',
