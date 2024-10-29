@@ -9,8 +9,14 @@ import {
   MargentaBlueLightTheme,
   MargentaBlueDarkTheme,
 } from '@pure-pages/feature';
+import { useEffect } from 'react';
+import { GMTIntegration } from 'libs/feature/src/lib/services';
 
 export function App() {
+  useEffect(() => {
+    GMTIntegration(process.env['NX_APP_GMT_ID'] || '');
+  }, []);
+
   return (
     <AppThemeProvider
       selectedLightTheme={MargentaBlueLightTheme}
