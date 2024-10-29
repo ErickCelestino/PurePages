@@ -11,8 +11,8 @@ import {
 } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import { ButtonNavigation } from '../../shared';
-import { useDrawerContext } from '../../context';
-import { scrollTo } from '../../service';
+import { useDrawerContext } from '../../contexts';
+import { scrollTo } from '../../services';
 import { CtaButton } from '../button';
 
 interface SimpleHeaderProps {

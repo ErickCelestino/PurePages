@@ -12,9 +12,14 @@ import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 
 type PhotoCarouselProps = {
-  images: string[];
+  image: {
+    images: string[];
+    imageContent?: number;
+    imageHeight: string;
+  };
   color?: string;
   title: string;
+  manualButton?: boolean;
 };
 
 const commonIconButtonStyles = (color: string, theme: Theme) => ({
@@ -30,9 +35,10 @@ const commonIconButtonStyles = (color: string, theme: Theme) => ({
 });
 
 export const PhotoCarousel: React.FC<PhotoCarouselProps> = ({
-  images,
+  image: { images, imageContent = 6, imageHeight },
   title,
   color = '#9034a2',
+  manualButton = true,
 }) => {
   const totalImages = images.length;
   const theme = useTheme();
@@ -44,7 +50,7 @@ export const PhotoCarousel: React.FC<PhotoCarouselProps> = ({
     ? 1
     : isTablet
     ? 3
-    : Math.min(6, totalImages);
+    : Math.min(imageContent, totalImages);
 
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
 
@@ -128,7 +134,7 @@ export const PhotoCarousel: React.FC<PhotoCarouselProps> = ({
         </Typography>
 
         {/* Controles de navegação */}
-        {!smDown && (
+        {!smDown && manualButton && (
           <Box component="nav" aria-label="carousel navigation">
             <IconButton
               onClick={() => {
@@ -178,7 +184,7 @@ export const PhotoCarousel: React.FC<PhotoCarouselProps> = ({
             alt={`Image ${currentIndex + 1 + index}`}
             sx={{
               width: `${100 / visibleImagesCount}%`,
-              maxHeight: smDown ? theme.spacing(20) : theme.spacing(18),
+              maxHeight: imageHeight,
               margin: smDown ? theme.spacing(1) : theme.spacing(2),
               display: 'block',
               transition: 'transform 0.3s ease, box-shadow 0.3s ease',

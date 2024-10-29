@@ -64,11 +64,15 @@ export const SimpleFaq: FC<SimpleFaqProps> = ({ title, subTitle, list }) => {
           flexDirection: 'column',
           alignItems: 'center',
           textAlign: 'center',
-          maxWidth: smDown ? '90%' : mdDown ? '70%' : '50%',
-          mb: theme.spacing(3),
+          maxWidth: smDown ? '97%' : mdDown ? '70%' : '50%',
+          mb: smDown ? theme.spacing(5) : theme.spacing(3),
         }}
       >
-        <Typography variant="h5" fontWeight={800}>
+        <Typography
+          mb={smDown ? theme.spacing(5) : theme.spacing(2)}
+          variant="h5"
+          fontWeight={800}
+        >
           {title}
         </Typography>
         {subTitle && <Typography variant="body2">{subTitle}</Typography>}

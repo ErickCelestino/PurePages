@@ -140,6 +140,19 @@ export const AppRouters = () => {
                 <Box component="img" src="/assets/images/WathsApp.svg" />
               ),
             }}
+            cases={{
+              casesTitle: 'Transformamos visões em soluções poderosas.',
+              casesImages: [
+                '/assets/images/cases/Burger-joint.svg',
+                '/assets/images/cases/Traffic-management.svg',
+                '/assets/images/cases/Gym.svg',
+                '/assets/images/cases/Gym-alternative.svg',
+                '/assets/images/cases/Traffic-management-alternative.svg',
+                '/assets/images/cases/Petshop.svg',
+                '/assets/images/cases/Info.svg',
+                '/assets/images/cases/Marketing.svg',
+              ],
+            }}
             faq={{
               faqTitle: 'Perguntas Frequentes (FAQs)',
               faqSubTitle:
