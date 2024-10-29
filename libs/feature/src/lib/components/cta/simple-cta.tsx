@@ -1,4 +1,4 @@
-import { Box, Typography, useTheme } from '@mui/material';
+import { Box, Typography, useMediaQuery, useTheme } from '@mui/material';
 import { FC, ReactElement } from 'react';
 import { CtaButton } from '../button';
 
@@ -24,6 +24,9 @@ export const SimpleCta: FC<SimpleCtaProps> = ({
   subTitleColor = '#5F637B',
 }) => {
   const theme = useTheme();
+  const smDown = useMediaQuery(theme.breakpoints.down('sm'));
+  const mdDown = useMediaQuery(theme.breakpoints.down('md'));
+
   return (
     <Box
       sx={{
@@ -42,7 +45,7 @@ export const SimpleCta: FC<SimpleCtaProps> = ({
         }}
       >
         <Typography
-          variant="h5"
+          variant={smDown ? 'h5' : 'h4'}
           sx={{
             whiteSpace: 'pre-line',
             fontWeight: 800,
@@ -51,17 +54,24 @@ export const SimpleCta: FC<SimpleCtaProps> = ({
         >
           {title}
         </Typography>
-        <Typography
-          variant="body2"
-          maxWidth={theme.spacing(35)}
-          color={subTitleColor}
+        <Box
           sx={{
-            mt: theme.spacing(3),
-            fontSize: theme.spacing(1.5),
+            display: 'flex',
+            justifyContent: 'center',
           }}
         >
-          {subTitle}
-        </Typography>
+          <Typography
+            variant="body2"
+            color={subTitleColor}
+            sx={{
+              mt: theme.spacing(6),
+              maxWidth: smDown ? '70%' : mdDown ? '60%' : theme.spacing(40),
+              fontSize: smDown ? theme.spacing(1.7) : theme.spacing(1.8),
+            }}
+          >
+            {subTitle}
+          </Typography>
+        </Box>
         <Box
           sx={{
             display: 'flex',

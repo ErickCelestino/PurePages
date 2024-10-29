@@ -1,3 +1,3 @@
-export * from './container';
+export * from './containers';
 export * from './shared';
 export * from './components';

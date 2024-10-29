@@ -10,9 +10,9 @@ import {
 import ExpandLess from '@mui/icons-material/ExpandLess';
 import ExpandMore from '@mui/icons-material/ExpandMore';
 import { useEffect, useState } from 'react';
-import { useDrawerContext } from '../../context';
+import { useDrawerContext } from '../../contexts';
 import { DrawerOption, DrawerTopic } from '../../shared';
-import { scrollTo } from '../../service';
+import { scrollTo } from '../../services';
 
 interface DrawerListItemProps {
   items: DrawerTopic;

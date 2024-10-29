@@ -1,5 +1,6 @@
 import { Box, Typography, useMediaQuery, useTheme } from '@mui/material';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import { FC } from 'react';
 import { CtaButton } from '../button';
 import { IconTextProps } from '../../shared';
@@ -31,27 +32,29 @@ export const SimpleDetailsFeature: FC<SimpleDetailsFeatureProps> = ({
 
   const containerStyles = {
     display: 'flex',
-    justifyContent: 'space-between',
+    justifyContent: lgDown ? 'center' : 'space-between',
     alignItems: 'center',
-    flexDirection: 'column',
+    flexDirection: lgDown ? 'column' : 'row',
     flex: 1,
     mt: -2,
     mb: smDown ? theme.spacing(3) : '',
   };
 
   const textBoxStyles = {
-    maxWidth: smDown ? '90%' : lgDown ? '70%' : '100%',
+    maxWidth: smDown ? '90%' : lgDown ? '70%' : '50%',
     display: 'flex',
     flexDirection: 'column',
-    justifyContent: lgDown ? 'center' : 'flex-start',
-    alignItems: lgDown ? 'center' : 'flex-start',
+    justifyContent: 'center',
+    alignItems: 'center',
+    textAlign: lgDown ? 'center' : 'left',
+    margin: '0 auto',
     marginTop: lgDown ? theme.spacing(5) : 'auto',
   };
 
   const imageBoxStyles = {
     flex: 1,
     maxWidth: '100%',
-    width: lgDown ? '80%' : 'auto',
+    width: lgDown ? '100%' : 'auto',
     objectFit: 'contain' as const,
     objectPosition: 'center',
     mt: lgDown ? 0 : -10,
@@ -118,10 +121,11 @@ export const SimpleDetailsFeature: FC<SimpleDetailsFeatureProps> = ({
             <CtaButton
               action={ctaButton}
               title={ctaButtonTitle}
-              fontSize={13}
-              width={smDown ? 30 : 32}
-              padding={1.5}
-              iconLeft={<ArrowBackIcon />}
+              fontSize={smDown ? 16 : 13}
+              width={smDown ? 40 : 32}
+              padding={smDown ? 2 : 1.5}
+              iconLeft={smDown ? undefined : <ArrowBackIcon />}
+              iconRight={smDown ? <ArrowForwardIcon /> : undefined}
             />
           </Box>
         </Box>

@@ -38,7 +38,7 @@ export const SimpleHeroSection: FC<SimpleHeroSectionProps> = ({
       <Box
         sx={{
           flex: 1,
-          mt: smDown ? theme.spacing(2) : lgDown ? 0 : -5,
+          mt: smDown ? theme.spacing(2) : lgDown ? theme.spacing(15) : -5,
           ml: smDown
             ? theme.spacing(2.5)
             : lgDown
@@ -132,6 +132,7 @@ export const SimpleHeroSection: FC<SimpleHeroSectionProps> = ({
           alt={imageAltTitle}
           sx={{
             maxWidth: '100%',
+            maxHeight: '100%',
             objectFit: 'contain',
           }}
         />
