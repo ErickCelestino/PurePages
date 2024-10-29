@@ -19,7 +19,7 @@ export const SimpleClients: FC<SimpleClientsProps> = ({ title, photos }) => {
           display: 'flex',
           justifyContent: 'center',
           width: '100%',
-          padding: smDown ? theme.spacing(1) : theme.spacing(3),
+          padding: smDown ? theme.spacing(3) : theme.spacing(3),
         }}
       >
         <PhotoCarousel
