@@ -1,6 +1,6 @@
-import { Box } from '@mui/material';
+import { Box, useMediaQuery, useTheme } from '@mui/material';
 import { SectionContainer } from '../container';
-import { CasesCarousel } from '../carousel';
+import { PhotoCarousel } from '../carousel';
 import { FC } from 'react';
 
 interface SimpleCasesProps {
@@ -9,6 +9,10 @@ interface SimpleCasesProps {
 }
 
 export const SimpleCases: FC<SimpleCasesProps> = ({ casesImages, title }) => {
+  const theme = useTheme();
+  const smDown = useMediaQuery(theme.breakpoints.down('sm'));
+  const mdDown = useMediaQuery(theme.breakpoints.down('md'));
+
   return (
     <SectionContainer fullHeigth={false} id="cases-section">
       <Box
@@ -16,10 +20,18 @@ export const SimpleCases: FC<SimpleCasesProps> = ({ casesImages, title }) => {
           display: 'flex',
           justifyContent: 'center',
           width: '100%',
-          padding: '3rem',
+          padding: mdDown ? '' : theme.spacing(3),
         }}
       >
-        <CasesCarousel images={casesImages} title={title} />
+        <PhotoCarousel
+          image={{
+            imageHeight: smDown ? theme.spacing(30) : theme.spacing(40),
+            images: casesImages,
+            imageContent: 4,
+          }}
+          title={title}
+          manualButton={false}
+        />
       </Box>
     </SectionContainer>
   );

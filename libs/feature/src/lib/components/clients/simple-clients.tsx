@@ -1,6 +1,6 @@
 import { FC } from 'react';
 import { SectionContainer } from '../container';
-import { Box } from '@mui/material';
+import { Box, useMediaQuery, useTheme } from '@mui/material';
 import { PhotoCarousel } from '../carousel';
 
 interface SimpleClientsProps {
@@ -9,6 +9,9 @@ interface SimpleClientsProps {
 }
 
 export const SimpleClients: FC<SimpleClientsProps> = ({ title, photos }) => {
+  const theme = useTheme();
+  const smDown = useMediaQuery(theme.breakpoints.down('sm'));
+
   return (
     <SectionContainer fullHeigth={false} id="clients-section">
       <Box
@@ -16,10 +19,16 @@ export const SimpleClients: FC<SimpleClientsProps> = ({ title, photos }) => {
           display: 'flex',
           justifyContent: 'center',
           width: '100%',
-          padding: '3rem',
+          padding: smDown ? theme.spacing(1) : theme.spacing(3),
         }}
       >
-        <PhotoCarousel title={title} images={photos} />
+        <PhotoCarousel
+          image={{
+            imageHeight: smDown ? theme.spacing(20) : theme.spacing(18),
+            images: photos,
+          }}
+          title={title}
+        />
       </Box>
     </SectionContainer>
   );
