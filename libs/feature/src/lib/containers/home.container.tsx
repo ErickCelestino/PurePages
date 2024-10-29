@@ -16,7 +16,7 @@ import {
   LinkText,
 } from '../shared';
 import { SimpleCases } from '../components/cases/simple-cases';
-import { SimpleLayout } from '../layout';
+import { SimpleLayout } from '../layouts';
 import { SimpleFaq } from '../components/faq';
 
 interface HomeContainerProps {

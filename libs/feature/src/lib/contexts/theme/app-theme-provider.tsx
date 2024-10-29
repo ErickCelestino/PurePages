@@ -2,7 +2,7 @@ import { Box, Theme, ThemeProvider } from '@mui/material';
 import React, { ReactNode, useCallback, useMemo, useState } from 'react';
 import { ThemeContext } from './theme-context';
 import { ThemeName } from '../../shared';
-import { getItemLocalStorage, setItemLocalStorage } from '../../service';
+import { getItemLocalStorage, setItemLocalStorage } from '../../services';
 
 interface AppThemeProviderProps {
   children: ReactNode;
