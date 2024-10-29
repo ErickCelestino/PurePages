@@ -1,8 +1,9 @@
 import {
   AppThemeProvider,
   DrawerProvider,
-  navigateToWaths,
+  navigateToWathsApp,
   SimpleDrawer,
+  GMTIntegration,
 } from '@pure-pages/feature';
 import { AppRouters } from './routes';
 import {
@@ -10,11 +11,10 @@ import {
   MargentaBlueDarkTheme,
 } from '@pure-pages/feature';
 import { useEffect } from 'react';
-import { GMTIntegration } from 'libs/feature/src/lib/services';
 
 export function App() {
   useEffect(() => {
-    GMTIntegration(process.env['NX_APP_GMT_ID'] || '');
+    GMTIntegration(process.env['NX_APP_GMT_PURE_DIGITAL_ID'] || '');
   }, []);
 
   return (
@@ -32,10 +32,12 @@ const Content = () => {
     <DrawerProvider>
       <SimpleDrawer
         ctaButton={() =>
-          navigateToWaths(
-            '44998494865',
-            'Olá estou interessado em saber mais sobre os planos da Pure Digital, Poderia me ajudar?'
-          )
+          navigateToWathsApp({
+            message:
+              'Olá estou interessado em saber mais sobre os planos da Pure Digital, Poderia me ajudar?',
+            phone: '44998494865',
+            clientId: process.env['NX_APP_GMT_PURE_DIGITAL_ID'] || '',
+          })
         }
       >
         <AppRouters />

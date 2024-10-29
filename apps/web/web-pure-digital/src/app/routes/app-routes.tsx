@@ -5,7 +5,7 @@ import {
   HomeContainer,
   useDrawerContext,
   scrollTo,
-  navigateToWaths,
+  navigateToWathsApp,
 } from '@pure-pages/feature';
 import { Box, useMediaQuery, useTheme } from '@mui/material';
 import { ReactComponent as IntagramIcon } from '../../assets/images/Instagram.svg';
@@ -67,10 +67,12 @@ export const AppRouters = () => {
             }}
             cta={{
               ctaButton: () =>
-                navigateToWaths(
-                  '44998494865',
-                  'Olá estou interessado em saber mais sobre os planos da Pure Digital, Poderia me ajudar?'
-                ),
+                navigateToWathsApp({
+                  phone: '44998494865',
+                  message:
+                    'Olá estou interessado em saber mais sobre os planos da Pure Digital, Poderia me ajudar?',
+                  clientId: process.env['NX_APP_GMT_PURE_DIGITAL_ID'] || '',
+                }),
             }}
             detailsFeature={{
               detailsFeatureImage: '/assets/images/Product.svg',
