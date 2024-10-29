@@ -1,5 +1,6 @@
 import { Box, Typography, useMediaQuery, useTheme } from '@mui/material';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import { FC } from 'react';
 import { CtaButton } from '../button';
 import { IconTextProps } from '../../shared';
@@ -53,7 +54,7 @@ export const SimpleDetailsFeature: FC<SimpleDetailsFeatureProps> = ({
   const imageBoxStyles = {
     flex: 1,
     maxWidth: '100%',
-    width: lgDown ? '80%' : 'auto',
+    width: lgDown ? '100%' : 'auto',
     objectFit: 'contain' as const,
     objectPosition: 'center',
     mt: lgDown ? 0 : -10,
@@ -120,10 +121,11 @@ export const SimpleDetailsFeature: FC<SimpleDetailsFeatureProps> = ({
             <CtaButton
               action={ctaButton}
               title={ctaButtonTitle}
-              fontSize={13}
-              width={smDown ? 30 : 32}
-              padding={1.5}
-              iconLeft={<ArrowBackIcon />}
+              fontSize={smDown ? 16 : 13}
+              width={smDown ? 40 : 32}
+              padding={smDown ? 2 : 1.5}
+              iconLeft={smDown ? undefined : <ArrowBackIcon />}
+              iconRight={smDown ? <ArrowForwardIcon /> : undefined}
             />
           </Box>
         </Box>
