@@ -3,7 +3,7 @@ import {
   DrawerProvider,
   navigateToWathsApp,
   SimpleDrawer,
-  GMTIntegration,
+  GTMIntegration,
 } from '@pure-pages/feature';
 import { AppRouters } from './routes';
 import {
@@ -13,10 +13,6 @@ import {
 import { useEffect } from 'react';
 
 export function App() {
-  useEffect(() => {
-    GMTIntegration(process.env['NX_APP_GMT_PURE_DIGITAL_ID'] || '');
-  }, []);
-
   return (
     <AppThemeProvider
       selectedLightTheme={MargentaBlueLightTheme}
@@ -28,6 +24,10 @@ export function App() {
 }
 
 const Content = () => {
+  useEffect(() => {
+    GTMIntegration(process.env['REACT_APP_GMT_PURE_DIGITAL_ID'] || '');
+  }, []);
+
   return (
     <DrawerProvider>
       <SimpleDrawer
