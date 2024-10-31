@@ -205,7 +205,7 @@ export const AppRouters = () => {
                       style={{ color: smDown ? 'white' : 'black' }}
                     />
                   ),
-                  to: '2',
+                  to: 'https://www.instagram.com/_puredigital/',
                 },
               ],
               footerLinks: [
