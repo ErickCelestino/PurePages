@@ -2,7 +2,7 @@ name: Deploy to Google Cloud Run
 
 on:
   push:
-    branches: ['main']
+    branches: ['main', 'fix-ajust-region']
   workflow_dispatch:
 
 jobs:
