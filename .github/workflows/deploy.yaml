@@ -104,7 +104,7 @@ jobs:
             gcloud run deploy $app \
               --image "${!IMAGE_VAR}"  \
               --platform managed \
-              --region ${{ secrets.GCP_REGION }} \
+              --region ${{ secrets.GCP_CLOUD_REGION }} \
               --allow-unauthenticated \
               --project ${{ secrets.GCP_PROJECT_ID }}
           done < affected.txt
