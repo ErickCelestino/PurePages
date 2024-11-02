@@ -6,6 +6,7 @@ import {
   useDrawerContext,
   scrollTo,
   navigateToWaths,
+  TestContainer,
 } from '@pure-pages/feature';
 import { Box, useMediaQuery, useTheme } from '@mui/material';
 import { ReactComponent as IntagramIcon } from '../../assets/images/social-media/Instagram.svg';
@@ -223,6 +224,44 @@ export const AppRouters = () => {
                   to: '',
                 },
               ],
+            }}
+          />
+        }
+      />
+
+      <Route
+        path="test"
+        element={
+          <TestContainer
+            header={{
+              headerListButtons: [
+                {
+                  title: 'Inicio',
+                  to: () => scrollTo('home'),
+                },
+                {
+                  title: 'Sobre nós',
+                  to: () => scrollTo('about-section'),
+                },
+                {
+                  title: 'Nossos trabalhos',
+                  to: () => {
+                    console.log(
+                      'Voce clicou no Nossos trabalho, estou cansado chefe'
+                    );
+                  },
+                },
+              ],
+            }}
+            company={{
+              companyLogo: '/assets/images/logos/logo.svg',
+            }}
+            cta={{
+              ctaButton: () =>
+                navigateToWaths(
+                  '44998494865',
+                  'Olá estou interessado em saber mais sobre os planos da Pure Digital, Poderia me ajudar?'
+                ),
             }}
           />
         }

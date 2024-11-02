@@ -28,8 +28,8 @@ export const TestContainer: FC<TestContainerProps> = ({
       logo={companyLogo}
       logoAltTitle={companyLogoAltTitle}
       listButtons={headerListButtons}
-      ctaButton={ctaButton}
-      ctaButtonTitle={ctaButtonTitle}
+      backgroundColor="white"
+      textColor="black"
     />
   );
 };

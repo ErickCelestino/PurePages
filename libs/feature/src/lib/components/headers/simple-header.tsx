@@ -20,8 +20,10 @@ interface SimpleHeaderProps {
   logo: string;
   logoAltTitle?: string;
   listButtons: ButtonNavigation[];
-  ctaButton: () => void;
+  ctaButton?: () => void;
   ctaButtonTitle?: string;
+  backgroundColor?: string;
+  textColor?: string;
 }
 
 export const SimpleHeader: FC<SimpleHeaderProps> = ({
@@ -31,6 +33,8 @@ export const SimpleHeader: FC<SimpleHeaderProps> = ({
   logo,
   listButtons,
   ctaButton,
+  backgroundColor,
+  textColor,
 }) => {
   const theme = useTheme();
   const smDown = useMediaQuery(theme.breakpoints.down('sm'));
@@ -38,7 +42,11 @@ export const SimpleHeader: FC<SimpleHeaderProps> = ({
   const { toggleDrawerOpen } = useDrawerContext();
 
   return (
-    <AppBar id="home" position="static">
+    <AppBar
+      sx={{ background: backgroundColor, color: textColor }}
+      id="home"
+      position="static"
+    >
       <Toolbar>
         <IconButton
           onClick={() => scrollTo('home')}
@@ -88,6 +96,8 @@ export const SimpleHeader: FC<SimpleHeaderProps> = ({
                   ? theme.spacing(-0.5)
                   : mdDown
                   ? theme.spacing(0)
+                  : !ctaButton
+                  ? theme.spacing(8)
                   : theme.spacing(3)
               }
               sx={{
@@ -118,13 +128,15 @@ export const SimpleHeader: FC<SimpleHeaderProps> = ({
                   </Button>
                 ))}
             </Box>
-            <Box
-              sx={{
-                marginRight: mdDown ? theme.spacing(2) : '',
-              }}
-            >
-              <CtaButton action={ctaButton} title={ctaButtonTitle} />
-            </Box>
+            {ctaButton && (
+              <Box
+                sx={{
+                  marginRight: mdDown ? theme.spacing(2) : '',
+                }}
+              >
+                <CtaButton action={ctaButton} title={ctaButtonTitle} />
+              </Box>
+            )}
           </>
         )}
       </Toolbar>
