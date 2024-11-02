@@ -8,8 +8,8 @@ import {
   navigateToWaths,
 } from '@pure-pages/feature';
 import { Box, useMediaQuery, useTheme } from '@mui/material';
-import { ReactComponent as IntagramIcon } from '../../assets/images/Instagram.svg';
-import { ReactComponent as FacebookIcon } from '../../assets/images/Facebook.svg';
+import { ReactComponent as IntagramIcon } from '../../assets/images/social-media/Instagram.svg';
+import { ReactComponent as FacebookIcon } from '../../assets/images/social-media/Facebook.svg';
 
 export const AppRouters = () => {
   const { setDrawerOptions } = useDrawerContext();
@@ -56,7 +56,8 @@ export const AppRouters = () => {
               ],
             }}
             company={{
-              companyLogo: '/assets/images/PurePagesLogo.svg',
+              companyLogo:
+                'https://storage.cloud.google.com/pure-digital/logos/PurePagesLogo.svg',
             }}
             heroSection={{
               heroSectionImage: '/assets/images/MenHeroSection.svg',
@@ -123,11 +124,11 @@ export const AppRouters = () => {
               clientsTitle:
                 '+ de 85 clientes confiaram em nós ao longo de toda nossa história.',
               clientsPhotos: [
-                '/assets/images/companies/EmanuelFaria.svg',
-                '/assets/images/companies/Tattoo.svg',
-                '/assets/images/companies/Bless.svg',
-                '/assets/images/companies/Alfa.svg',
-                '/assets/images/companies/Gimenes.svg',
+                'https://storage.cloud.google.com/pure-digital/companies/pure-digital/EmanuelFaria.svg',
+                'https://storage.cloud.google.com/pure-digital/companies/pure-digital/Tattoo.svg',
+                'https://storage.cloud.google.com/pure-digital/companies/pure-digital/Bless.svg',
+                'https://storage.cloud.google.com/pure-digital/companies/pure-digital/Alfa.svg',
+                'https://storage.cloud.google.com/pure-digital/companies/pure-digital/Gimenes.svg',
               ],
             }}
             ctaSection={{
@@ -143,14 +144,14 @@ export const AppRouters = () => {
             cases={{
               casesTitle: 'Transformamos visões em soluções poderosas.',
               casesImages: [
-                '/assets/images/cases/Burger-joint.svg',
-                '/assets/images/cases/Traffic-management.svg',
-                '/assets/images/cases/Gym.svg',
-                '/assets/images/cases/Gym-alternative.svg',
-                '/assets/images/cases/Traffic-management-alternative.svg',
-                '/assets/images/cases/Petshop.svg',
-                '/assets/images/cases/Info.svg',
-                '/assets/images/cases/Marketing.svg',
+                'https://storage.cloud.google.com/pure-digital/cases/pure-digital/Burger-joint.svg',
+                'https://storage.cloud.google.com/pure-digital/cases/pure-digital/Traffic-management.svg',
+                'https://storage.cloud.google.com/pure-digital/cases/pure-digital/Gym.svg',
+                'https://storage.cloud.google.com/pure-digital/cases/pure-digital/Gym-alternative.svg',
+                'https://storage.cloud.google.com/pure-digital/cases/pure-digital/Traffic-management-alternative.svg',
+                'https://storage.cloud.google.com/pure-digital/cases/pure-digital/Petshop.svg',
+                'https://storage.cloud.google.com/pure-digital/cases/pure-digital/Info.svg',
+                'https://storage.cloud.google.com/pure-digital/cases/pure-digital/Marketing.svg',
               ],
             }}
             faq={{
