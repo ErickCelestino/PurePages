@@ -32,6 +32,7 @@ export const CustomHeroSection: FC<CustomHeroSectionProps> = ({
   const mdDown = useMediaQuery(theme.breakpoints.down('md'));
   const lgDown = useMediaQuery(theme.breakpoints.down('lg'));
   const xlDown = useMediaQuery(theme.breakpoints.down('xl'));
+  const xsDown = useMediaQuery(theme.breakpoints.down('xs'));
 
   return (
     <Box
@@ -39,7 +40,7 @@ export const CustomHeroSection: FC<CustomHeroSectionProps> = ({
       id="hero-section"
       sx={{
         display: 'flex',
-        flexDirection: 'row',
+        flexDirection: smDown ? 'column' : 'row',
         justifyContent: 'center',
         alignItems: 'center',
         alignContent: 'center',
@@ -50,28 +51,25 @@ export const CustomHeroSection: FC<CustomHeroSectionProps> = ({
       <Box
         sx={{
           display: 'flex',
-          width: 'auto',
-          alignContent: 'center',
-          justifyContent: 'center',
+          width: mdDown ? '80%' : xlDown ? '46%' : xsDown ? '50%' : '60%',
         }}
       >
         <Box
           sx={{
             display: 'flex',
-            justifyContent: 'center',
             flexDirection: 'column',
             textAlign: 'start',
-            marginRight: theme.spacing(3),
+            marginLeft: smDown ? '' : mdDown ? theme.spacing(3) : '',
           }}
         >
           <Typography
-            variant={xlDown ? 'h5' : 'h3'}
+            variant={mdDown ? 'h2' : 'h3'}
             sx={{
               whiteSpace: 'pre-line',
               color: textColor,
-              maxWidth: '60%',
+              maxWidth: mdDown ? '80%' : '60%',
               fontSize: smDown
-                ? theme.spacing(2)
+                ? theme.spacing(3)
                 : mdDown
                 ? theme.spacing(4)
                 : 'auto',
@@ -85,7 +83,7 @@ export const CustomHeroSection: FC<CustomHeroSectionProps> = ({
               variant="body2"
               sx={{
                 mt: theme.spacing(1),
-                maxWidth: '56%',
+                maxWidth: smDown ? '90%' : '56%',
               }}
               fontSize={theme.spacing(2)}
               color={textColor}
@@ -96,7 +94,6 @@ export const CustomHeroSection: FC<CustomHeroSectionProps> = ({
           <Box
             sx={{
               display: 'flex',
-              justifyContent: smDown ? 'center' : '',
             }}
             mt={mdDown ? theme.spacing(3) : theme.spacing(5)}
           >
@@ -120,15 +117,14 @@ export const CustomHeroSection: FC<CustomHeroSectionProps> = ({
           display: 'flex',
           justifyContent: 'center',
           alignItems: 'center',
+          mt: smDown ? theme.spacing(3) : '',
         }}
       >
         <Box
           component="img"
           height={
-            smDown
+            mdDown
               ? '100%'
-              : mdDown
-              ? theme.spacing(60)
               : lgDown
               ? theme.spacing(70)
               : xlDown
@@ -138,7 +134,7 @@ export const CustomHeroSection: FC<CustomHeroSectionProps> = ({
           src={image}
           alt={imageAltTitle}
           sx={{
-            maxWidth: '100%',
+            maxWidth: mdDown ? '80%' : '100%',
             maxHeight: '100%',
             objectFit: 'contain',
           }}

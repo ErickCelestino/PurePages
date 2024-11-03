@@ -240,16 +240,16 @@ export const AppRouters = () => {
                   to: () => scrollTo('home'),
                 },
                 {
-                  title: 'Sobre nós',
-                  to: () => scrollTo('about-section'),
-                },
-                {
-                  title: 'Nossos trabalhos',
+                  title: 'Serviços',
                   to: () => {
                     console.log(
                       'Voce clicou no Nossos trabalho, estou cansado chefe'
                     );
                   },
+                },
+                {
+                  title: 'Sobre nós',
+                  to: () => scrollTo('about-section'),
                 },
               ],
             }}
