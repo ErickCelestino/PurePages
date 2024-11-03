@@ -11,6 +11,7 @@ interface CtaButtonProps {
   color?: string;
   titleColor?: string;
   padding?: number;
+  borderRadius?: number;
 }
 
 export const CtaButton: FC<CtaButtonProps> = ({
@@ -23,6 +24,7 @@ export const CtaButton: FC<CtaButtonProps> = ({
   color = 'secondary',
   titleColor,
   padding,
+  borderRadius = 90,
 }) => {
   const theme = useTheme();
   const smDown = useMediaQuery(theme.breakpoints.down('sm'));
@@ -32,7 +34,7 @@ export const CtaButton: FC<CtaButtonProps> = ({
     <Button
       variant="contained"
       sx={{
-        borderRadius: '90px',
+        borderRadius: `${borderRadius}px`,
         whiteSpace: 'nowrap',
         textTransform: 'none',
         fontSize: fontSize,

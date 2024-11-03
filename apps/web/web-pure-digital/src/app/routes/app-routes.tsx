@@ -263,6 +263,13 @@ export const AppRouters = () => {
                   'Olá estou interessado em saber mais sobre os planos da Pure Digital, Poderia me ajudar?'
                 ),
             }}
+            heroSection={{
+              heroSectionImage:
+                '/assets/images/hero-section/HeroSectionExample.svg',
+              heroSectionTitle: 'Título focado no problema que você resolve',
+              herosectionSubTitle:
+                'Descreva de forma breve e direta o que é o seu produto, pra quem ele é e o que torna ele tão especial.',
+            }}
           />
         }
       />
