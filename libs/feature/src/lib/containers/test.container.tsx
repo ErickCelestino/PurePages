@@ -1,6 +1,6 @@
 import { FC } from 'react';
-import { ButtonNavigation, CtaSection } from '../shared';
-import { CustomHeroSection, SimpleHeader } from '../components';
+import { BenefitsItems, ButtonNavigation, CtaSection } from '../shared';
+import { CustomBenefits, CustomHeroSection, SimpleHeader } from '../components';
 import { Box, Divider } from '@mui/material';
 
 export interface TestContainerProps {
@@ -18,6 +18,10 @@ export interface TestContainerProps {
     heroSectionTitle: string;
     herosectionSubTitle?: string;
   };
+  benefits: {
+    benefitsTitle: string;
+    benefitsList: BenefitsItems[];
+  };
 }
 
 export const TestContainer: FC<TestContainerProps> = ({
@@ -25,6 +29,7 @@ export const TestContainer: FC<TestContainerProps> = ({
   company: { companyLogo, companyLogoAltTitle },
   cta,
   heroSection: { heroSectionImage, heroSectionTitle, herosectionSubTitle },
+  benefits: { benefitsList, benefitsTitle },
 }) => {
   return (
     <Box>
@@ -43,6 +48,7 @@ export const TestContainer: FC<TestContainerProps> = ({
         image={heroSectionImage}
         subTitle={herosectionSubTitle}
       />
+      <CustomBenefits title={benefitsTitle} benefits={benefitsList} />
     </Box>
   );
 };

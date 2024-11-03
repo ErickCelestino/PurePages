@@ -270,6 +270,21 @@ export const AppRouters = () => {
               herosectionSubTitle:
                 'Descreva de forma breve e direta o que é o seu produto, pra quem ele é e o que torna ele tão especial.',
             }}
+            benefits={{
+              benefitsTitle: 'Por que a sua solução é melhor do que a atual',
+              benefitsList: [
+                {
+                  id: '1',
+                  image: '/assets/images/benefits/BenefitsExample.svg',
+                  onClick: () => {
+                    console.log('click');
+                  },
+                  subTitle:
+                    'Qual problema ela resolve? Descreva aqui e tente provar o seu ponto.',
+                  title: 'Beneficio 1',
+                },
+              ],
+            }}
           />
         }
       />

@@ -1,4 +1,5 @@
 export * from './about';
+export * from './benefits';
 export * from './button';
 export * from './carousel';
 export * from './cases';
