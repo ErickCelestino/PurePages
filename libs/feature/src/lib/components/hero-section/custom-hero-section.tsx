@@ -33,6 +33,7 @@ export const CustomHeroSection: FC<CustomHeroSectionProps> = ({
   const lgDown = useMediaQuery(theme.breakpoints.down('lg'));
   const xlDown = useMediaQuery(theme.breakpoints.down('xl'));
   const xsDown = useMediaQuery(theme.breakpoints.down('xs'));
+  const ultraHD = useMediaQuery('(max-width: 1920px)');
 
   return (
     <Box
@@ -51,7 +52,17 @@ export const CustomHeroSection: FC<CustomHeroSectionProps> = ({
       <Box
         sx={{
           display: 'flex',
-          width: mdDown ? '80%' : xlDown ? '46%' : xsDown ? '50%' : '60%',
+          width: smDown
+            ? '80%'
+            : mdDown
+            ? '75%'
+            : xlDown
+            ? '46%'
+            : xsDown
+            ? '50%'
+            : ultraHD
+            ? '50%'
+            : '59%',
         }}
       >
         <Box

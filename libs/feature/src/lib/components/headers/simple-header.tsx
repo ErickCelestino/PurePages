@@ -51,7 +51,7 @@ export const SimpleHeader: FC<SimpleHeaderProps> = ({
       position="static"
     >
       <Box sx={{ display: 'flex', justifyContent: 'center' }}>
-        <Toolbar sx={{ width: '87%' }}>
+        <Toolbar sx={{ width: mdDown && !smDown ? '100%' : '87%' }}>
           <IconButton
             onClick={() => scrollTo('home')}
             sx={{
