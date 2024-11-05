@@ -31,7 +31,7 @@ export const AppRouters = () => {
   return (
     <Routes>
       <Route
-        path="/home"
+        path="/"
         element={
           <HomeContainer
             header={{
@@ -228,7 +228,7 @@ export const AppRouters = () => {
         }
       />
 
-      <Route path="*" element={<Navigate to="/home" />} />
+      <Route path="*" element={<Navigate to="/" />} />
     </Routes>
   );
 };
