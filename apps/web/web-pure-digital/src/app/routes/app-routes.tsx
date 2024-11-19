@@ -57,7 +57,7 @@ export const AppRouters = () => {
             }}
             company={{
               companyLogo:
-                'https://storage.googleapis.com/pure-digital/logos/PurePagesLogo.svg',
+                'https://storage.googleapis.com/pure-digital-us/logos/PurePagesLogo.svg',
             }}
             heroSection={{
               heroSectionImage: '/assets/images/MenHeroSection.svg',
@@ -124,11 +124,11 @@ export const AppRouters = () => {
               clientsTitle:
                 '+ de 85 clientes confiaram em nós ao longo de toda nossa história.',
               clientsPhotos: [
-                'https://storage.googleapis.com/pure-digital/companies/pure-digital/EmanuelFaria.svg',
-                'https://storage.googleapis.com/pure-digital/companies/pure-digital/Tattoo.svg',
-                'https://storage.googleapis.com/pure-digital/companies/pure-digital/Bless.svg',
-                'https://storage.googleapis.com/pure-digital/companies/pure-digital/Alfa.svg',
-                'https://storage.googleapis.com/pure-digital/companies/pure-digital/Gimenes.svg',
+                'https://storage.googleapis.com/pure-digital-us/companies/pure-digital/EmanuelFaria.svg',
+                'https://storage.googleapis.com/pure-digital-us/companies/pure-digital/Tattoo.svg',
+                'https://storage.googleapis.com/pure-digital-us/companies/pure-digital/Bless.svg',
+                'https://storage.googleapis.com/pure-digital-us/companies/pure-digital/Alfa.svg',
+                'https://storage.googleapis.com/pure-digital-us/companies/pure-digital/Gimenes.svg',
               ],
             }}
             ctaSection={{
@@ -144,14 +144,14 @@ export const AppRouters = () => {
             cases={{
               casesTitle: 'Transformamos visões em soluções poderosas.',
               casesImages: [
-                'https://storage.googleapis.com/pure-digital/cases/pure-digital/Burger-joint.svg',
-                'https://storage.googleapis.com/pure-digital/cases/pure-digital/Traffic-management.svg',
-                'https://storage.googleapis.com/pure-digital/cases/pure-digital/Gym.svg',
-                'https://storage.googleapis.com/pure-digital/cases/pure-digital/Gym-alternative.svg',
-                'https://storage.googleapis.com/pure-digital/cases/pure-digital/Traffic-management-alternative.svg',
-                'https://storage.googleapis.com/pure-digital/cases/pure-digital/Petshop.svg',
-                'https://storage.googleapis.com/pure-digital/cases/pure-digital/Info.svg',
-                'https://storage.googleapis.com/pure-digital/cases/pure-digital/Marketing.svg',
+                'https://storage.googleapis.com/pure-digital-us/cases/pure-digital/Burger-joint.svg',
+                'https://storage.googleapis.com/pure-digital-us/cases/pure-digital/Traffic-management.svg',
+                'https://storage.googleapis.com/pure-digital-us/cases/pure-digital/Gym.svg',
+                'https://storage.googleapis.com/pure-digital-us/cases/pure-digital/Gym-alternative.svg',
+                'https://storage.googleapis.com/pure-digital-us/cases/pure-digital/Traffic-management-alternative.svg',
+                'https://storage.googleapis.com/pure-digital-us/cases/pure-digital/Petshop.svg',
+                'https://storage.googleapis.com/pure-digital-us/cases/pure-digital/Info.svg',
+                'https://storage.googleapis.com/pure-digital-us/cases/pure-digital/Marketing.svg',
               ],
             }}
             faq={{
