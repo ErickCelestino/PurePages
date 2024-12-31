@@ -56,7 +56,7 @@ export const AppRouters = () => {
               ],
             }}
             company={{
-              companyLogo: '/assets/images/logos/PurePagesLogo.svg',
+              companyLogo: '/assets/images/logos/logo.svg',
             }}
             heroSection={{
               heroSectionImage: '/assets/images/MenHeroSection.svg',
