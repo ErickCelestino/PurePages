@@ -56,8 +56,7 @@ export const AppRouters = () => {
               ],
             }}
             company={{
-              companyLogo:
-                'https://storage.googleapis.com/pure-digital-us/logos/PurePagesLogo.svg',
+              companyLogo: '/assets/images/logos/PurePagesLogo.svg',
             }}
             heroSection={{
               heroSectionImage: '/assets/images/MenHeroSection.svg',
@@ -124,11 +123,11 @@ export const AppRouters = () => {
               clientsTitle:
                 '+ de 85 clientes confiaram em nós ao longo de toda nossa história.',
               clientsPhotos: [
-                'https://storage.googleapis.com/pure-digital-us/companies/pure-digital/EmanuelFaria.svg',
-                'https://storage.googleapis.com/pure-digital-us/companies/pure-digital/Tattoo.svg',
-                'https://storage.googleapis.com/pure-digital-us/companies/pure-digital/Bless.svg',
-                'https://storage.googleapis.com/pure-digital-us/companies/pure-digital/Alfa.svg',
-                'https://storage.googleapis.com/pure-digital-us/companies/pure-digital/Gimenes.svg',
+                '/assets/images/companies/EmanuelFaria.svg',
+                '/assets/images/companies/Tattoo.svg',
+                '/assets/images/companies/Bless.svg',
+                '/assets/images/companies/Alfa.svg',
+                '/assets/images/companies/Gimenes.svg',
               ],
             }}
             ctaSection={{
@@ -144,14 +143,14 @@ export const AppRouters = () => {
             cases={{
               casesTitle: 'Transformamos visões em soluções poderosas.',
               casesImages: [
-                'https://storage.googleapis.com/pure-digital-us/cases/pure-digital/Burger-joint.svg',
-                'https://storage.googleapis.com/pure-digital-us/cases/pure-digital/Traffic-management.svg',
-                'https://storage.googleapis.com/pure-digital-us/cases/pure-digital/Gym.svg',
-                'https://storage.googleapis.com/pure-digital-us/cases/pure-digital/Gym-alternative.svg',
-                'https://storage.googleapis.com/pure-digital-us/cases/pure-digital/Traffic-management-alternative.svg',
-                'https://storage.googleapis.com/pure-digital-us/cases/pure-digital/Petshop.svg',
-                'https://storage.googleapis.com/pure-digital-us/cases/pure-digital/Info.svg',
-                'https://storage.googleapis.com/pure-digital-us/cases/pure-digital/Marketing.svg',
+                '/assets/images/cases/Burger-joint.svg',
+                '/assets/images/cases/Traffic-management.svg',
+                '/assets/images/cases/Gym.svg',
+                '/assets/images/cases/Gym-alternative.svg',
+                '/assets/images/cases/Traffic-management-alternative.svg',
+                '/assets/images/cases/Petshop.svg',
+                '/assets/images/cases/Info.svg',
+                '/assets/images/cases/Marketing.svg',
               ],
             }}
             faq={{
@@ -198,7 +197,7 @@ export const AppRouters = () => {
                       style={{ color: smDown ? 'white' : 'black' }}
                     />
                   ),
-                  to: '1',
+                  to: 'https://www.facebook.com/profile.php?id=61568266243629',
                 },
                 {
                   icon: (
